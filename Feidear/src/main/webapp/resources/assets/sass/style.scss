@@ -1,0 +1,65 @@
+/*
+Theme Name: Viaje
+Theme URI: 
+Author: Zwin
+Author URI: 
+Description: Viaje - Travel, Tour Booking HTML5 Template
+Version: 1.0.0
+*/
+
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+
+# Typography
+# Normalize
+# Accessibility
+# Globals
+# Alignments
+# Clearings
+# Posts and pages
+# Captions
+# Galleries
+# Unit test
+# guterberg
+# Gutenberg	Default Style
+# Block Color Palette Colors
+# Sections
+    ## Breadcrumb
+    ## Comments
+    ## Widgets
+    ## Nav Bar
+    ## Info Bar
+    ## Banner
+
+# Custom
+    ## Back Top
+    ## Preloader
+    ## Search Popup
+    ## Video Popup
+    ## Button
+    ## Section Title
+--------------------------------------------------------------*/
+
+//== Global Design
+@import "global/_mixins";
+@import "global/_variables";
+@import "global/_global";
+@import "global/_gutenberg";
+
+//== Pages
+//== custom
+@import "custom/_breadcrumb";
+@import "custom/_comments";
+@import "custom/_all_popup";
+@import "custom/_search";
+@import "custom/_preloader";
+@import "custom/_navbar";
+@import "custom/_banner";
+@import "custom/_blog";
+@import "custom/_elements";
+@import "custom/_destination";
+@import "custom/_input_forms";
+@import "custom/_widgets";
+@import "custom/_section";
+@import "custom/_footer";
