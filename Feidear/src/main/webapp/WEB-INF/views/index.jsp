@@ -3,14 +3,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
 	<%String pjName = "/Feidear";%>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Viaje - Travel, Tour Booking HTML5 Template</title>
+    <title>Feidear</title>
     <!-- favicon -->
     <link rel=icon href="<%=pjName%>/resources/assets/images/favicon.png" sizes="20x20" type="image/png">
 
@@ -32,6 +32,7 @@
     <!-- responsive css -->
     <link rel="stylesheet" href="<%=pjName%>/resources/assets/css/responsive.css">
 
+	
 </head>
 <body>
 
@@ -46,17 +47,6 @@
     </div>
     <!-- preloader area end -->
 
-    <!-- search popup start -->
-    <div class="body-overlay" id="body-overlay"></div>
-    <div class="search-popup" id="search-popup">
-        <form action="index" class="search-form">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search.....">
-            </div>
-            <button type="submit" class="submit-btn"><i class="fa fa-search"></i></button>
-        </form>
-    </div>
-    <!-- search popup End -->
 
     <!-- //. sign up Popup -->
     <div class="signUp-popup login-register-popup" id="signUp-popup">
@@ -139,19 +129,8 @@
                 <div class="col-lg-6">
                     <div class="nav-right-content float-right">
                         <ul class="pl-0">
-                            <li class="tp-lang">
-                                <div class="tp-lang-wrap">
-                                    <select class="select single-select">
-                                      <option value="1">ENG</option>
-                                      <option value="2">BAN</option>
-                                      <option value="3">Chinese</option>
-                                      <option value="3">Spanish</option>
-                                    </select>
-                                </div>
-                            </li>
-                            <li class="search">
-                                <i class="ti-search"></i>
-                            </li>
+
+
                             <li class="notification">
                                 <a class="signUp-btn" href="#">
                                     <i class="fa fa-user-o"></i>
@@ -184,19 +163,7 @@
                         <li class="top-bar-btn-booking">
                             <a class="btn btn-yellow" href="tour-details">Book Now <i class="fa fa-paper-plane"></i></a>
                         </li>
-                        <li class="tp-lang">
-                            <div class="tp-lang-wrap">
-                                <select class="select single-select">
-                                  <option value="1">ENG</option>
-                                  <option value="2">BAN</option>
-                                  <option value="3">Chinese</option>
-                                  <option value="3">Spanish</option>
-                                </select>
-                            </div>
-                        </li>
-                        <li class="search">
-                            <i class="ti-search"></i>
-                        </li>
+
                         <li class="notification">
                             <a class="signUp-btn" href="#">
                                 <i class="fa fa-user-o"></i>
@@ -215,49 +182,46 @@
                     </a>
                 </div>
                 <ul class="navbar-nav">
-                    <li class="menu-item-has-children">
-                        <a href="#">Home</a>
-                    </li>
                     <li>
-                        <a href="about">About Us</a>
+                        <a href="tour-list">축제</a>
                     </li>
                     <li class="menu-item-has-children">
-                        <a href="#">Pages</a>
+                        <a href="#">커뮤니티</a>
                         <ul class="sub-menu">
-                            <li><a href="tour-list">Tours List</a></li>
-                            <li><a href="tour-list02">Tours List 02</a></li>
-                            <li><a href="tour-list03">Tours List 03</a></li>
-                            <li><a href="tour-details">Tours Details</a></li>
-                            <li><a href="destination-list">Destination List</a></li>
-                            <li><a href="destination-list02">Destination List 2</a></li>
-                            <li><a href="destination-details">Destination Details</a></li>
-                            <li><a href="gallery">Gallery</a></li>
-                            <li><a href="gallery-details">Gallery Details</a></li>
-                            <li><a href="comming-soon">Comming soon</a></li>
-                            <li><a href="404">404</a></li>
-                            <li><a href="faq">FAQ</a></li>
-                            <li><a href="user-profile">User Profile</a></li>
+                            <li><a href="blog-details02">축제일기</a></li>
+                            <li><a href="blog02">매거진</a></li>
+                            <li><a href="blog-details">매거진 상세</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children">
-                        <a href="#">Blog</a>
+                        <a href="#">이벤트</a>
                         <ul class="sub-menu">
-                            <li><a href="blog">Blog</a></li>
-                            <li><a href="blog02">Blog 02</a></li>
-                            <li><a href="blog03">Blog 03</a></li>
-                            <li><a href="blog-details">Blog Details</a></li>
-                            <li><a href="blog-details02">Blog Details 02</a></li>
+                            <li><a href="blog03">제휴 이벤트</a></li>
+                      		<li><a href="destination-details">서포터즈</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children">
+                        <a href="#">스마트 PAGE</a>
+                        <ul class="sub-menu">
+                            <li><a href="user-profile">MY 여행성향 분석</a></li>
+                      		<li><a href="user-profile">실시간 날씨</a></li>
+                      		<li><a href="user-profile">혼잡도 체크</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="contact">Contact</a>
+                        <a href="faq">FAQ</a>
+                    </li>
+                    <li>
+                        <a href="contact">1:1문의</a>
                     </li>
                 </ul>
             </div>
             <div class="nav-right-content">
                 <ul>
+                    <li><a href="user-profile">MY PAGE</a>
+                    </li>
                     <li class="pr-0">
-                        <a class="btn btn-yellow" href="tour-details">Book Now <i class="fa fa-paper-plane"></i></a>
+                        <a class="btn btn-yellow" href="tour-details">축제 캘린더<i class="fa fa-paper-plane"></i></a>
                     </li>
                 </ul>
             </div>
@@ -1204,7 +1168,7 @@
         <div class="copyright-inner border-tp-solid">
             <div class="container">
                 <div class="copyright-text text-center">
-                    &copy; Viaje 2019 All rights reserved. Powered with <a href="http://zwin.io/" target="_blank"><i class="fa fa-heart"></i> </a> by <a href="http://zwin.io/" target="_blank"><span>Zwin.</span></a>
+                    &copy; Feidear 2022 All rights reserved. Powered with <a href="#" target="_blank"><i class="fa fa-heart"></i> </a> by <a href="#" target="_blank"><span>Feidear.</span></a>
                 </div>
             </div>
         </div>

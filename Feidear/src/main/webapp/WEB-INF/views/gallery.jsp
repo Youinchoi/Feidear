@@ -45,18 +45,6 @@
     </div>
     <!-- preloader area end -->
 
-    <!-- search popup start -->
-    <div class="body-overlay" id="body-overlay"></div>
-    <div class="search-popup" id="search-popup">
-        <form action="index" class="search-form">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search.....">
-            </div>
-            <button type="submit" class="submit-btn"><i class="fa fa-search"></i></button>
-        </form>
-    </div>
-    <!-- search popup End -->
-
     <!-- //. sign up Popup -->
     <div class="signUp-popup login-register-popup" id="signUp-popup">
         <div class="login-register-popup-wrap">
@@ -135,19 +123,7 @@
                         <li class="top-bar-btn-booking">
                             <a class="btn btn-yellow" href="tour-details">Book Now <i class="fa fa-paper-plane"></i></a>
                         </li>
-                        <li class="tp-lang">
-                            <div class="tp-lang-wrap">
-                                <select class="select single-select">
-                                  <option value="1">ENG</option>
-                                  <option value="2">BAN</option>
-                                  <option value="3">Chinese</option>
-                                  <option value="3">Spanish</option>
-                                </select>
-                            </div>
-                        </li>
-                        <li class="search">
-                            <i class="ti-search"></i>
-                        </li>
+
                         <li class="notification">
                             <a class="signUp-btn" href="#">
                                 <i class="fa fa-user-o"></i>
@@ -166,73 +142,53 @@
                     </a>
                 </div>
                 <ul class="navbar-nav">
-                    <li class="menu-item-has-children">
-                        <a href="#">Home</a>
-                    </li>
                     <li>
-                        <a href="about">About Us</a>
+                        <a href="tour-list">축제</a>
                     </li>
                     <li class="menu-item-has-children">
-                        <a href="#">Pages</a>
+                        <a href="#">커뮤니티</a>
                         <ul class="sub-menu">
-                            <li><a href="tour-list">Tours List</a></li>
-                            <li><a href="tour-list02">Tours List 02</a></li>
-                            <li><a href="tour-list03">Tours List 03</a></li>
-                            <li><a href="tour-details">Tours Details</a></li>
-                            <li><a href="destination-list">Destination List</a></li>
-                            <li><a href="destination-list02">Destination List 2</a></li>
-                            <li><a href="destination-details">Destination Details</a></li>
-                            <li><a href="gallery">Gallery</a></li>
-                            <li><a href="gallery-details">Gallery Details</a></li>
-                            <li><a href="comming-soon">Comming soon</a></li>
-                            <li><a href="404">404</a></li>
-                            <li><a href="faq">FAQ</a></li>
-                            <li><a href="user-profile">User Profile</a></li>
+                            <li><a href="blog-details02">축제일기</a></li>
+                            <li><a href="blog02">매거진</a></li>
+                            <li><a href="blog-details">매거진 상세</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children">
-                        <a href="#">Blog</a>
+                        <a href="#">이벤트</a>
                         <ul class="sub-menu">
-                            <li><a href="blog">Blog</a></li>
-                            <li><a href="blog02">Blog 02</a></li>
-                            <li><a href="blog03">Blog 03</a></li>
-                            <li><a href="blog-details">Blog Details</a></li>
-                            <li><a href="blog-details02">Blog Details 02</a></li>
+                            <li><a href="blog03">제휴 이벤트</a></li>
+                      		<li><a href="destination-details">서포터즈</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children">
+                        <a href="#">스마트 PAGE</a>
+                        <ul class="sub-menu">
+                            <li><a href="user-profile">MY 여행성향 분석</a></li>
+                      		<li><a href="user-profile">실시간 날씨</a></li>
+                      		<li><a href="user-profile">혼잡도 체크</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="contact">Contact</a>
+                        <a href="faq">FAQ</a>
+                    </li>
+                    <li>
+                        <a href="contact">1:1문의</a>
                     </li>
                 </ul>
             </div>
             <div class="nav-right-content">
                 <ul>
-                    <li>
-                        <a class="btn btn-yellow" href="tour-details">Book Now <i class="fa fa-paper-plane"></i></a>
+                    <li><a href="user-profile">MY PAGE</a>
                     </li>
-                    <li class="tp-lang">
-                        <div class="tp-lang-wrap">
-                            <select class="select single-select">
-                              <option value="1">ENG</option>
-                              <option value="2">BAN</option>
-                              <option value="3">Chinese</option>
-                              <option value="3">Spanish</option>
-                            </select>
-                        </div>
-                    </li>
-                    <li class="search">
-                        <i class="ti-search"></i>
-                    </li>
-                    <li class="notification">
-                        <a class="signUp-btn" href="#">
-                            <i class="fa fa-user-o"></i>
-                        </a>
+                    <li class="pr-0">
+                        <a class="btn btn-yellow" href="tour-details">축제 캘린더<i class="fa fa-paper-plane"></i></a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
     <!-- navbar area end -->
+
 
     <!-- breadcrumb area start -->
     <div class="breadcrumb-area jarallax" style="background-image:url(<%=pjName%>/resources/assets/images/bg/1.png);">

@@ -14,5 +14,23 @@ public class MainController {
      return url;
     }
 	
-    // .. Test commit ..
+    //mypage 회원정보 변경 후 저장
+    @RequestMapping(value="modifyMember")
+    public String modifyMember() {
+    	return "user-profile";
+    }
+
+    //mypage 회원정보 탈퇴
+    @RequestMapping(value="deleteMember")
+    public String deleteMember() {
+    	//정보 삭제 후 session logout 하고 메인페이지로 돌아가기
+    	return "user-profile";
+    }
+
+    //mypage 비밀번호 변경 후 저장
+    @RequestMapping(value="modifyPassword")
+    public String modifyPassword() {
+    	return "user-profile";
+    }
+    
 }

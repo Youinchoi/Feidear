@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Viaje - Travel, Tour Booking HTML5 Template</title>
+    <title>Feidear</title>
     <!-- favicon -->
     <link rel=icon href="<%=pjName%>/resources/assets/images/favicon.png" sizes="20x20" type="image/png">
 
@@ -45,19 +45,7 @@
     </div>
     <!-- preloader area end -->
 
-    <!-- search popup start -->
-    <div class="body-overlay" id="body-overlay"></div>
-    <div class="search-popup" id="search-popup">
-        <form action="index" class="search-form">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search.....">
-            </div>
-            <button type="submit" class="submit-btn"><i class="fa fa-search"></i></button>
-        </form>
-    </div>
-    <!-- search popup End -->
-
-    <!-- //. sign up Popup -->
+    <!-- //. 회원가입 팝업 -->
     <div class="signUp-popup login-register-popup" id="signUp-popup">
         <div class="login-register-popup-wrap">
             <div class="row no-gutters">
@@ -111,7 +99,7 @@
             </div>
         </div>
     </div>
-    <!-- //. sign up Popup End -->
+    <!-- //. 회원가입 팝업 End -->
 
     <!-- navbar area start -->
     <nav class="navbar navbar-area navbar-expand-lg nav-style-01">
@@ -135,19 +123,7 @@
                         <li class="top-bar-btn-booking">
                             <a class="btn btn-yellow" href="tour-details">Book Now <i class="fa fa-paper-plane"></i></a>
                         </li>
-                        <li class="tp-lang">
-                            <div class="tp-lang-wrap">
-                                <select class="select single-select">
-                                  <option value="1">ENG</option>
-                                  <option value="2">BAN</option>
-                                  <option value="3">Chinese</option>
-                                  <option value="3">Spanish</option>
-                                </select>
-                            </div>
-                        </li>
-                        <li class="search">
-                            <i class="ti-search"></i>
-                        </li>
+
                         <li class="notification">
                             <a class="signUp-btn" href="#">
                                 <i class="fa fa-user-o"></i>
@@ -166,67 +142,46 @@
                     </a>
                 </div>
                 <ul class="navbar-nav">
-                    <li class="menu-item-has-children">
-                        <a href="#">Home</a>
-                    </li>
                     <li>
-                        <a href="about">About Us</a>
+                        <a href="tour-list">축제</a>
                     </li>
                     <li class="menu-item-has-children">
-                        <a href="#">Pages</a>
+                        <a href="#">커뮤니티</a>
                         <ul class="sub-menu">
-                            <li><a href="tour-list">Tours List</a></li>
-                            <li><a href="tour-list02">Tours List 02</a></li>
-                            <li><a href="tour-list03">Tours List 03</a></li>
-                            <li><a href="tour-details">Tours Details</a></li>
-                            <li><a href="destination-list">Destination List</a></li>
-                            <li><a href="destination-list02">Destination List 2</a></li>
-                            <li><a href="destination-details">Destination Details</a></li>
-                            <li><a href="gallery">Gallery</a></li>
-                            <li><a href="gallery-details">Gallery Details</a></li>
-                            <li><a href="comming-soon">Comming soon</a></li>
-                            <li><a href="404">404</a></li>
-                            <li><a href="faq">FAQ</a></li>
-                            <li><a href="user-profile">User Profile</a></li>
+                            <li><a href="blog-details02">축제일기</a></li>
+                            <li><a href="blog02">매거진</a></li>
+                            <li><a href="blog-details">매거진 상세</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children">
-                        <a href="#">Blog</a>
+                        <a href="#">이벤트</a>
                         <ul class="sub-menu">
-                            <li><a href="blog">Blog</a></li>
-                            <li><a href="blog02">Blog 02</a></li>
-                            <li><a href="blog03">Blog 03</a></li>
-                            <li><a href="blog-details">Blog Details</a></li>
-                            <li><a href="blog-details02">Blog Details 02</a></li>
+                            <li><a href="blog03">제휴 이벤트</a></li>
+                      		<li><a href="destination-details">서포터즈</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children">
+                        <a href="#">스마트 PAGE</a>
+                        <ul class="sub-menu">
+                            <li><a href="user-profile">MY 여행성향 분석</a></li>
+                      		<li><a href="user-profile">실시간 날씨</a></li>
+                      		<li><a href="user-profile">혼잡도 체크</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="contact">Contact</a>
+                        <a href="faq">FAQ</a>
+                    </li>
+                    <li>
+                        <a href="contact">1:1문의</a>
                     </li>
                 </ul>
             </div>
             <div class="nav-right-content">
                 <ul>
-                    <li>
-                        <a class="btn btn-yellow" href="tour-details">Book Now <i class="fa fa-paper-plane"></i></a>
+                    <li><a href="user-profile">MY PAGE</a>
                     </li>
-                    <li class="tp-lang">
-                        <div class="tp-lang-wrap">
-                            <select class="select single-select">
-                              <option value="1">ENG</option>
-                              <option value="2">BAN</option>
-                              <option value="3">Chinese</option>
-                              <option value="3">Spanish</option>
-                            </select>
-                        </div>
-                    </li>
-                    <li class="search">
-                        <i class="ti-search"></i>
-                    </li>
-                    <li class="notification">
-                        <a class="signUp-btn" href="#">
-                            <i class="fa fa-user-o"></i>
-                        </a>
+                    <li class="pr-0">
+                        <a class="btn btn-yellow" href="calendar">축제 캘린더<i class="fa fa-paper-plane"></i></a>
                     </li>
                 </ul>
             </div>
@@ -234,25 +189,28 @@
     </nav>
     <!-- navbar area end -->
 
-    <!-- breadcrumb area start -->
+
+    <!-- 상단바 밑 제목 area start -->
     <div class="breadcrumb-area jarallax" style="background-image:url(<%=pjName%>/resources/assets/images/bg/1.png);">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-inner">
-                        <h1 class="page-title">User Profile</h1>
+                        <h1 class="page-title">MY PAGE</h1>
                         <ul class="page-list">
                             <li><a href="index">Home</a></li>
-                            <li>User Profile</li>
+                            <li>마이 페이지</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- breadcrumb area End -->
+    <!-- 상단바 밑 제목 area End -->
 
-    <!-- blog area start -->
+    <!-- 마이페이지 본문 area start -->
+    
+    	<!-- 마이페이지 탭팬 리스트 start -->
     <div class="user-profile-area pd-top-120">
         <div class="container">
             <div class="row">
@@ -261,33 +219,34 @@
                         <div class="col-lg-4">
                             <ul class="nav nav-tabs tp-tabs style-two">
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#tabs_1"><i class="fa fa-user"></i>Profile</a>
+                                    <a class="nav-link active" data-toggle="tab" href="#tabs_1"><i class="fa fa-user"></i>회원정보 변경</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#tabs_2"><i class="fa fa-check-square-o"></i>Verifications</a>
+                                    <a class="nav-link" data-toggle="tab" href="#tabs_2"><i class="fa fa-window-close-o" aria-hidden="true"></i>회원 탈퇴</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link"  data-toggle="tab" href="#tabs_3"><i class="fa fa-cog"></i>Settings</a>
+                                    <a class="nav-link"  data-toggle="tab" href="#tabs_3"><i class="fa fa-address-card"></i>비밀번호 변경</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link"  data-toggle="tab" href="#tabs_4"><i class="fa fa-recycle"></i>Recently Viewed</a>
+                                    <a class="nav-link"  data-toggle="tab" href="#tabs_4"><i class="fa fa-bookmark" aria-hidden="true"></i>내 찜 목록</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link"  data-toggle="tab" href="#tabs_5"><i class="fa fa-credit-card-alt"></i>Payment Methods</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link"  data-toggle="tab" href="#tabs_6"><i class="fa fa-star-o"></i>Reviews</a>
+                                    <a class="nav-link"  data-toggle="tab" href="#tabs_6"><i class="fa fa-book" aria-hidden="true"></i>내 후기</a>
                                 </li>
                                 <li class="text-center">
-                                    <a class="btn btn-yellow" href="#"><i class="fa fa-sign-in" aria-hidden="true"></i> <span>Log Out</span></a>
+                                    <a class="btn btn-yellow" href="#"><i class="fa fa-sign-in" aria-hidden="true"></i> <span>로그아웃</span></a>
                                 </li>
                             </ul>
                         </div>
+    	<!-- 마이페이지 탭팬 리스트 end -->
+                        
+                        <!-- tabpan 목록 start-->
+                        	<!-- 회원정보 변경 start -->
                         <div class="col-xl-7 col-lg-8 offset-xl-1">
                             <div class="tab-content user-tab-content">
                                 <div class="tab-pane fade show active" id="tabs_1" >
                                     <div class="user-details">
-                                        <h3 class="user-details-title">Profile</h3>
+                                        <h3 class="user-details-title">회원정보 변경</h3>
                                         <div class="tp-img-upload">
                                             <div class="tp-avatar-preview">
                                                 <div id="tp_imagePreview" style="background-image: url(<%=pjName%>/resources/assets/images/team/1.png);">
@@ -295,119 +254,166 @@
                                             </div>
                                             <div class="tp-avatar-edit">
                                                 <input type='file' id="tp_imageUpload" accept=".png, .jpg, .jpeg" />
-                                                <label class="btn btn-transparent" for="tp_imageUpload"><i class="fa fa-picture-o"></i>Change Photo</label>
-                                                <h4 class="name">Afsar Hossen</h4>
+                                                <label class="btn btn-transparent" for="tp_imageUpload"><i class="fa fa-picture-o"></i>사진 변경</label>
+                                                <h4 class="id">ID : </h4>
                                             </div>
                                         </div>
-                                        <form class="tp-form-wrap">
+                                        <form action="modifyMember" class="tp-form-wrap" method="post">
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-md-12">
                                                 <label class="single-input-wrap style-two">
-                                                    <span class="single-input-title">First Name</span>
-                                                    <input type="text">
-                                                </label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="single-input-wrap style-two">
-                                                    <span class="single-input-title">Last Number</span>
-                                                    <input type="text">
+                                                    <span class="single-input-title">이름</span>
+                                                    <input type="text" id="putname">
                                                 </label>
                                             </div>
                                             <div class="col-lg-12">
                                                 <label class="single-input-wrap style-two">
-                                                    <span class="single-input-title">Tell us about yourself.</span>
+                                                    <span class="single-input-title">자기 소개</span>
                                                     <textarea></textarea>
                                                 </label>
                                             </div>
-                                            <div class="col-md-7">
+                                            <div class="col-md-6">
                                                 <label class="single-input-wrap style-two">
-                                                    <span class="single-input-title">Country</span>
+                                                    <span class="single-input-title">Email</span>
                                                     <input type="text">
                                                 </label>
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="single-input-wrap style-two">
-                                                    <span class="single-input-title">Email Address</span>
-                                                    <input type="text">
-                                                </label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="single-input-wrap style-two">
-                                                    <span class="single-input-title">Other Phone</span>
-                                                    <input type="text" placeholder="+880">
+                                                    <span class="single-input-title">전화번호</span>
+                                                    <input type="text" placeholder="010-1234-5678">
                                                 </label>
                                             </div>
                                             <div class="col-12">
-                                                <a class="btn btn-yellow mt-3 text-center" href="#">Save Details</a>
+                                                <input type="submit" class="btn btn-yellow mt-3 text-center" value="변경사항 저장">
                                             </div>
                                         </div>
                                     </form>
                                     </div>
                                 </div>
+                        	<!-- 회원정보 변경 end -->
+                                
+                                
+                        	<!-- 회원탈퇴 start -->
                                 <div class="tab-pane fade" id="tabs_2">
                                     <div class="user-verification">
+                                            <div class="col-lg-8">
+                                                <h3 class="user-details-title">회원 탈퇴</h3>
+                                                <div class="notice"><i class="fa fa-exclamation-triangle"></i>탈퇴 시 저장된 모든 기록이 삭제됨</div>
+                                                <br/>
+                                            </div>
+                                        <form action="deleteMember" method="post">
                                         <div class="row">
                                             <div class="col-lg-7">
-                                                <h3 class="user-details-title">Verification</h3>
-                                                <div class="notice"><i class="fa fa-exclamation-triangle"></i> Your email hasn't been verified.</div>
-                                                <span>imshuvo97@gmail.com</span>
+                                                <label class="single-input-wrap style-two">
+                                                    <input type="password" placeholder="현재 비밀번호" id="Pass">
+                                                </label>
                                             </div>
-                                        </div>
+                                            <div class="col-lg-7">
+                                                <label class="single-input-wrap style-two">
+                                                    <input type="password" placeholder="비밀번호 확인" id="passCheck">
+                                                </label>
+                                            </div>
+                                            </div>
+                                                <input type="submit" class="btn btn-yellow mt-3 text-center" value="회원 탈퇴">
+                                        </form>
                                     </div>
                                 </div>
+                        	<!-- 회원탈퇴 end -->
+                                
+                                
+                        	<!-- 비밀번호 변경 start -->
                                 <div class="tab-pane fade" id="tabs_3">
                                     <div class="user-settings">
-                                        <h3 class="user-details-title">Settings</h3>
+                                        <h3 class="user-details-title">비밀번호 변경</h3>
+                                        <form action="modifyPassword" method="post">
                                         <div class="row">
                                             <div class="col-lg-7">
                                                 <label class="single-input-wrap style-two">
-                                                    <span class="single-input-title mb-3">Change your password</span>
-                                                    <input type="text" placeholder="Old password">
+                                                    <span class="single-input-title mb-3">비밀번호를 변경합니다.</span>
+                                                    <input type="password" placeholder="현재 비밀번호" id="oldPass">
                                                 </label>
                                             </div>
                                             <div class="col-lg-7">
                                                 <label class="single-input-wrap style-two">
-                                                    <input type="text" placeholder="New password">
+                                                    <input type="password" placeholder="새 비밀번호" id="newPass">
                                                 </label>
                                             </div>
                                             <div class="col-lg-7">
                                                 <label class="single-input-wrap style-two">
-                                                    <input type="text" placeholder="New password">
+                                                    <input type="password" placeholder="새 비밀번호 확인" id="newPassCheck">
                                                 </label>
                                             </div>
                                         </div>
+                                                <input type="submit" class="btn btn-yellow mt-3 text-center" value="변경사항 저장">
+                                        </form>
                                     </div>
                                 </div>
+                        	<!-- 비밀번호 변경 end -->
+                                
+                                
+                        	<!-- 내찜목록 start -->
                                 <div class="tab-pane fade" id="tabs_4">
                                     <div class="user-recent-view">
-                                        <h3 class="user-details-title">Recently Viewed</h3>
+                                        <h3 class="user-details-title">내 찜 목록</h3>
+                                       	<span>
+                                       	<input type="checkbox" value='selectall' onclick='selectAll(this)'/>전체 선택
+                                        &nbsp;
+                                       	<input type="button" class="btn btn-yellow mt-3 text-center" value="찜 삭제">
+                                       	</span>
+                                        <br/><br/>
                                         <div class="row">
+                                            <!-- 페이징 필요함 -->
                                             <div class="col-sm-6">
                                                 <div class="single-destinations-list style-two">
+                                                    <div class="checkboxes">
+                                                    	<input type="checkbox">
+                                                    </div>
                                                     <div class="thumb">
                                                         <img src="<%=pjName%>/resources/assets/images/destination-list/4.png" alt="list">
                                                     </div>
                                                     <div class="details">
-                                                        <p class="location"><img src="<%=pjName%>/resources/assets/images/icons/1.png" alt="map">Maldives</p>
-                                                        <h4 class="title"><a href="tour-details">Hurawalhi Island</a></h4>
-                                                        <p class="content">7Days Tour on 2 person</p>
+                                                        <p class="location"><img src="<%=pjName%>/resources/assets/images/icons/1.png" alt="map">위치</p>
+                                                        <h4 class="title"><a href="tour-details">어쩌고 축제</a></h4>
+                                                        <p class="content">뭘로쓰지</p>
                                                         <div class="tp-price-meta">
-                                                            <h2>620 <small>$</small></h2>
+                                                            <h2>축제기간? <small>$</small></h2>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="single-destinations-list style-two">
+                                                    <div class="checkboxes">
+                                                    	<input type="checkbox">
+                                                    </div>
                                                     <div class="thumb">
-                                                        <img src="<%=pjName%>/resources/assets/images/destination-list/5.png" alt="list">
+                                                        <img src="<%=pjName%>/resources/assets/images/destination-list/4.png" alt="list">
                                                     </div>
                                                     <div class="details">
-                                                        <p class="location"><img src="<%=pjName%>/resources/assets/images/icons/1.png" alt="map">Indonesia</p>
-                                                        <h4 class="title"><a href="tour-details">Bali Province</a></h4>
-                                                        <p class="content">4days 2 person</p>
+                                                        <p class="location"><img src="<%=pjName%>/resources/assets/images/icons/1.png" alt="map">위치</p>
+                                                        <h4 class="title"><a href="tour-details">어쩌고 축제</a></h4>
+                                                        <p class="content">뭘로쓰지</p>
                                                         <div class="tp-price-meta">
-                                                            <h2>780 <small>$</small></h2>
+                                                            <h2>축제기간? <small>$</small></h2>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="single-destinations-list style-two">
+                                                    <div class="checkboxes">
+                                                    	<input type="checkbox">
+                                                    </div>
+                                                    <div class="thumb">
+                                                        <img src="<%=pjName%>/resources/assets/images/destination-list/4.png" alt="list">
+                                                    </div>
+                                                    <div class="details">
+                                                        <p class="location"><img src="<%=pjName%>/resources/assets/images/icons/1.png" alt="map">위치</p>
+                                                        <h4 class="title"><a href="tour-details">어쩌고 축제</a></h4>
+                                                        <p class="content">뭘로쓰지</p>
+                                                        <div class="tp-price-meta">
+                                                            <h2>축제기간? <small>$</small></h2>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -415,54 +421,16 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="tabs_5">
-                                    <div class="user-payment-method">
-                                        <div class="location-review-area">
-                                            <h3 class="user-details-title">Payment Methods</h3>
-                                            <form class="tp-form-wrap bg-gray tp-form-wrap-one">
-                                                <div class="row">
-                                                    <div class="col-lg-7">
-                                                        <label class="single-input-wrap">
-                                                            <span class="single-input-title">Credit card number</span>
-                                                            <input type="text">
-                                                        </label>
-                                                        <label class="single-input-wrap">
-                                                            <span class="single-input-title">Card holder name</span>
-                                                            <input type="text">
-                                                        </label>
-                                                        <label class="single-input-wrap">
-                                                            <span class="single-input-title">Expiry date (Example: 01/17)</span>
-                                                            <input type="text">
-                                                        </label>
-                                                        <label class="single-input-wrap">
-                                                            <span class="single-input-title">Issuing bank</span>
-                                                            <input type="text">
-                                                        </label>
-                                                    </div>
-                                                    <div class="col-lg-5">
-                                                        <div class="user-payment-card">
-                                                            <img src="<%=pjName%>/resources/assets/images/others/16.png" alt="img">
-                                                            <span>Available payment method:</span>
-                                                            <div class="payment-card">
-                                                                <i class="fa fa-cc-paypal"></i>
-                                                                <i class="fa fa-cc-visa"></i>
-                                                                <i class="fa fa-cc-mastercard"></i>
-                                                                <i class="fa fa-credit-card-alt"></i>
-                                                            </div>
-                                                            <a class="btn btn-transparent" href="#">Cancel</a>
-                                                            <a class="btn btn-yellow" href="#">Save</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
+                        	<!-- 내찜목록 end -->
+                                
+                                
+                        	<!-- 내 후기 start -->
                                 <div class="tab-pane fade" id="tabs_6">
                                     <div class="user-tour-details">
-                                        <h3 class="user-details-title">Reviews</h3>
-                                        <span class="user-tour-details-title">Reviews About You</span>
-                                        <span>| Reviews By You</span>
+                                        <h3 class="user-details-title">내 후기</h3>
+                                        <span class="user-tour-details-title">내가 작성한 후기</span>
+                                        <span>| 후기 모아보기</span>
+                                        <!-- 페이징 필요함 -->
                                         <div class="comments-area tour-details-review-area">
                                             <ul class="comment-list mb-0">
                                                 <li>
@@ -471,8 +439,8 @@
                                                             <img src="<%=pjName%>/resources/assets/images/client/2.png" alt="img">
                                                         </div>
                                                         <div class="content">
-                                                            <h4 class="title">Tyler Bailey</h4>
-                                                            <span class="date">13 August 2019</span>
+                                                            <h4 class="title">요뎡</h4>
+                                                            <span class="date">2023-01-01</span>
                                                             <div class="tp-review-meta">
                                                                 <i class="ic-yellow fa fa-star"></i>
                                                                 <i class="ic-yellow fa fa-star"></i>
@@ -480,24 +448,30 @@
                                                                 <i class="ic-yellow fa fa-star"></i>
                                                                 <i class="ic-yellow fa fa-star"></i>
                                                             </div>
-                                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata</p>
+                                                            <p>후기를 남겨야지요. 뭐라고 쓸건지 알아서 쓰겠지만 내가 이렇게 어쩌고라고 써야겠지요.
+                                                            	후기를 남겨야지요. 뭐라고 쓸건지 알아서 쓰겠지만 내가 이렇게 어쩌고라고 써야겠지요.
+                                                            </p>
                                                         </div>
                                                     </div>
                                                 </li>
+
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        	<!-- 내 후기 end -->
+                    	<!-- tabpan 목록 end-->
+                    
                     </div>
                 </div> 
             </div>
         </div>
     </div>
-    <!-- blog area End -->
+    <!-- 마이페이지 본문 area End -->
     
-    <!-- newslatter area Start -->
+    <!-- 뉴스레터 area Start -->
     <div class="newslatter-area pd-top-120">
         <div class="container">
             <div class="newslatter-area-wrap border-tp-solid">
@@ -523,7 +497,7 @@
             </div>
         </div>
     </div>
-    <!-- newslatter area End -->
+    <!-- 뉴스레터 area End -->
     
     <!-- footer area start -->
     <footer class="footer-area" style="background-image: url(<%=pjName%>/resources/assets/images/bg/2.png);">
@@ -601,7 +575,7 @@
         </div>
         <div class="copyright-inner">
             <div class="copyright-text">
-                &copy; Viaje 2019 All rights reserved. Powered with <a href="http://zwin.io/" target="_blank"><i class="fa fa-heart"></i> </a> by <a href="http://zwin.io/" target="_blank"><span>Zwin.</span></a>
+                &copy; Feidear 2022 All rights reserved. Powered with <a href="#" target="_blank"><i class="fa fa-heart"></i> </a> by <a href="#" target="_blank"><span>Feidear.</span></a>
             </div>
         </div>
     </footer>
@@ -633,6 +607,16 @@
 
     <!-- main js -->
     <script src="<%=pjName%>/resources/assets/js/main.js"></script>
+    <script type="text/javascript">
+    function selectAll(selectAll)  {
+    	  const checkboxes 
+    	     = document.querySelectorAll('input[type="checkbox"]');
+    	  
+    	  checkboxes.forEach((checkbox) => {
+    	    checkbox.checked = selectAll.checked
+    	  })
+    	}
+    </script>
 
 </body>
 </html>
