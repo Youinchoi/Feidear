@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.dao.UserDAO">
+
+	<select id="getUser" resultType="UserVO">
+	
+		SELECT *
+		FROM "USER"
+		WHERE "U_ID" = 'sarang'
+		<!-- 
+		 #{u_id}
+		 -->
+	</select>
+
+	<delete id="deleteUser" parameterType="UserVO">
+		DELETE FROM "USER"
+		WHERE U_PW = #{u_pw} AND #{u_pwcheck}
+	</delete>
+	
+	<update id="updateUser" parameterType="UserVO">
+		UPDATE "USER" SET
+		"U_NAME"  = #{u_name},
+		"U_EMAIL" = #{u_email},
+		"U_IMAGE" = #{u_image},
+		"U_COMMENT" = #{u_comment},
+		"U_PHONE" = #{u_phone}		
+		WHERE "U_ID" = 'sarang'	
+		<!-- 
+		 #{u_id}
+		 -->
+	</update>
+
+	<update id="updatePass" parameterType="UserVO">
+		UPDATE "USER" SET
+		"U_PW" = #{u_pw}
+		WHERE "U_ID" = 'sarang'
+	</update>
+	
+
+</mapper>

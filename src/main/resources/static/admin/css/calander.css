@@ -1,0 +1,19 @@
+	@font-face {
+	    font-family: 'TmoneyRoundWindRegular';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindRegular.woff') format('woff');
+	    font-weight: normal;
+	    font-style: normal;
+	}
+	#calendar {
+		width:85%;
+		align:center;
+		text-align: center;
+		margin: 0 auto;
+		font-size: 20px;
+		font-family:"TmoneyRoundWindRegular";
+	}
+	#calendar th.fc-day-header.fc-widget-header.fc-sat span {color:#0078b3;}
+	#calendar th.fc-day-header.fc-widget-header.fc-sun span {color:#cc0000;}
+	#calendar th.fc-day-header.fc-widget-header {font-size:25px;}
+	#calendar div.fc-center h2 {font-size:40px;}
+	#calendar div.fc-content span {color:#ffffff;}

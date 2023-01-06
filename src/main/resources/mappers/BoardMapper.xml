@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.dao.BoardDAO">
+
+	<select id="getBoardList" resultType="BoardVO">
+	
+		SELECT *
+		FROM BOARD
+		ORDER BY SEQ DESC
+
+	</select>
+
+	<select id="getBoard" resultType="BoardVO">
+	
+		SELECT *
+		FROM BOARD
+		WHERE seq = #{seq}
+		ORDER BY SEQ DESC
+
+	</select>
+	
+	<insert id="saveBoard" parameterType="BoardVO">
+		INSERT INTO BOARD(SEQ, TITLE, WRITER, CONTENT, REGDATE, CNT)
+		VALUES(board_seq.nextval,
+			#{title}, #{writer}, #{content}, 
+			sysdate, 0)
+	</insert>
+	
+	<delete id="deleteBoard" parameterType="BoardVO">
+		DELETE FROM board WHERE seq = #{seq}
+	</delete>
+	
+	<update id="updateBoard" parameterType="BoardVO">
+		UPDATE board SET
+		TITLE = #{title},
+		CONTENT = #{content}
+		WHERE seq = #{seq}
+	</update>
+	
+
+</mapper>
