@@ -3,22 +3,53 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.dao.UserDAO">
-
-	<select id="getUser" resultType="UserVO">
 	
-		SELECT *
-		FROM "USER"
-		WHERE "U_ID" = 'sarang'
-		<!-- 
-		 #{u_id}
-		 -->
+
+	<!-- 회원가입 -->
+	<insert id="insertUser" parameterType="UserVO">
+		INSERT INTO
+		"USER"("U_NAME", "U_EMAIL", "U_ID", "U_PW", "U_AGE",
+		"U_GENDER", "U_GROUP")
+		VALUES( #{u_name}, #{u_email}, #{u_id}, #{u_pw}, #{u_age}, #{u_gender}, #{u_group})
+	</insert>
+
+	<!-- 아이디 중복되면 회원가입 불가 -->
+	<select id="signUp_break" parameterType="UserVO" resultType="int">
+		SELECT
+		count("U_ID") FROM "USER"
+		WHERE "U_ID"=#{u_id}
 	</select>
 
+	<!-- 아이디 중복 확인 (ajax) -->
+	<select id="idCheck_ajax" parameterType="String" resultType="Integer">
+		SELECT count("U_ID") FROM "USER" WHERE "U_ID" = #{u_id}
+	</select>
+
+	<!-- 로그인 -->
+	<select id="loginUser" parameterType="UserVO"
+		resultType="UserVO">
+		SELECT * FROM "USER"
+		WHERE "U_ID"=#{u_id} AND "U_PW"=#{u_pw}
+	</select>
+	
+	
+	<!-- ............ MY PAGE ............ -->
+	
+	
+	<!-- 회원정보 가져오기 -->
+	<select id="getUser" resultType="UserVO" parameterType="UserVO">
+		SELECT *
+		FROM "USER"
+		WHERE "U_NO" = #{u_no}
+	</select>
+
+	<!-- 회원 탈퇴 -->
 	<delete id="deleteUser" parameterType="UserVO">
 		DELETE FROM "USER"
-		WHERE U_PW = #{u_pw} AND #{u_pwcheck}
+		WHERE "U_PW" = #{u_pw} AND "U_ID" = #{u_id}
 	</delete>
 	
+	<!-- 회원 정보수정 -->
 	<update id="updateUser" parameterType="UserVO">
 		UPDATE "USER" SET
 		"U_NAME"  = #{u_name},
@@ -26,17 +57,42 @@
 		"U_IMAGE" = #{u_image},
 		"U_COMMENT" = #{u_comment},
 		"U_PHONE" = #{u_phone}		
-		WHERE "U_ID" = 'sarang'	
-		<!-- 
-		 #{u_id}
-		 -->
+		WHERE "U_ID" = #{u_id}
 	</update>
 
+	<!-- 비밀번호 변경 -->
 	<update id="updatePass" parameterType="UserVO">
 		UPDATE "USER" SET
 		"U_PW" = #{u_pw}
-		WHERE "U_ID" = 'sarang'
+		WHERE "U_ID" = #{u_id}
 	</update>
 	
+	
+	<!-- ............ WISH LIST ............ -->
+	
+	<!-- 위시리스트 내역 보이기 -->
+	<select id="getWishList" parameterType="WishVO" resultType="int">
+		SELECT * FROM wishlist
+		WHERE fetv_no = #{fetv_no} AND u_no = #{u_no}
+	</select>
+		
+	<!-- 위시리스트에 더하기 -->
+	<insert id="addWish" parameterType="WishVO">
+	   INSERT INTO wishlist (wish_no, u_no, fetv_no)
+	   VALUES(#{u_no},#{fetv_no})
+	</insert>
+	
+	<!-- 위시리스트 지우기 -->
+	<delete id="deleteWish" parameterType="WishVO">
+	   DELETE FROM wishlist
+	   WHERE fetv_no = #{fetv_no} AND u_no = #{u_no}
+	</delete>
+	
+	<!-- 위시리스트 모두 지우기 -->
+	<delete id="removeWishAll" parameterType="WishVO">
+	   DELETE wishlist
+	   WHERE u_no = #{u_no}
+	</delete>
+
 
 </mapper>

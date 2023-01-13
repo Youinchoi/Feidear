@@ -1,0 +1,28 @@
+.insert {
+    padding: 20px 30px;
+    display: block;
+    width: auto;
+    margin: 5vh auto;
+    height: auto;
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.insert .file-list {
+	margin-top: 20px;
+    height: 200px;
+    overflow: auto;
+    border: 1px solid #d4d4d4;
+    border-radius: 5px; 
+    padding: 10px;
+}
+.insert .file-list .filebox p {
+    font-size: 14px;
+    margin-top: 10px;
+    display: inline-block;
+}
+.insert .file-list .filebox .delete i{
+    color: #ff5353;
+    margin-left: 5px;
+}

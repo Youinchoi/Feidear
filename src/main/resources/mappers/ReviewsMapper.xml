@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.dao.ReviewsDAO">
+
+	<!-- 리뷰 작성하기 -->
+	<insert id="insertReview" parameterType="ReviewsVO">
+		INSERT INTO "REVIEWS" 
+			  		(rv_title, rv_content, rv_image, rv_tag, rv_regdate
+			  		<if test="file_name !=null">
+			  		, file_name, origin_file_name, file_size, file_path
+			  		</if>)
+		VALUES	 	(#{rv_title}, #{rv_content}, #{rv_image}, #{rv_tag}
+					,  NOW()
+					<if test="file_name !=null">
+					, #{file_name}, #{origin_file_name}
+					, #{file_size}, #{file_path}
+					</if>)
+	</insert>
+
+	<!-- 리뷰 목록 내림차순으로 가져오기 -->
+	<select id="getReviewList" resultType="ReviewsVO" parameterType="ReviewsVO">
+		SELECT 		(ROW_NUMBER() OVER()) AS ROWNUM, *
+		FROM 		"REVIEWS"
+		ORDER BY 	rv_no DESC
+	</select>
+		<!-- ORDER BY 	rv_no DESC -->
+		
+	<!-- 명예의 전당 가져오기 -->
+	<select id="getRankList" parameterType="ReviewsVO" resultType="ReviewsVO">
+		SELECT 		*
+		FROM 		"REVIEWS"
+		WHERE		rv_like is not null
+		ORDER BY 	rv_like desc
+		LIMIT 3
+	</select>
+
+	<!-- 리뷰 상세 보기 -->
+	<select id="getReview" resultType="ReviewsVO">
+		SELECT		* 
+		FROM		"REVIEWS"
+		WHERE		rv_no = #{rv_no}
+	</select>
+	
+	<!-- 리뷰 삭제하기 -->
+	<delete id="deleteReview" parameterType="ReviewsVO">
+		DELETE FROM "REVIEWS" 
+		WHERE 		rv_no = #{rv_no}
+	</delete>
+
+	<!-- 리뷰 수정하기(시퀀스 값으로 찾기) -->
+	<update id="updateReview" parameterType="ReviewsVO">
+		UPDATE "REVIEWS" SET
+				rv_title 	= #{rv_title},
+				rv_content  = #{rv_content},
+				rv_tag		= #{rv_tag}
+		WHERE	rv_no 		= #{rv_no}
+	</update>
+				<!-- 리뷰 수정하기에서 일단 빼놓은 부분  
+				rv_tag 		= #{rv_tag},
+				rv_image 	= #{rv_image} -->
+				
+	<!-- 내 리뷰 목록 전부 가져오기 / 마이페이지 -->
+	<select id="getMyReviewList" resultType="ReviewsVO" parameterType="ReviewsVO">
+		select *
+		from (
+			   select *,
+			   row_number () over(order by rv_no desc) as rnum
+		 	   from "REVIEWS"
+		 	   where u_no = 15
+	 		 ) rv
+		where rnum between #{rowStart} AND #{rowEnd}
+		order by rv_no desc
+	</select>
+	<!-- 
+		//이거 넣어서 페이징 해줘야함
+		WHERE		u_no = #{u_no}
+	 -->
+	 
+ 	<select id="listCount" resultType="int">
+	<![CDATA[
+		SELECT COUNT(rv_no)
+		  FROM "REVIEWS"
+		 WHERE rv_no > 0
+	]]>
+	</select>
+	
+</mapper>

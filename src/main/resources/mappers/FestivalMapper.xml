@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.dao.FestivalDAO">
+
+	<!-- 캘린더 2022/10 이후의 일정 가져오는 쿼리 -->
+	<select id="calendar" resultType="FestivalVO">
+
+		SELECT f.fetv_no fetv_no, f.fetv_name fetv_name, f.fetv_short
+		fetv_short,
+		f.fetv_startdate fetv_startdate, f.fetv_enddate
+		fetv_enddate
+		FROM (select fetv_no, fetv_name, fetv_short,
+		to_date(fetv_startdate, 'yyyy-mm-dd') fetv_startdate,
+		to_date(fetv_enddate, 'yyyy-mm-dd') fetv_enddate
+		from festival
+		where
+		fetv_startdate is not null) f
+		<![CDATA[
+		where to_char(f.fetv_startdate,'YYYY-MM-DD') > '2022-10-28'
+		]]>
+	</select>
+
+	<!-- 축제 정보 목록에서 필터 설정 후 검색 -->
+	<select id="filteredFestivalList"
+		parameterType="SearchCriteria" resultType="FestivalVO">
+		<![CDATA[ SELECT  *
+			FROM 
+		(SELECT *, row_number () over(order by fetv_no desc) as rnum
+		FROM festival
+		WHERE fetv_area LIKE '%${fetv_area}%' and to_date(fetv_startdate,
+		'yyyy.mm.dd') >= to_date(#{fetv_startdate}, 'mm/dd/yyyy') and
+		to_date(fetv_enddate, 'yyyy.mm.dd') <=  to_date(#{fetv_enddate},
+		'mm/dd/yyyy')) fs
+		WHERE rnum BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY fetv_no DESC
+		]]>
+	</select>	
+
+	<!-- 축제 정보 클릭 시 전체 목록 출력 -->
+	<select id="viewFestivalList" resultType="FestivalVO">
+		SELECT *
+		FROM (
+		select *,
+		row_number () over(order by fetv_no desc) as rnum
+		from festival
+		) fs
+		WHERE rnum BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY fetv_startdate
+	</select>
+
+	<!-- 축제 상세페이지 -->
+	<select resultType="FestivalVO" id="viewFestival"
+		parameterType="int">
+		SELECT *
+		FROM festival
+		WHERE fetv_no = #{fetv_no}
+	</select>
+
+	<!-- 게시물 목록 갯수 가져오기 -->
+	<select id="listCount" resultType="int">
+		SELECT COUNT(fetv_no)
+		FROM festival
+		WHERE fetv_no > 0
+	</select>
+	
+<!-- ******************* 추천 알고리즘 ******************* -->
+	
+	<!--  축제 알고리즘 테스트페이지에 랜덤으로 띄울 축제 목록 조회 -->
+	<select id="getRecommList"  resultType = "FestivalVO">
+		SELECT fetv_no, fetv_name, fetv_image, fetv_short
+		FROM festival
+		ORDER BY RANDOM() LIMIT 30
+	</select>
+	
+	<!-- 추천 알고리즘 데이터 저장할 축제 태그 불러오기 -->
+	<select id="getTags" resultType = "FestivalVO"  parameterType="Integer">
+		SELECT fetv_name, fetv_tag
+		FROM festival
+		WHERE fetv_no = #{num}
+	</select>
+	
+	<!-- DB에 검사결과가 있는지 조회 -->	
+	<select id="getResult" resultType = "String"  parameterType="String">
+		SELECT u_id
+		FROM mldataset
+		WHERE u_id = #{u_id}
+	</select>
+		
+	<!-- 불러온 태그 리스트, 이름 리스트 DB에 저장하기 -->
+	<insert id="insertTest"  parameterType="hashmap">
+		INSERT INTO mldataset(recomm_no, u_id, r_fetv_tag, r_fetv_name)
+		VALUES (nextval('seq_pk_rec'),#{u_id}, #{fetv_tags}, #{fetv_name})
+	</insert>
+	
+	<!-- 불러온 태그 리스트, 이름 리스트 DB에서 삭제 -->
+	<insert id="deleteTest"  parameterType="String">
+		DELETE FROM mldataset
+		WHERE u_id = #{u_id}
+	</insert>
+	
+	<!-- ******************* 추천 알고리즘 끝 ******************* -->
+</mapper>

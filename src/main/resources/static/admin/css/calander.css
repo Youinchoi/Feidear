@@ -9,11 +9,20 @@
 		align:center;
 		text-align: center;
 		margin: 0 auto;
-		font-size: 20px;
+		font-size: 1.5rem;
 		font-family:"TmoneyRoundWindRegular";
+	}
+	ul.navbar-nav li {
+		font-family: 'TmoneyRoundWindRegular';
+		font-size : 0.9rem;
 	}
 	#calendar th.fc-day-header.fc-widget-header.fc-sat span {color:#0078b3;}
 	#calendar th.fc-day-header.fc-widget-header.fc-sun span {color:#cc0000;}
-	#calendar th.fc-day-header.fc-widget-header {font-size:25px;}
-	#calendar div.fc-center h2 {font-size:40px;}
+	#calendar th.fc-day-header.fc-widget-header {font-size:1.7rem;}
+	#calendar div.fc-center h2 {font-size:2.5rem;}
 	#calendar div.fc-content span {color:#ffffff;}
+	#calendar span.fc-day-number {font-size:1.5rem;}
+	#calendar td.fc-day-top.fc-sun span {color:#cc0000;}
+	#calendar td.fc-day-top.fc-sat span {color:#0078b3;}
+	
+	
