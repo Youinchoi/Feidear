@@ -2,8 +2,16 @@
 /*
 한솔 생성 파일 (업로드 파일 개수 제한 js) / 파일 개수 제한 & 초과 시 업로드 X
  */
+// 줄 바꿀 때마다 div 생성 > 하나에 저장하기 위한 함수! 
+$(function(){
+	$('#rv_content2').change(function(){
+		let content = $(this).html();
+		$('input[name="rv_content"]').val(content);
+	})//end of change
+})//end of function
 
- var fileNo = 0;
+
+var fileNo = 0;
 var filesArr = new Array();
 
 /* 첨부파일 추가 */

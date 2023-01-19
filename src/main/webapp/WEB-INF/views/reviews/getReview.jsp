@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
+    pageEncoding="UTF-8"%>  
 
  	<!-- header -->
-    <jsp:include page="../header.jsp"></jsp:include>
+     <%@ include file='../header.jsp' %>
  	
     <!-- //. sign up Popup -->
     <div class="signUp-popup login-register-popup" id="signUp-popup">
@@ -90,6 +89,7 @@
                                 <img src="../images/blog-details/1.png" alt="blog">
                             </div>
                             <div class="single-blog-details">
+                                <input type="hidden" name="rv_no" id="rv_no" value="${reviews.rv_no}">
                                 <p class="date mb-0" name="rv_regdate">작성일 : ${reviews.rv_regdate}</p>
                                 <h3 class="title" name="rv_title">${reviews.rv_title}</h3>
                                 <p class="content mb-0" name="rv_content">${reviews.rv_content}</p>
@@ -218,8 +218,8 @@
                         </div>
                         <div class="media-body">
                             <h4>리뷰 작성자 정보</h4>
-                            <h7><b>리뷰 작성자</b>아이디 </h7>
-                            <p>리뷰 작성자 소개 어쩌구 저쩌구 리뷰 작성자 소개 어쩌구 저쩌구 리뷰 작성자 소개 어쩌구 저쩌구</p>
+                            <h7><b>리뷰 작성자</b>${reviews.u_no}</h7>
+                            <p><b>리뷰 작성자 소개</b>${user.u_comment}</p>
                             <ul class="social-icon style-three">
                                 <li>
                                     <a class="facebook" href="#"><i class="fa fa-facebook"></i></a>
@@ -240,22 +240,22 @@
                     <!-- comments-area-start -->
                     <div class="comments-area">
                         <h4 class="comments-title">댓 글</h4>
-                        <ul class="comment-list">
+                        <ul class="comment-list" id="rv_cmtList">
                             <li>
                                 <div class="single-comment-wrap">
                                     <div class="thumb">
                                         <img src="../images/blog-details/9.png" alt="img">
                                     </div>
                                     <div class="content">
-                                        <h4 class="title">댓글 작성자 아이디</h4>
-                                        <span class="date"> 2023. 01. 03. </span>
-                                        <p>댓글 내용 어쩌구 저쩌구 댓글 내용 어쩌구 저쩌구 댓글 내용 어쩌구 저쩌구 댓글 내용 어쩌구 저쩌구 댓글 내용 어쩌구 저쩌구</p>
+                                        <h4 class="title">${reviews.u_no}</h4>
+                                        <span class="date">${list.rv_cmt_regdate}</span>
+                                        <p>${list.rv_cmt}</p>
                                         <!-- <a href="#" class="reply btn btn-yellow"><span><i class="fa fa-reply"></i>답글 달기</span></a> -->
                                     </div>
                                 </div>
                             </li>
-                            <li>
-                                <ul class="children">
+                            <!--<li>
+                                 <ul class="children">
                                     <li >
                                         <div class="single-comment-wrap">
                                             <div class="thumb">
@@ -265,48 +265,35 @@
                                                 <h4 class="title">Laurie</h4>
                                                 <span class="date">17 SEP 2019</span>
                                                 <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren</p>
-                                                <!-- <a href="#" class="reply btn btn-yellow"><span><i class="fa fa-reply"></i>Reply</span></a> -->
+                                                <a href="#" class="reply btn btn-yellow"><span><i class="fa fa-reply"></i>Reply</span></a>
                                             </div>
                                         </div>
                                     </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <div class="single-comment-wrap">
-                                    <div class="thumb">
-                                        <img src="../images/blog-details/11.png" alt="img">
-                                    </div>
-                                    <div class="content">
-                                        <h4 class="title">Eliza Jordan</h4>
-                                        <span class="date">17 SEP 2019</span>
-                                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-                                        <!-- <a href="#" class="reply btn btn-yellow"><span><i class="fa fa-reply"></i>Reply</span></a> -->
-                                    </div>
-                                </div>
-                            </li>
+                                </ul> 
+                            </li>-->
                         </ul>
                     </div>
                 </form>
                     <!-- comments-area-end -->
                     <!-- blog-comment-area start -->
                     <div class="blog-comment-area">
-                        <form class="tp-form-wrap bg-gray tp-form-wrap-one">
+                        <form class="tp-form-wrap bg-gray tp-form-wrap-one" action="">
                             <h4 class="single-page-small-title">댓글 작성하기</h4>
                             <div class="row">
                                 <div class="col-lg-6 col-md-6">
                                     <label class="single-input-wrap">
-                                        <span class="single-input-title">아이디</span>
-                                        <input type="text">
+                                        <input type="hidden" name="u_no" value="${reviews.u_no}" >
+                                        <span class="single-input-title">아이디 : ${reviews.u_no} </span>
                                     </label>
                                 </div>
                                 <div class="col-lg-12">
                                     <label class="single-input-wrap">
                                         <span class="single-input-title">댓글 내용</span>
-                                        <textarea></textarea>
+                                        <textarea id="rv_cmt" name="rv_cmt"></textarea>
                                     </label>
                                 </div>
                                 <div class="col-12">
-                                    <button class="btn btn-yellow" href="#" type="button">저 장</button>
+                                    <input type="button" class="btn btn-yellow" id="submitBtn" value="저 장">
                                 </div>
                             </div>
                         </form>
@@ -316,26 +303,27 @@
                 
                 <div class="col-lg-4">
                     <aside class="sidebar-area sidebar-area-4">
-                        <div class="widget widget_search bg-none pd-none">
-                        	<form class="write-form">
-                                <div class="form-group">
-                                  <button class="submit-btn" type="submit"><a href="/reviews/insertReview">나의 일기 쓰러 가기 <img src="../images/pencil_24.png" ></button>
-                                </div>
-                            </form></br>
-                        </div>
+                        <!-- 인기글 시작-->
                         <div class="widget widget_categories">
                             <h2 class="widget-title">인 기 글</h2>
                             <div>
 	                            <ul>
-	                                <li><a href="#">인기짱1</a></li>	<!-- 오른쪽에 조회수 같이 띄우고 싶었는데 안되네요? -->
-	                                <li><a href="#">인기짱2</a></li>
-	                                <li><a href="#">인기짱3</a></li>
-	                                <li><a href="#">Design Studio</a></li>
-	                                <li><a href="#">Business Studio</a></li>
-	                                <li><a href="#">Product Showcase</a></li>
+                                    <c:forEach items="${rankList}" var="rank">
+                                        <li  style="padding-top: 15px; padding-bottom: 15px;">
+                                            <div class="media">
+                                                <img src="/upload_img_file/부적5.png" alt="widget" style="width:35%;">
+                                                <div class="media-body" style="margin: 10px;">
+                                                    <span class="post-date">${rank.rv_regdate}</span>
+                                                    <h6 class="title"><a href="getReview?rv_no=${rank.rv_no}">${rank.rv_title}</a></h6>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </c:forEach>
 	                            </ul>
                         	</div>
                         </div>
+                        <!-- 인기글 끝 -->
+
                         <div class="widget widget_tag_cloud">
                             <h2 class="widget-title">태 그</h2>
                             <div class="tagcloud">
@@ -388,8 +376,17 @@
     <script src="../js/jquery-ui.min.js"></script>
     <script src="../js/jarallax.min.js"></script>
 
+    <!-- 댓글 js -->
+    <script src="../js/review_comment_reply.js"></script>
+
     <!-- main js -->
     <script src="../js/main.js"></script>
 
+    <!--<script type="text/javascript">
+        $("#submitBtn").click(function(){
+
+        })
+
+    </script>-->
 </body>
 </html>

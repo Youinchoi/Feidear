@@ -1,6 +1,6 @@
 $(function(){
 	
-	//FBTI test에서 넘어온 경우 자동으로 tab pane 켜짐
+	/*********** FBTI test에서 넘어온 경우 자동으로 tab pane 켜짐 ***********/
 	if ($('ul input#selected').val() == "test" ) {
 
 		let testPane = $('ul.nav.nav-tabs.tp-tabs.style-two li:nth-child(4) a')
@@ -17,11 +17,9 @@ $(function(){
 		let oriDiv = $('div.tab-content.user-tab-content div#tabs_1')
 		oriDiv.attr('class', oriDivClass);
 		
-	}
+	}//end of if
 	
-	
-	
-	
+	/*********** 실시간 날씨 API 연결 ***********/
     $('#selectArea').on('change',function(){
         //사용자 입력값 받아옴            
          let param= { idx : $(this).val()}
@@ -29,7 +27,7 @@ $(function(){
          	//SmartController 로 연결하는 ajax
             $.ajax({
             type : 'get',
-            url: '/smart/smartPage',
+            url: '/smart/weather',
             data : param,
             success : function(result){
                 rs = result.replace(/'/g, '"')
@@ -210,15 +208,11 @@ $(function(){
 
     })//end of change
    
-
-    
-    
-    
     /*********** 이미지 경로 지정하는 함수 ***********/
     function image(state){
       var src="";
       
-      // 새로운 예보를 발견할때마다 계속 추가하겠습니다....
+      // 새로운 예보를 발견할때마다 계속 추가할 예정
       switch(state){
          case "맑음" :
             src = "/images/weather/sunny.gif"
@@ -240,12 +234,12 @@ $(function(){
    
    
    
-   /* FBTI-test.jsp */
-	let imgs = $('#effects_wrapper .fstv-list img');
+   /***** FBTI-test.jsp : 이미지 클릭시 체크박스 선택 *****/ 
+	let imgs = $('#effects_wrapper div.fstv-list:first img.fetv_img');
 	imgs.each(function(){
 		$(this).click(function(){
-			//alert($(this).attr('alt'))
-			chk = $(this).parent().parent().find('input:checkbox[name="fetv_no"]');
+			
+			let chk = $(this).parent().parent().find('input:checkbox[name="fetv_no"]');
 			
 			if (chk.prop('checked')){
 				chk.prop('checked',false);
@@ -253,12 +247,27 @@ $(function(){
 			else {
 				chk.prop('checked',true);
 			}
-			
-			//tileDiv = chk.parent();
-			//tileDiv.toggleClass('selected');
 
 		});
 		
 	})//end of each
+	
+	/***** FBTI-test.jsp : 체크박스가 클릭됐을 경우 아래에 평점 슬라이드 나타냄 *****/
+	let chk = $('#effects_wrapper input:checkbox[name="fetv_no"]');
+  	chk.each(function(){
+      $(this).change(function(){
+         let sliderDiv = $(this).parent().parent().find('div.sl');
+         sliderDiv.empty()
+         if (sliderDiv.attr('class')!='user-payment-card.fstv-list.sl.show'){
+	         let slider = $('<input class="slider" type="range" min="0" max="5" step="0.5" name="r_fetv_est"/>');
+	         let desc = $('<br/><span id="value">◀&nbsp;별로에요😞&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span id="value">좋았어요🥰&nbsp;▶</span>')
+	         sliderDiv.append(slider);			 
+	         sliderDiv.append(desc);
+		 }
+         sliderDiv.toggleClass('show');
+         
+      });//end of change
+   })//end of each
+	
 	
 })//end of function

@@ -1,6 +1,5 @@
 package com.example.controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -9,14 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.example.domain.ReviewsVO;
-import com.example.service.ReviewsService;
 import com.example.domain.Criteria;
 import com.example.domain.PageMaker;
-import com.example.util.MD5Generator;
+import com.example.domain.ReviewsVO;
+import com.example.service.ReviewsService;
 
 
 @Controller
@@ -34,11 +30,18 @@ public class ReviewsController {
     } // 
     
     // 리뷰 등록
-    @RequestMapping(value="/insertReview") 
+    @RequestMapping(value="/insertReview")
     public void insertReview(ReviewsVO vo)throws IOException {
-    	System.out.println("[Controller : insertReivews 요청] 입력");
+    	System.out.println("[Controller : insertReivews 입력창]");
+    } // end of writeReviews()
+
+    // 리뷰 등록
+    @RequestMapping(value="/saveReview")
+    public String saveReview(ReviewsVO vo)throws IOException {
+    	System.out.println("[Controller : saveReview 요청] 입력");
     	System.out.println(">>>>> file :: "+vo.getFile_name());
     	reviewsService.insertReview(vo);
+    	return "redirect:/reviews/getReviewList";
     } // end of writeReviews()
 
     
@@ -51,6 +54,7 @@ public class ReviewsController {
     	pageMaker.setCri(cri);
     	pageMaker.setTotalCount(reviewsService.listCount());
     	m.addAttribute("pageMaker", pageMaker);
+    	
     	List<ReviewsVO> rankList = reviewsService.getRankList();
     	m.addAttribute("rankList", rankList);			// 명예의 전당 목록
     } // end of getReviewsList()
@@ -61,8 +65,10 @@ public class ReviewsController {
  	
  		ReviewsVO result = reviewsService.getReview(vo);
  		System.out.println("[Controller : getReviews 요청] 상세보기 : "+result.getRv_no());
- 	
  		m.addAttribute("reviews", result);
+ 		
+ 		List<ReviewsVO> rankList = reviewsService.getRankList();
+ 		m.addAttribute("rankList", rankList);					// 명예의 전당 목록
  	} // end of getReviews()
  	
  	

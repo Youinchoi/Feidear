@@ -90,8 +90,8 @@
 		
 	<!-- 불러온 태그 리스트, 이름 리스트 DB에 저장하기 -->
 	<insert id="insertTest"  parameterType="hashmap">
-		INSERT INTO mldataset(recomm_no, u_id, r_fetv_tag, r_fetv_name)
-		VALUES (nextval('seq_pk_rec'),#{u_id}, #{fetv_tags}, #{fetv_name})
+		INSERT INTO mldataset(recomm_no, u_id, r_fetv_tag, r_fetv_name, r_fetv_est)
+		VALUES (nextval('seq_pk_rec'),#{u_id}, #{fetv_tags}, #{fetv_name}, #{r_fetv_est})
 	</insert>
 	
 	<!-- 불러온 태그 리스트, 이름 리스트 DB에서 삭제 -->
@@ -99,6 +99,21 @@
 		DELETE FROM mldataset
 		WHERE u_id = #{u_id}
 	</insert>
+	
+	<!-- 추천 결과 불러오기 : 축제 이름으로 -->
+	<select id="getRecommResult" parameterType="String" resultType = "FestivalVO" >
+		SELECT *
+		FROM festival
+		WHERE fetv_name = #{r_fetv_name}
+	</select>
+	
+	
+	<!-- DB에 저장된 검사결과 조회 -->
+	<select id="getResultList" resultType = "FestivalVO"  parameterType="String">
+		SELECT *
+		FROM mldataset
+		WHERE u_id = #{u_id}
+	</select>
 	
 	<!-- ******************* 추천 알고리즘 끝 ******************* -->
 </mapper>

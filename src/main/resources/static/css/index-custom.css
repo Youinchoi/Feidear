@@ -1,0 +1,27 @@
+/**************   유저픽 축제 추천   ***************/
+.icons {
+	 -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+	 transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.icons::after {
+	display: block;
+	position: absolute;
+	z-index: -1;
+	opacity: 0;
+	-webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+	transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);	
+}
+.icons:hover{
+	-webkit-transform: scale(1.15, 1.15);
+	transform: scale(1.15, 1.15);	
+	box-shadow: 0px 0px 15px 3px #2f2f2f ;
+}
+		
+
+
+/************** 유저픽 축제 추천 끝 ***************/     
+     
+        
+        
+        

@@ -6,23 +6,17 @@
    <!-- header.jsp 끝 -->
    
    <!-- custom CSS -->
+   <link rel="stylesheet" href="/css/smart-page.css">
    <style type="text/css">
-      .fstv-grid{
+        .fstv-grid{
          display : grid;
           margin-bottom: 5px;   
           grid-template-columns: repeat(3, 1fr);
             gap: 28px;
+         @media screen and (max-width: 718px) {
+             gap: 3px;   
          }
-        .fstv-list {
-            width: 100%;
-            position: relative;
-        }
-         
-         .fstv-list::after {
-         display:block;
       }
-
-        
         a {
         text-decoration: none;
         color: darkslateblue;
@@ -64,24 +58,6 @@
             margin: auto;
             opacity: 50%;
         }
-        
-        .tile img:hover {
-            scale: 1.02;
-            transition: 200ms ease;
-            box-shadow: 1px 10px 25px rgba(0,0,0,.15); 
-            filter: blur(5px);
-            -webkit-filter: blur(5px);
-            opacity: 50%;
-        }
-
-        .selected img{
-        outline: 4px solid #4F81BD;
-        opacity: 30%;
-        transition: 400ms ease-out;
-
-        }
-
-
         .tile #short {
             width:300px;
             overflow:hidden;
@@ -95,6 +71,9 @@
             color : rgb(29, 29, 29);
             z-index: 2;
         }
+
+        div.sl { visibility: hidden; }
+        div.sl.show {visibility: visible;}
    </style>
    
    <!-- custom CSS 끝 -->
@@ -136,7 +115,7 @@
                                               <!-- 여행 성향 분석 결과 -->
                                                 
                                                <!-- 여행 성향 기반 추천 -->
-                                               <h3 style="text-align: center; margin-bottom: 70px;">내가 가고 싶은 축제, 혹은 맘에 들었던 축제를 골라주세요!</h3>
+                                               <h3 style="text-align: center; margin-bottom: 70px;">내가 가봤던 축제를 평가해주세요!</h3>
                                                   <div>
 
                                                       <form action="insertTest" method="post">
@@ -148,14 +127,15 @@
                                                                         <!-- <input type="hidden" name="fetv_no" id="${vo.fetv_no}" value="${vo.fetv_no}"/> -->
                                                                         <input type="checkbox" id="${vo.fetv_no}" class="checkbox" name="fetv_no" value="${vo.fetv_no}"/>
                                                                         <label for="${vo.fetv_no}">
-                                                                            <img src="/festival_imgs/${vo.fetv_image}" alt="${vo.fetv_name}" style="margin-bottom: 1.25vw;">
+                                                                            <img class="fetv_img" src="/festival_imgs/${vo.fetv_image}" alt="${vo.fetv_name}" style="margin-bottom: 1.25vw;">
                                                                             <br/>
                                                                             <div>
                                                                                 <span style="font-size: 1.8rem; font-weight: bold;">${vo.fetv_name}</span> <br/>
                                                                                 <span id ="short" style="white-space: nowrap; font-size: 1rem;">${vo.fetv_short}</span>
                                                                             </div>
-
                                                                         </label>
+                                                                    </div>
+                                                                    <div class="user-payment-card fstv-list sl" style="text-align: center;">
                                                                     </div>
                                                                 </div>
                                                             </c:forEach>

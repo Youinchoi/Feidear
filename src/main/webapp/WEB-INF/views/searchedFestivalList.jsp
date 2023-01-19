@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%String pjName = "/Feidear";%>
     
   <jsp:include page="header.jsp"></jsp:include>
@@ -56,8 +57,8 @@
                                 <div class="list-price-meta">
                                     <c:if test="${not empty content.fetv_startdate}">
                                     <ul class="tp-list-meta d-inline-block">
-                                        <li><i class="fa fa-calendar-o"></i> ${content.fetv_startdate}</li>
-                                        <li><i class="fa fa-clock-o"></i> ${content.fetv_enddate}</li>
+                                        <li><i class="fa fa-calendar-check-o fa-lg"></i> ${fn:substring(content.fetv_startdate, 0, 10)}</li>
+                                        <li><i class="fa fa-calendar-times-o fa-lg"></i> ${fn:substring(content.fetv_enddate, 0, 10)}</li>
                                     </ul>
                                     </c:if>
                                     <c:if test="${empty content.fetv_startdate}">
@@ -95,7 +96,7 @@
                             <div class="widget-tour-list-search">
                                 <form role="search" class="search-form" id="festivalSearchForm" name="festivalSearchForm" action="/api/festival/search">
                                     <div class="form-group">
-                                        <input type="text" placeholder="키워드로 검색하기" name="log_word_searchword">
+                                        <input type="text" placeholder="키워드로 검색하기" name="log_word_searchword" autofocus>
                                         <c:if test="${empty sessionScope.u_no}">
                                             <input type="hidden" name="u_no" value="0">
                                         </c:if>

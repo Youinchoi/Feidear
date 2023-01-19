@@ -31,5 +31,25 @@
 		 WHERE ev_no > 0
 	]]>
 	</select>
+	
+	<!-- 이벤트 작성하기 -->
+	<insert id="saveEvent" parameterType="EventVO">
+		INSERT INTO event 
+			  		(ev_title, ev_content, ev_regdate
+			  		<if test="file_name !=null">
+			  		, file_name, origin_file_name, file_size, file_path
+			  		</if>)
+		VALUES	 	(#{ev_title}, #{ev_content}, NOW()
+					<if test="file_name !=null">
+					, #{file_name}, #{origin_file_name}
+					, #{file_size}, #{file_path}
+					</if>)
+	</insert>
+	
+	<!-- 이벤트 삭제하기 -->
+	<delete id="deleteEvent" parameterType="EventVO">
+		DELETE FROM event
+		WHERE 		ev_no = #{ev_no}
+	</delete>
 
 </mapper>

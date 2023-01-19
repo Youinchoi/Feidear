@@ -13,5 +13,9 @@ public interface EventService {
 	
 	public int listCount() throws Exception;			// 게시물 총 갯수
 	
+	public void saveEvent(EventVO vo);					// 이벤트 저장하기
+	
+	public void deleteEvent(EventVO vo);				// 이벤트 삭제하기
+	
 
 }

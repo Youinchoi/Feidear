@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%String pjName = "/Feidear";%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Meta, title, CSS, favicons, etc. -->
@@ -11,8 +11,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon"
-	href="images/favicon.ico"
-	type="image/ico" />
+	href="/images/favicon.png"
+	type="/image/png" />
 
 <title>FeiDear Admin | 이벤트 관리</title>
 
@@ -52,6 +52,12 @@
 <!-- Custom Theme Style -->
 <link href="build/css/custom.min.css"
 	rel="stylesheet">
+	
+	<!-- sweet alert창 -->
+   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+   <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+	
 <style type="text/css">
 @font-face {
 	font-family: 'TmoneyRoundWindRegular';
@@ -138,7 +144,7 @@ a {
 			<!-- 상단바 끝 -->
 
 
-			<!-- 본문 내용 -->
+			<!-- 본문 게시판 테이블 내용 -->
 			<!-- page content -->
 			<div class="right_col" role="main">
 
@@ -151,16 +157,6 @@ a {
 								<h2
 									style="margin: 20px auto; font-size: 32px; font-weight: bolder; white-space: nowrap;">이벤트 게시판</h2>
 								<div style="margin-bottom: 20px; float : right;">
-								<div class="btn-group">
-				                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
-				                      aria-haspopup="true" aria-expanded="false" style="margin-bottom: 5px;">
-				                      분류
-				                    </button>
-				                    <div class="dropdown-menu">
-				                      <a class="dropdown-item" href="#">서포터즈 관리</a>
-				                      <a class="dropdown-item" href="#">이벤트 관리</a>
-				                    </div>
-				               	</div>
 				               	
 				               	<a href="insertEvent"><button type="button" class="btn btn-primary">글 등록</button></a>
 								</div>
@@ -169,36 +165,60 @@ a {
 										style="font-size: 1vw; white-space: nowrap;">
 										<tbody>
 											<!-- 테이블 데이터 출력 -->
+										 <c:forEach items="${eventList}" var="events">
 											<tr>
-												<td class=" "><a href="#">이벤트 제목 이벤트 제목 이벤트 제목 이벤트 제목</a></td>
-												<td><a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 삭제 </a></td>
+												<td name="ev_no" id="ev_no" class="ev_no">${events.ev_no}</td>
+												<td class="ev_event" name="ev_event" style="text-align:center;" value="${events.ev_no}"><a href="/event-details?ev_no=${events.ev_no}">${events.ev_title}</a></td>
+												<td id="deleteBtn" class="deleteBtn" style="text-align:end;"><a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 삭제 </a></td>
 											</tr>
-											<tr>
-												<td class=" "><a href="#">이벤트 제목 이벤트 제목 이벤트 제목 이벤트 제목</a></td>
-												<td><a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 삭제 </a></td>
-											</tr>
-											<tr>
-												<td class=" "><a href="#">이벤트 제목 이벤트 제목 이벤트 제목 이벤트 제목</a></td>
-												<td><a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 삭제 </a></td>
-											</tr>
-											<tr>
-												<td class=" "><a href="#">이벤트 제목 이벤트 제목 이벤트 제목 이벤트 제목</a></td>
-												<td><a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 삭제 </a></td>
-											</tr>
-											<tr>
-												<td class=" "><a href="#">이벤트 제목 이벤트 제목 이벤트 제목 이벤트 제목</a></td>
-												<td><a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 삭제 </a></td>
-											</tr>
+												
+										 </c:forEach>
 										</tbody>
 									</table>
 								</div>
 							</div>
+
+						<!-- 페이징 시작 -->
+						<div class="row">
+							<div class="col-lg-12  text-md-center text-left">
+								<div class="tp-pagination text-md-center text-left d-inline-block mt-4">
+									<ul style="list-style:none; font-size:18px;">
+										<c:if test="${pageMaker.prev}">
+											<li><a class="prev page-numbers" href="/admin/eventAdmin${pageMaker.makeQuery(pageMaker.startPage - 1)}"><i class="la la-long-arrow-left"></i></a></li>
+										</c:if>
+										<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">                                	
+										<li style="float: left; margin-left: 20px;"><a href="/admin/eventAdmin${pageMaker.makeQuery(idx)}">
+											<!--현재 파라미터로 넘겨받은 페이지의 숫자가 생성되는 숫자와 같으면(현재 페이지) -->
+											<c:if test="${param.page eq idx}">
+											<span class="page-numbers current">${idx}</span>
+											</c:if>
+											
+											<!--현재 파라미터로 넘겨받은 페이지의 숫자가 생성되는 숫자와 다르면(나머지 페이지) -->
+											<c:if test="${param.page ne idx}">
+											<span class="page-numbers">${idx}</span>
+											</c:if>
+											
+											</a></li>
+										</c:forEach>
+										<!-- 
+										<li><span class="page-numbers current">2</span></li>
+										<li><a class="page-numbers" href="#">3</a></li>
+										-->                                	
+										<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+											<li><a class="next page-numbers" href="/admin/eventAdmin${pageMaker.makeQuery(pageMaker.endPage + 1)}"><i class="la la-long-arrow-right"></i></a></li>
+										</c:if> 
+									</ul>                          
+								</div>
+							</div>
+						</div>
+						<!-- 페이징 끝 --> 
 
 							
 					</div>
 				</div>
 
 			</div>
+			<!-- 본문 게시판 테이블 내용 -->
 		</div>
 	</div>
 	<br />
@@ -296,6 +316,37 @@ a {
 		src="vendors/dropzone/dist/min/dropzone.min.js"></script>
 	<!-- Custom Theme Scripts -->
 	<script src="build/js/custom.min.js"></script>
+
+	<script type="text/javascript">
+		$('.deleteBtn').click(function(){
+
+			//for each 문이 돌아가는 행 안에서 선택한 버튼의 형제 중 첫 번째 td의 text를 가져온다. 
+			var th = $(this).siblings("td:first").text();
+
+			Swal.fire({
+			title: '정말로 삭제하시겠습니까?',
+			text: "확인 시 정보가 모두 삭제됩니다.",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#F0B153',
+			cancelButtonColor: '#d33',
+			confirmButtonText: '삭제'
+			}).then((result) => {
+				if (result.isConfirmed) {
+				Swal.fire({
+					title : '삭제 성공',
+					text : '삭제가 완료되었습니다.',
+					icon : 'success',
+					confirmButtonColor: '#F0B153'
+				}).then((result) => {
+					location.href='deleteEvent?ev_no='+th;
+					})//END THEN
+				}//end if
+			})//END THEN
+
+		})
+	</script>
+	
 
 
 </body>

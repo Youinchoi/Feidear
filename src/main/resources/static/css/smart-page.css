@@ -1,0 +1,152 @@
+         /************** smart-page.jsp : 여행 성향 분석 ***************/
+      .fstv-grid{
+         display : grid;
+          margin-bottom: 5px;   
+          grid-template-columns: repeat(3, 1fr);
+         @media screen and (max-width: 718px) {
+             gap: 3px;   
+         }
+      }
+      .fstv-list {
+        width: 100%;
+		position: relative;
+		}
+         
+        .fstv-list::after {
+         display:block;
+      }
+      
+		.img_box {
+		  margin-bottom: 1.25vw;
+		  position: relative;
+  		  display: inline-block;
+		  width: 200px;
+		  height:200px;
+		  -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+		  transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+		}
+		.img_box::after {
+		  display: block;
+		  padding-bottom: 100%;
+  		  position: absolute;
+		  z-index: -1;
+		  opacity: 0;
+		  -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+		  transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+		}
+		
+		.img_box:hover{
+		  -webkit-transform: scale(1.15, 1.15);
+ 		  transform: scale(1.15, 1.15);	
+		}
+		
+		.box:hover::after {
+		    opacity: 1;
+		}
+	     .result_img {
+			  margin-top: 1.25vw;
+			  top: 0;
+			  left: 0;
+			  width: 80%;
+			  height: 80%;
+			  object-fit: cover;
+			  border-radius: 50%;
+	     }
+	     
+	     .fetv_name {
+	     	font-size: 0.85rem;
+	     }
+	     
+	     .graph { border-radius:40px; }
+	     .graph span.value { display:block; padding-right: 1vw; width: 75%;
+	     text-align: right; background:#F0B153; border-radius:40px; box-sizing:border-box;
+	     color: #fff; animation:stack 2s 1;}
+	     
+	     .graph span.value:hover { background:#f4e39f;}
+	     
+	     
+	     @keyframes stack{
+	     	0% { width:0%; color:rgba(255,255,255,0); }
+	     	100% { color:rgba(255,255,255,1); }
+	     }
+     
+      /************** smart-page.jsp : 실시간 날씨 검색 ***************/
+      .categ-filter {
+         float : left;
+         width : 40%;
+         margin-right :0.5vw;
+      }
+      
+      #weatherTbl .weatherIcon {
+         width:25%;
+      }
+
+      #weatherTbl .weatherIcon img {
+        max-width: 100%;
+        width : 60%;
+        margin: 0px auto;
+      }
+      
+      .weatherTd, .dayTd {
+         width:10%;
+      }
+      
+      #weatherTbl td,
+      #weatherTbl thead th,
+      #todayTbl td,
+      #todayTbl thead th {
+         text-align: center;
+         vertical-align: middle;
+      }
+
+      #todayTbl {
+        height: 30%;
+        margin: 8% auto;
+      }
+
+
+      #todayTbl .tmp {
+        white-space: nowrap;
+        font-size: 5.5rem;
+        height:75%;
+      }
+      
+      
+      /************** FBTI-Test.jsp : 축제 페이지 슬라이더 ***************/
+      
+      input.slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 5px;
+            border-radius: 5px;
+            background: #d3d3d3;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+        }
+        
+        input.slider:hover {
+            opacity: 1;
+        }
+
+         input.slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #ff3b3b;
+            cursor: pointer;
+        }
+
+         input.slider::-moz-range-thumb {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #ff3b3b;
+            cursor: pointer;
+        }
+        
+        
+        

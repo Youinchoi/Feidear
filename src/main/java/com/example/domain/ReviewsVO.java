@@ -49,9 +49,9 @@ public class ReviewsVO {				// 축제 일기(리뷰)
 			
 			this.origin_file_name = file_name;
 			
-			File f = new File("D:\\FinalProject_springboot\\Feidear\\src\\main\\resources\\static\\upload_img_file\\"+origin_file_name);
+			File f = new File("D:\\springbootFinal\\Feidear\\src\\main\\resources\\static\\upload_img_file\\"+origin_file_name);
 			
-			this.file_path = "D:\\FinalProject_springboot\\Feidear\\src\\main\\resources\\static\\upload_img_file\\"+origin_file_name;
+			this.file_path = "D:\\springbootFinal\\Feidear\\src\\main\\resources\\static\\upload_img_file\\"+origin_file_name;
 			// 파일 저장 위치를 추후에 서버 경로를 얻어서 상대경로로 수정하기
 			try {
 				

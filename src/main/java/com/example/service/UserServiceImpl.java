@@ -77,19 +77,23 @@ public class UserServiceImpl implements UserService {
 	// ------------------------------------------------------------
 	
 	// 위시리스트 목록
-	public List<WishVO> getWishList(WishVO vo) {
-		return userDAO.getWishList(vo);
-	}
-
-	// 위시리스트 추가
-	public void addWish(WishVO vo) throws Exception {
-		userDAO.addWish(vo);
-	}
+	public List<WishVO> getWishList(UserVO vo) {
+	      return userDAO.getWishList(vo);
+	   }
 
 	// 위시리스트 삭제
-	public int deleteWish(WishVO vo) {
-		return userDAO.deleteWish(vo);
-	}
+	public int deleteWish(UserVO vo) {
+	      return userDAO.deleteWish(vo);
+	   }
+
+	// 위시리스트 추가
+	public int addWish(WishVO vo) {
+      if(userDAO.checkWish(vo) == 1) {
+    	  System.out.println("중복 있음");
+    	  return 10;}
+      else return userDAO.addWish(vo);
+   }
+
 
 
 }

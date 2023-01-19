@@ -6,66 +6,7 @@
    <!-- header.jsp 끝 -->
    
    <!-- custom CSS -->
-   <style type="text/css">
-      .fstv-grid{
-         display : grid;
-          margin-bottom: 5px;   
-          grid-template-columns: repeat(4, 1fr);
-            gap: 28px;
-         @media screen and (max-width: 718px) {
-             gap: 3px;   
-         }
-      }
-      .fstv-list {
-         width: 100%;
-            position: relative;
-         }
-         
-         .fstv-list::after {
-         display:block;
-      }
-      
-      .categ-filter {
-         float : left;
-         width : 40%;
-         margin-right :0.5vw;
-      }
-      
-      #weatherTbl .weatherIcon {
-         width:25%;
-      }
-
-      #weatherTbl .weatherIcon img {
-        max-width: 100%;
-        width : 60%;
-        margin: 0px auto;
-      }
-      
-      .weatherTd, .dayTd {
-         width:10%;
-      }
-      
-      #weatherTbl td,
-      #weatherTbl thead th,
-      #todayTbl td,
-      #todayTbl thead th {
-         text-align: center;
-         vertical-align: middle;
-      }
-
-      #todayTbl {
-        height: 30%;
-        margin: 8% auto;
-      }
-
-
-      #todayTbl .tmp {
-        white-space: nowrap;
-        font-size: 5.5rem;
-        height:75%;
-      }
-   </style>
-   
+   <link rel="stylesheet" href="/css/smart-page.css">
    <!-- custom CSS 끝 -->
    
     <!-- breadcrumb area start -->
@@ -94,9 +35,10 @@
                     <div class="row">
                         <div class="col-lg-4">
                             <ul class="nav nav-tabs tp-tabs style-two">
-                                <c:if test="${not empty selected}">
+                                <c:if test="${not empty selected and not empty sessionScope.u_id}">
                                     <input type="hidden" name="select" value="${selected}" id="selected"/>
                                 </c:if>
+
                                 
                                 <li class="nav-item">
                                     <a class="nav-link active"  data-toggle="tab" href="#tabs_1"><i class="fa fa-users" aria-hidden="true"></i>혼잡도 체크</a>
@@ -105,7 +47,7 @@
                                     <a class="nav-link" data-toggle="tab" href="#tabs_2"><i class="fa fa-sun-o" aria-hidden="true"></i>실시간 날씨</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#tabs_3"><i class="fa fa-bar-chart" aria-hidden="true"></i>내 여행 성향 분석</a>
+                                    <a class="nav-link" data-toggle="tab" href="#tabs_3"><i class="fa fa-bar-chart" aria-hidden="true"></i>유저's PICK</a>
                                 </li>
                             </ul>
                         </div>
@@ -219,90 +161,79 @@
                                 <!-- 여행 성향 분석 탭-->
                                 <div class="tab-pane fade" id="tabs_3">
                                     <div class="user-details">
-                                        <h3 class="user-details-title">내 여행 성향 분석</h3>
+                                        <h3 class="user-details-title">FEIDEAR 유저 PICK 추천</h3>
                                         
                                         <div class="row">
                                            <div class="col-lg-12 bg-gray" style="padding-top: 3vw;">
                                               
                                               <!-- 여행 성향 분석 결과 -->
-                                                <div class="col-lg-5" style="margin: 0px auto;">
-                                                   <h3 id ="title" style="text-align: center; margin-bottom: 30px;">FBTI TEST</h3>
+                                                <div class="col-lg-12" style="margin: 0px auto;">
+                                                   <h3 id ="title" style="text-align: center; margin-bottom: 30px;">유저들이 추천해주는 축제들!</h3>
+                                                   <span style="display:block; margin-bottom: 2vw!important; font-size: 0.95em; text-align: center; margin: auto;"> ${sessionScope.u_id}님이 가보지 못한 축제 중에서 <br/> FEIDEAR 유저들이 가장 좋은 평가를 준 축제를 추천해드릴게요! </span><br/>
                                                    <div class="user-payment-card" style="text-align: center;">
-                                                       <img src="/images/others/01.png" alt="img" style="margin-bottom: 1.25vw; border-radius: 70%">
+                                                       <img src="../images/others/userpick.PNG" alt="img" style="margin-bottom: 1.25vw; border-radius: 70%; box-shadow: 0px 0px 15px 3px darkgrey;">
                                                         <br/>
-                                                        <span> 당신의 FBTI는? ~~~!</span><br/>
                                                         <c:if test="${empty sessionScope.u_id}" >
-                                                            <a id="test" class="btn btn-transparent signUp-btn" style="margin: 1vw;">로그인</a>
+                                                            <a id="test" class="btn btn-transparent signUp-btn" style="margin-top: 1vw; margin-bottom:3vw; display: inline-block; width: 30vw; padding:0;">로그인해야 이용 가능한 서비스입니다.</a>
                                                         </c:if>
-                                                        <c:if test="${not empty sessionScope.u_id}">
+                                                        <c:if test="${not empty selected and not empty sessionScope.u_id}">
                                                             <a id="test" class="btn btn-transparent" href="/smart/fbti-test" style="margin: 1vw;">다시 검사해보기</a>
+                                                        </c:if>
+                                                        <c:if test="${empty selected and not empty sessionScope.u_id}">
+                                                            <a id="test" class="btn btn-transparent" href="/smart/fbti-test" style="margin: 1vw;">지금 검사해보기</a>
                                                         </c:if>
                                                     </div>
                                                 </div>
-                                               <div id="desc" class="col-lg-10 widget-contact" style="margin: 0px auto;">
-                                                  <p>
-                                                  <i class="fa fa-thumb-tack" aria-hidden="true"></i>
-                                                  <span style="color: black;">이 성향에 대한 특징을 써주시면 됩니다 어저고저쩌고... <br/>아마 두줄이 될 수도 있겠죠..?  이건 br태그를 준 p태그 입니다</span>
-                                              </p>
-                                              <p>
-                                                  <i class="fa fa-thumb-tack" aria-hidden="true"></i>
-                                                  <span style="color: black;">이 성향에 대한 특징을 써주시면 됩니다 어저고저쩌고... 아마 두줄이 될 수도 있겠죠..? 이건 br태그를 안 준 p태그 입니다</span>
-                                              </p>
-                                              <p>
-                                                  <i class="fa fa-thumb-tack" aria-hidden="true"></i>
-                                                  <span style="color: black;">이 성향에 대한 특징을 써주시면 됩니다 어저고저쩌고... 아마 두줄이 될 수도 있겠죠..? 이건 br태그를 안 준 p태그 입니다</span>
-                                              </p>
-                                               </div>   
+                                                <c:if test="${not empty selected and not empty sessionScope.u_id}">
+                                                    <div id="desc" class="col-lg-10 widget-contact" style="margin:auto; margin-bottom: 3vw!important; margin-top: 1vw!important;">
+                                                        <span style="display:block; font-size: 0.95em; text-align: center; margin: auto;"> ${sessionScope.u_id}님이 고른 축제의 주요 키워드는?? </span><br/>
+                                                        <c:forEach var="tag" items="${tags}" varStatus="status">
+                                                            <a href="/api/festival/search?u_no=${sessionScope.u_no}&log_word_searchword=%23${tag.key}">
+                                                                <p class="graph">
+                                                                    <i class="fa fa-thumb-tack" aria-hidden="true"></i>
+                                                                    <span style="color: black;">&nbsp;${tag.key}</span>
+                                                                    <span class="value" style="width: ${tag.value * 10}%; ">${tag.value}</span>
+                                                                </p>
+                                                            </a>
+                                                        </c:forEach>
+                                                        
+                                                   </div>  
+                                                   <!-- 여행 성향 기반 추천 -->
+                                                    <div class="newslatter-area-wrap border-tp-solid" >
+                                                        <h4 style="text-align: center; margin-bottom: 70px;">👇👇 이런 당신에게 유저들이 추천하는 축제는?? 👇👇</h4>
+                                                        <div class="fstv-grid"  style="overflow:auto;">
+                                                            <c:forEach var="vo" items="${vList}" varStatus="status">
+                                                                <div class="col-lg-12" style="margin: 0px auto;">
+                                                                    <a class="fetv_box" href="/festival/festivalDetails?fetv_no=${vo.fetv_no}">
+                                                                        <div class="user-payment-card fstv-list" style="text-align: center; padding-bottom: 50%;">
+                                                                            <div class="img_box">
+                                                                            <img class="result_img" src="/festival_imgs/${vo.fetv_image}" alt="${vo.fetv_short}" style="margin-bottom: 1.25vw; border-radius: 70%">
+                                                                            </div>
+                                                                            <br/>
+                                                                            <div class="fetv_name">${vo.fetv_name}</div>
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
+                                                            </c:forEach>
+                                                        </div>
+                                                    </div>    
+                                                </c:if>
+                                                
                                                
-                                               <!-- 여행 성향 기반 추천 -->
-                                               <div class="newslatter-area-wrap border-tp-solid" >
-                                               <h4 style="text-align: center; margin-bottom: 70px;">👇👇 이런 당신에게 유저들이 추천하는 축제는?? 👇👇</h4>
-                                                  <div class="fstv-grid"  style="overflow:auto;">
-                                                     <div class="col-lg-12" style="margin: 0px auto;">
-                                                         <div class="user-payment-card fstv-list" style="text-align: center;">
-                                                             <img src="/images/others/01.png" alt="img" style="margin-bottom: 1.25vw; border-radius: 70%">
-                                                              <br/>
-                                                              <span style="white-space: nowrap;"> 어쩌구 축제</span>
-                                                          </div>
-                                                      </div>
-                                                      
-                                                     <div class="col-lg-12" style="margin: 0px auto;">
-                                                         <div class="user-payment-card fstv-list" style="text-align: center;">
-                                                             <img src="/images/others/01.png" alt="img" style="margin-bottom: 1.25vw; border-radius: 70%">
-                                                              <br/>
-                                                              <span style="white-space: nowrap;"> 어쩌구 축제</span>
-                                                          </div>
-                                                      </div>
-                                                     
-                                                     <div class="col-lg-12" style="margin: 0px auto;">
-                                                         <div class="user-payment-card fstv-list" style="text-align: center;">
-                                                             <img src="/images/others/01.png" alt="img" style="margin-bottom: 1.25vw; border-radius: 70%">
-                                                              <br/>
-                                                              <span style="white-space: nowrap;"> 어쩌구 축제</span>
-                                                          </div>
-                                                      </div>
-                                                     
-                                                     <div class="col-lg-12" style="margin: 0px auto;">
-                                                         <div class="user-payment-card fstv-list" style="text-align: center;">
-                                                             <img src="/images/others/01.png" alt="img" style="margin-bottom: 1.25vw; border-radius: 70%">
-                                                              <br/>
-                                                              <span style="white-space: nowrap;"> 어쩌구 축제</span>
-                                                          </div>
-                                                      </div>
-                                                   </div>
-                                               </div>     
-                                            </div>
-                                          </div>
-                                        
-                                        
+                                               
+                                                 
+                                        </div>
                                     </div>
+                                        
+                                        
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div> 
-            </div>
+                </div>
+            </div> 
         </div>
+    </div>
     </div>
     <!-- blog area End -->
     

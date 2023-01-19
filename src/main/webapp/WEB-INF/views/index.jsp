@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-	<%String pjName = "/Feidear";%>
 
-	<!-- header.jsp -->
-	<jsp:include page="header.jsp"></jsp:include>
-	<!-- header.jsp 끝 -->
-	
+   <!-- header.jsp -->
+   <%@ include file='header.jsp' %>
+   <!-- header.jsp 끝 -->
+    <link rel="stylesheet" href="/css/index-custom.css">
 
     <!-- banner area start -->
     <div class="banner-area">
@@ -17,11 +16,11 @@
                             <div class="row">
                                 <div class="col-lg-9 col-sm-8">
                                     <div class="banner-inner">
-                                        <p class="banner-cat s-animate-1">Discover</p>
+                                        <h5 class="banner-cat s-animate-1">About</h5>
                                         <h2 class="banner-title s-animate-2">Feidear</h2>
-                                        <p class="content s-animate-3">페이디어는 단계적 일상 회복에 있어 좋은 정보와 에너지를 주는 행사들을 소개하며,<br> 
-                                            국내의 특색있고 재미있는 축제를 홍보하고자 합니다.</p>
-                                        <a class="btn btn-yellow s-animate-4" href="/tour-list02">Explore</a>
+                                        <h5 class="content s-animate-3">우리는 단계적 일상 회복에 있어 좋은 정보와 에너지를 주는 행사들을 소개하며,<br> 
+                                            국내의 특색있고 재미있는 축제를 홍보하고자 합니다.</h5>
+
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-sm-4">
@@ -41,11 +40,11 @@
                             <div class="row">
                                 <div class="col-lg-9 col-sm-8">
                                     <div class="banner-inner">
-                                        <p class="banner-cat s-animate-1">Discover</p>
+                                        <h5 class="banner-cat s-animate-1">추천합니다</h5>
                                         <h2 class="banner-title s-animate-2">대관령 <br> 눈꽃축제</h2><br>
-                                        <p class="content s-animate-3">강릉시와 평창군을 가르는 험준한 산맥, 대관령.<br>
-                                            김유신 장군이 무술을 연마했던 곳도, 고려의 태조 왕건을 돕기 위한 군대가 지났던 곳도 바로 대관령이다.</p>
-                                        <a class="btn btn-yellow s-animate-4" href="/tour-details">보러가기</a>
+                                        <h5 class="content s-animate-3">강릉시와 평창군을 가르는 험준한 산맥, 대관령.<br>
+                                            김유신 장군이 무술을 연마했던 곳도, 고려의 태조 왕건을 돕기 위한 군대가 지났던 곳도 바로 대관령이다.</h5>
+                                        <a class="btn btn-yellow s-animate-4" href="festival/festivalDetails?fetv_no=48">보러 가기</a>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-sm-4">
@@ -65,10 +64,11 @@
                             <div class="row">
                                 <div class="col-lg-9 col-sm-8">
                                     <div class="banner-inner">
-                                        <p class="banner-cat s-animate-1">잠깐!!! 이문구를보신다면 허리를 펴고 목을 집어넣으세요</p>
-                                        <h2 class="banner-title s-animate-2">스마트 추천</h2>
-                                        <p class="content s-animate-3">눈알도 이리저리 굴리세요</p>
-                                        <a class="btn btn-yellow s-animate-4" href="#">Explore</a>
+                                        <h5 class="banner-cat s-animate-1">당신의 축제 취향은?</h5>
+                                        <h2 class="banner-title s-animate-2">FBTI</h2>
+                                        <h5 class="content s-animate-3">당신의 취향에 맞는 축제를 추천해 드립니다.<br>
+                                            회원 가입 후 스마트한 축제 추천으로 새로운 경험을 해 보세요!</h5>
+                                        <a class="btn btn-yellow s-animate-4" href="/sign-up">가입하러 가기</a>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-sm-4">
@@ -83,10 +83,6 @@
             </div>
         </div>
         <!-- <div class="container">  -->
-            <div class="banner-paginations banner-paginations-3">
-                <div class="banner-slider-dots"></div>
-            </div>
-        <!-- </div> -->
 
         <br><br><br>
         <div class="container">
@@ -96,22 +92,8 @@
         </div>
     </div>
     <!-- banner area end -->
-
-    <!-- search area start -->
-    <div class="search-area tp-main-search-area tp-main-search-3">
-        <div class="container">
-            <div class="tp-main-search">
-                <div class="row">
-                    <div class="col-lg-3 col-md-4">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- search area end -->
-
     <!-- upcomming tour start -->
-    <div class="explore-world pd-top-142">
+    <div style="padding-top: 20px;" class="explore-world pd-top-142">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-7 col-lg-10">
@@ -166,18 +148,16 @@
         </div>
     </div><br><br>
     <!-- upcomming tour end -->
-
     
-
-    <!-- travelus area start -->
-    <div class="travelus-area pd-top-120 pd-bottom-92 jarallax" style="background-image: url(images/bg/9.png);">
+    <!-- 유저 픽 축제 추천 시작 -->
+    <div class="travelus-area pd-top-120 pd-bottom-92 jarallax" style="background-color: #446e9b;">
         <div class="container">
             <div class="row">
                 <div class="col-xl-6 col-lg-8">
                     <div class="section-title section-title-left-border style-two">
-                        <h2>Find your</h2><h2 style="color: darkorange">FBTI</h2><br>
-                        <h4 style="color: white;">여행성향 분석을 통해 나에게 딱 맞는 축제를 골라보세요.</h4><br>
-                        <h4 style="color: white;">함께 하고싶은 친구와 공유하면 즐거움이 두 배!</h4>
+                        <h2 style="color: darkorange">FEIDEAR 유저들이</h2><h2>추천해주는 다양한 축제들</h2><br>
+                        <h4 style="color: white;">${sessionScope.u_id}님과 비슷한 유저들이</h4><br>
+                        <h4 style="color: white;">골라준 축제들을 확인해보세요!</h4>
                     </div>
                 </div>
             </div>
@@ -207,7 +187,7 @@
                     </div>
                 </li>
                 <li class="col-lg-5 offset-xl-1 single-travelus-wrap">
-                    <a class="button" href="/sign-up2"><img src="images/others/15.png" alt="img"></a>
+                    <a class="icons button" href="/smart/smart-page"><img src="images/others/userpick.PNG" alt="img" style="border-radius: 50%; width: 35vw;"></a>
                 </li>
             </ul>
             <!-- package area end -->
@@ -230,8 +210,17 @@
             <!-- package area end -->
         </div>
     </div>
-    <!-- travelus area start -->
-
+    <!-- 유저 픽 축제 추천 끝 -->
+    <!-- 인기 검색어 시작 -->
+    <div class="row justify-content-center">
+        <div class="col-xl-7 col-lg-10">
+            <div  style="margin-top: 150px;" class="section-title text-center">
+                <h2 class="title" style="color: darkorange">인기 검색어</h2><br>
+            </div>
+        </div>
+    </div>
+    <iframe src="http://52.78.179.3:5601/app/dashboards#/view/3a281640-97d4-11ed-9f07-8dd3f249f4a0?embed=true&_g=(filters%3A!()%2CrefreshInterval%3A(pause%3A!t%2Cvalue%3A0)%2Ctime%3A(from%3Anow-15m%2Cto%3Anow))&hide-filter-bar=true" height="690px" width="100%"></iframe>
+   <!-- 인기 검색어 끝 -->
     <!-- client area start -->
     <div class="client-area pd-top-108">
         <div class="container">
@@ -308,51 +297,33 @@
                 <div class="col-xl-6 col-lg-8">
                     <div class="section-title text-center">
                         <h2 class="title">페이디어 매거진</h2>
-                        <p>이건 또 언제 다쓰냐,,,,</p>
+                        <p>페이디어의 독자적인 매거진을 만나보세요!</p>
                     </div>
                 </div>
             </div>
-
+            
             <div class="blog-slider tp-common-slider-style tps-arrow-left-right">
+            <c:forEach items="${mm}" var="mm">
                 <div class="blog-slider-item">
-                    <div class="single-blog single-blog-wrap style-four">
-                        <div class="thumb single-blog-left-wrap">
-                            <img src="images/blog/11.png" alt="blog">
+                        <div class="single-blog single-blog-wrap style-four">
+                            <div class="thumb single-blog-left-wrap">
+                                <c:if test="${mm.file_path != null}">
+                                    <img src="${mm.file_path}" alt="blog">
+                                </c:if>
+                                <c:if test="${mm.file_path == null}">
+                                    <img src="images/blog/11.png" alt="blog">
+                                </c:if>
+                            </div>
+                            <div class="single-blog-details single-blog-right-wrap">
+                                <p class="date">${mm.mgz_regdate}</p>
+                                <h4 class="title">${mm.mgz_title}</h4>
+                                <p class="content">${mm.mgz_content}</p>
+                                <a class="btn btn-yellow" href="blog"><span>Read More<i class="la la-arrow-right"></i></span></a>
+                            </div>
                         </div>
-                        <div class="single-blog-details single-blog-right-wrap">
-                            <p class="date">19 September 2019</p>
-                            <h4 class="title">겨울별의 만찬</h4>
-                            <p class="content">오전 9시에서 오후 2시 사이에 펠리칸 타운에 들어가면 축제에 참가할 수 있습니다.</p>
-                            <a class="btn btn-yellow" href="blog"><span>Read More<i class="la la-arrow-right"></i></span></a>
-                        </div>
-                    </div>
                 </div>
-                <div class="blog-slider-item">
-                    <div class="single-blog single-blog-wrap style-four">
-                        <div class="thumb single-blog-left-wrap">
-                            <img src="images/blog/12.png" alt="blog">
-                        </div>
-                        <div class="single-blog-details single-blog-right-wrap">
-                            <p class="date">19 September 2019</p>
-                            <h4 class="title">2023 락페스티벌</h4>
-                            <p class="content">나락도 락이다! 나락도 락이다! 나락도 락이다! 나락도 락이다! 나락도 락이다!</p>
-                            <a class="btn btn-yellow" href="blog"><span>Read More<i class="la la-arrow-right"></i></span></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="blog-slider-item">
-                    <div class="single-blog single-blog-wrap style-four">
-                        <div class="thumb single-blog-left-wrap">
-                            <img src="images/blog/13.png" alt="blog">
-                        </div>
-                        <div class="single-blog-details single-blog-right-wrap">
-                            <p class="date">19 September 2019</p>
-                            <h4 class="title">페이디어 매거진 Vol.02</h4>
-                            <p class="content">Duis porta, ligula rhoncus euismod pretium, nisi tellus eleifend odio, luctus viverra sem</p>
-                            <a class="btn btn-yellow" href="blog"><span>Read More<i class="la la-arrow-right"></i></span></a>
-                        </div>
-                    </div>
-                </div>
+            </c:forEach>
+
             </div>
         </div>
     </div>

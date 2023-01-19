@@ -21,9 +21,14 @@
 
 	<!-- 리뷰 목록 내림차순으로 가져오기 -->
 	<select id="getReviewList" resultType="ReviewsVO" parameterType="ReviewsVO">
-		SELECT 		(ROW_NUMBER() OVER()) AS ROWNUM, *
-		FROM 		"REVIEWS"
-		ORDER BY 	rv_no DESC
+		select *
+		from (
+			   select *,
+			   row_number () over(order by rv_no desc) as rnum
+		 	   from "REVIEWS"
+	 		 ) rv
+		where rnum between #{rowStart} AND #{rowEnd}
+		order by rv_no desc
 	</select>
 		<!-- ORDER BY 	rv_no DESC -->
 		
@@ -68,7 +73,7 @@
 			   select *,
 			   row_number () over(order by rv_no desc) as rnum
 		 	   from "REVIEWS"
-		 	   where u_no = 15
+		 	   where u_no = #{u_no}
 	 		 ) rv
 		where rnum between #{rowStart} AND #{rowEnd}
 		order by rv_no desc

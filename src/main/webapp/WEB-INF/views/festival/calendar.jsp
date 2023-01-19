@@ -221,61 +221,7 @@
             </div>
           </div>
           
-          <!-- 캘린더 상세보기 모달창 로그인 아이디 admin 아니면 수정 불가하게 막기 -->
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default antoclose" data-dismiss="modal">닫기</button>
-            <!-- 수정 막아놓기
-            <c:if test='${sessionScope.loginId!="admin"}'>
-            <button type="button" class="btn btn-primary antosubmit">수정하기</button>
-            </c:if>
-             -->
-          </div>
-        </div>
-      </div>
-    </div>
-    <div id="CalenderModalEdit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-
-          <div class="modal-header">
-         <h4 class="modal-title" id="myModalLabel2">자세히 보기</h4>
-          </div>
-          <div class="modal-body">
-
-            <div id="testmodal2" style="padding: 5px 20px;">
-              <form id="antoform2" class="form-horizontal calender" role="form">
-                <div class="form-group">
-                  <label class="col-sm-3 control-label">일정 이름</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="title2" name="title2">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-3 control-label">설명</label>
-                  <div class="col-sm-9">
-                    <textarea class="form-control" style="height:55px;" id="description2" name="description2"></textarea>
-                  </div>
-                </div>
-
-              </form>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default antoclose2" data-dismiss="modal">닫기</button>
-          <!-- 캘린더 상세보기 모달창 로그인 아이디 admin 아니면 수정 불가하게 막기 -->
-                      <!-- 수정 막아놓기 
-         <c:if test='${sessionScope.loginId!="admin"}'>
-            <button type="button" class="btn btn-primary antosubmit2">수정하기</button>
-         </c:if>
-                      -->
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div id="fc_create" data-toggle="modal" data-target="#CalenderModalNew"></div>
-    <div id="fc_edit" data-toggle="modal" data-target="#CalenderModalEdit"></div>
-    <!-- /calendar modal -->
+          
         
     <!-- jQuery -->
     <script src="/admin/vendors/jquery/dist/jquery.min.js"></script>
@@ -386,7 +332,8 @@
             	title : '<%=vo.getFetv_name()%>',
                 start : '<%=vo.getFetv_startdate()%>',
                 end   : '<%=vo.getFetv_enddate()%>',
-                description : '<%=vo.getFetv_name()%>'
+				//해당 이벤트 클릭 시 홈페이지에 있는 축제 상세페이지로 이동
+				url	  : '/festival/festivalDetails?fetv_no=<%=vo.getFetv_no()%>'
             },
 		<%}
 	}%>   

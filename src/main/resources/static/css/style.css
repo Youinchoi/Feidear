@@ -63,7 +63,7 @@ Version: 1.0.0
   --paragraph-color: #666;
   --heading-font: 'TmoneyRoundWindExtraBold';
   --body-font: 'TmoneyRoundWindRegular';
-  --body-font-size: 15px;
+  --body-font-size: 18px;
   --body-font-width: 400;
   --body-line-height: 32px; }
 
@@ -1415,7 +1415,9 @@ ul.wp-block-latest-posts.is-grid.alignwide {
   line-height: 17px;
   letter-spacing: 0.14px;
   margin-bottom: 18px;
-  color: rgba(66, 84, 134, 0.8); }
+  color: rgba(66, 84, 134, 0.8); 
+  padding-top: 1em;
+  }
 
 .comments-area .comment-list li .single-comment-wrap .content {
   -webkit-box-flex: 1;
@@ -1426,7 +1428,7 @@ ul.wp-block-latest-posts.is-grid.alignwide {
 
 .comments-area .comment-list li .single-comment-wrap .content .title {
   font-size: 20px;
-  line-height: 27px;
+  line-height: 60px;
   font-weight: 500;
   letter-spacing: 0.22px;
   margin-bottom: 5px;
@@ -1445,7 +1447,7 @@ ul.wp-block-latest-posts.is-grid.alignwide {
 
 .comments-area .comment-list li .single-comment-wrap .content p:last-child {
   margin-bottom: 0;
-  margin-top: 45px;
+  margin-top: 1em;
    }
 
 .comments-area .comment-list li .single-comment-wrap .content .reply {
@@ -6353,11 +6355,49 @@ ul.wp-block-latest-posts.is-grid.alignwide {
   right: 30px;
   top: 2px;}
   
+  .btn-yellow4 {
+  background: var(--main-color-one);
+  left: 412px;
+  color: #ffffff;
+  display: flex;
+  }
 
   #btnCheck {
   background: #447abd;
   color: #ffffff;
   }
+  
+  
+    .btn-new-gray {
+  background: #b8ada9;
+  color: #ffffff;
+  border-radius : 15px;
+  box-shadow: 0px 0px 0px 0px #bcbab6;
+  left:32px;
+  }
+
+  .btn-new-gray:hover {
+  box-shadow: 0px 0px 0px 5px #a5a29c;
+  }
+  
+    .btn-new-Green {
+  background: #65a53a;
+  color: #ffffff;
+  border-radius : 15px;
+  box-shadow: 0px 0px 0px 0px #87ac31;
+  left:40px;
+  }
+
+  .btn-new-Green:hover {
+  box-shadow: 0px 0px 0px 5px #87ac31;
+  }
+  
+  
+  
+  
+  
+  
+  
   
 
 .about_us_widget p,

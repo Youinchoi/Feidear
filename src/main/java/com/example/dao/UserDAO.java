@@ -36,14 +36,17 @@ public interface UserDAO {
 	
 	// ---------------------------------
 	
-	// 위시리스트 목록
-	public List<WishVO> getWishList(WishVO vo);
-	
 	// 위시리스트 추가
-	public void addWish(WishVO vo) throws Exception;
+	public int addWish(WishVO vo);
 	
+	// 위시리스트 목록
+	public List<WishVO> getWishList(UserVO vo);
+
 	// 위시리스트 삭제
-	public int deleteWish(WishVO vo);
+	public int deleteWish(UserVO vo);
+
+	// 위시리스트 중복체크
+	public int checkWish(WishVO vo);
 	
 	
 }

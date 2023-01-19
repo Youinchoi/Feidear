@@ -7,12 +7,12 @@
 
 
     <!-- breadcrumb area start -->
-    <div class="breadcrumb-area style-two jarallax" style="background-image:url(images/bg/1.png);">
+    <div class="breadcrumb-area jarallax" style="background-image:url(images/bg/1.png);">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12"><br><br><br>
+                <div class="col-lg-12"><br>
                     <div class="breadcrumb-inner">
-                        <h1 class="page-title">축제 상세</h1><br>
+                        <h1 class="page-title">축제 상세</h1>
                         <ul class="page-list">
                             <li><a href="index">Home</a></li>
                             <li>Festival Details</li>
@@ -65,7 +65,7 @@
                                     <b style="font-size: 1.3em; color: aqua;"><i class="fa fa-exclamation-triangle"></i>&nbsp&nbsp&nbsp일정이 업데이트 될 예정입니다</b>
                                 </c:if><br>
                                 
-                                <h4 style="font-size: 3.5em; width: 30em;">${view.fetv_name}</h4>
+                                <h4 style="font-size: 3.5em; width: 30em;" name = "fetv_name" id="fetv_name">${view.fetv_name}</h4>
                             </div>
                         </div><br>
                         <div class="col-xl-9 col-lg-8">
@@ -90,7 +90,7 @@
                                 </c:if>
 
                                 <c:if test="${not empty view.fetv_homePage}">
-                                    <li class="ml-0" style="font-size: 1.2em;"><i class="fa fa-info-circle"></i>&nbsp&nbsp${view.fetv_homePage}</li>
+                                    <li class="ml-0" style="font-size: 1.2em;"><i class="fa fa-info-circle"></i>&nbsp&nbsp<a href = "${view.fetv_homePage}">${view.fetv_homePage}</a></li>
                                 </c:if>
                                 <c:if test="${empty view.fetv_homePage}">
                                     <li class="ml-0" style="font-size: 1.2em;"><i class="fa fa-info-circle"></i>&nbsp&nbsp등록된 정보가 없습니다</li>
@@ -112,22 +112,12 @@
             </div>
         </div>
 
-        <div>
-            <div class="container">
-                <p class="addToWish">
-                    <button class="btn btn-new"><span>CSS는 나중에 보낼게욥</span></button>
-                </p>  
-                    
-                   
-            </div>
-        </div><br><br>
-
-
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
                     <div class="tour-details-wrap">
-                        <h4 class="single-page-small-title" style="font-size: 2.7em;">상세 정보</h4><br>
+                        <h4 class="single-page-small-title" style="font-size: 2.7em;">상세 정보</h4>
+                        <br>
                         <p style="font-size: 22px;">${view.fetv_info}</p>
                         <br>
                         <div class="package-included-location">
@@ -190,9 +180,7 @@
                         </div>
                         <div class="service-location-map">
                             <h4 class="single-page-small-title" style="font-size: 2.7em; color: darkorange;">Service Location</h4>
-                            <div class="service-location-map">
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d649788.5753409272!2d-0.5724199684037448!3d52.92186340524542!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487604d94c3b82ab%3A0x62077a554c8e9a8e!2sPetty%20France%2C%20Westminster%2C%20London%2C%20UK!5e0!3m2!1sen!2sbd!4v1572346566908!5m2!1sen!2sbd"></iframe>
-                            </div>
+                                <div id="map" style="width:100%;height:350px;"></div>
                         </div><br><br>
                         <div class="comments-area tour-details-review-area">
                             <h4 class="comments-title">Reviews</h4>
@@ -261,6 +249,20 @@
                 <!-- 사이드 바 광고배너 -->
                 <div class="col-lg-4">
                     <div class="sidebar-area sidebar-area-4">
+                    <div>
+                        <form id="addWishForm" name="addWishForm">
+                            <input type="hidden" name="fetv_no" value="${view.fetv_no}">
+                            <input type="hidden" name="u_no" value="${sessionScope.u_no}">
+                        </form>
+                        <c:if test="${not empty sessionScope.u_id}">
+                        <button class="btn btn-new-Green" id="addWish_btn"><span>북마크 추가</span></button>&nbsp&nbsp&nbsp&nbsp
+                        </c:if>
+                        <c:if test="${empty sessionScope.u_id}">
+                            <button class="btn btn-new-Green" id="addWish_btn_no_user"><span>북마크 추가</span></button>&nbsp&nbsp&nbsp&nbsp
+                        </c:if>
+                        <a href = "/viewFestivalList"><button class="btn btn-new-gray"><span>목록으로 돌아가기</span></button></a>
+                    </div>
+                    <br><br>
                         <div class="widget_ads">
                             <a href="#"><img class="w-100" src="/images/others/01.png" alt="img"></a>
                         </div><br>
@@ -323,30 +325,86 @@
     <script src="/js/main.js"></script>
 
     <script type="text/javascript">
-        $(".addWish_btn").click(function(){
-           alert("hi");
-         var gdsNum = $("#gdsNum").val();
-         var cartStock = $(".numBox").val();
-            
-         var data = {
-           gdsNum : gdsNum,
-           cartStock : cartStock
-           };
-         
-         $.ajax({
-          url : "/shop/view/addWish",
-          type : "post",
-          data : data,
-          success : function(result){
-           alert("카트 담기 성공");
-           $(".numBox").val("1");
-          },
-          error : function(){
-           alert("카트 담기 실패");
-          }
-         });
+        window.onload = function () {
+
+        // 상세 페이지에서 북마크 추가시
+        $('#addWish_btn').click(function(){
+            $.ajax({
+            type: "post",
+            url: "/user/addWish",
+            data: $("#addWishForm").serialize(),
+            success: function(result){ 
+            if(result == 'fail'){
+                alert("이미 북마크한 축제입니다");
+            } else if(result == 'success'){
+                alert("북마크에 추가되었습니다");}
+                    }, // success
+            error: function(err){alert("error"); console.log(err); }
+                }); // ajax
+            }); // addCart.click
+
+            $('#addWish_btn_no_user').click(function(){
+            alert("로그인이 필요한 기능입니다");
         });
+    }
        </script>
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f54e5fa70f300c6bceae2d75423344ec&libraries=services"></script>
+<script>
+    // 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
+    var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+    center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+    level: 3 // 지도의 확대 레벨
+    };  
+
+    
+    // 지도를 생성합니다    
+    var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+    // 장소 검색 객체를 생성합니다
+    var ps = new kakao.maps.services.Places(); 
+
+    // 키워드로 장소를 검색합니다
+    ps.keywordSearch('이태원 맛집', placesSearchCB); 
+
+    // 키워드 검색 완료 시 호출되는 콜백함수 입니다
+    function placesSearchCB (data, status, pagination) {
+    if (status === kakao.maps.services.Status.OK) {
+
+    // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
+    // LatLngBounds 객체에 좌표를 추가합니다
+    var bounds = new kakao.maps.LatLngBounds();
+
+    for (var i=0; i<data.length; i++) {
+    displayMarker(data[i]);    
+    bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
+        }       
+
+    // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
+    map.setBounds(bounds);
+        } 
+    }
+
+    // 지도에 마커를 표시하는 함수입니다
+    function displayMarker(place) {
+        
+        // 마커를 생성하고 지도에 표시합니다
+        var marker = new kakao.maps.Marker({
+            map: map,
+            position: new kakao.maps.LatLng(place.y, place.x) 
+        });
+
+        // 마커에 클릭이벤트를 등록합니다
+        kakao.maps.event.addListener(marker, 'click', function() {
+            // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
+            infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
+            infowindow.open(map, marker);
+        });
+    }
+</script>             
     
     <jsp:include page="footer.jsp"></jsp:include>
 

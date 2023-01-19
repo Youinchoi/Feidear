@@ -54,9 +54,14 @@
 		UPDATE "USER" SET
 		"U_NAME"  = #{u_name},
 		"U_EMAIL" = #{u_email},
-		"U_IMAGE" = #{u_image},
 		"U_COMMENT" = #{u_comment},
-		"U_PHONE" = #{u_phone}		
+		"U_PHONE" = #{u_phone}
+		<if test="file_name !=null">
+		,file_name = #{file_name}
+		,origin_file_name = #{origin_file_name}
+		,file_size = #{file_size}
+		,file_path = #{file_path}
+		</if>		
 		WHERE "U_ID" = #{u_id}
 	</update>
 
@@ -70,15 +75,24 @@
 	
 	<!-- ............ WISH LIST ............ -->
 	
-	<!-- 위시리스트 내역 보이기 -->
-	<select id="getWishList" parameterType="WishVO" resultType="int">
-		SELECT * FROM wishlist
-		WHERE fetv_no = #{fetv_no} AND u_no = #{u_no}
-	</select>
+	
+<!-- 위시리스트 내역 보이기 -->
+<select id="getWishList" parameterType="WishVO" resultType="WishVO">
+      SELECT w.wish_no AS wish_no, 
+            w.u_no AS u_no, 
+            w.fetv_no AS fetv_no, 
+            w.wish_state AS wish_state,
+            f.fetv_name AS fetv_name, f.fetv_image AS fetv_image, f.fetv_area as fetv_area,
+            f.fetv_startdate as fetv_startdate, f.fetv_enddate as fetv_enddate,
+            f.fetv_short as fetv_short
+      FROM (SELECT * FROM wishlist WHERE u_no = #{u_no} and wish_state = 0) as w
+      INNER JOIN festival as f
+      ON w.fetv_no = f.fetv_no
+</select>
 		
 	<!-- 위시리스트에 더하기 -->
 	<insert id="addWish" parameterType="WishVO">
-	   INSERT INTO wishlist (wish_no, u_no, fetv_no)
+	   INSERT INTO wishlist (u_no, fetv_no)
 	   VALUES(#{u_no},#{fetv_no})
 	</insert>
 	
@@ -93,6 +107,15 @@
 	   DELETE wishlist
 	   WHERE u_no = #{u_no}
 	</delete>
+	
+	<!-- 위시리스트 중복체크 -->
+	<select id="checkWish" parameterType="WishVO" resultType="int">
+		SELECT count (*) as count
+		FROM wishlist
+		WHERE fetv_no = #{fetv_no} 
+		AND u_no = #{u_no} 
+		AND wish_state = 0;
+	</select>
 
 
 </mapper>

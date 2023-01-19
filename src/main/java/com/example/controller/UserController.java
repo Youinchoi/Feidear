@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -97,7 +98,7 @@ public class UserController {
     public void getUser(Model m, Model m2, UserVO vo, Criteria cri, HttpSession session) throws Exception {
        UserVO result = userservice.getUser(vo);
        m.addAttribute("user",result);
-
+ 
 	// my page에 축제일기 리뷰 불러오기
     //session의 u_no 받아와 저장
     int uno = (int) session.getAttribute("u_no");
@@ -109,6 +110,11 @@ public class UserController {
 	pageMaker.setCri(cri);
 	pageMaker.setTotalCount(Reviewsservice.listCount());
 	m2.addAttribute("pageMaker", pageMaker);
+	
+	// mypage에 북마크 목록 불러오기
+   	List<WishVO> getWishList = userservice.getWishList(vo);
+   	m.addAttribute("getWishList", getWishList);
+
 	System.out.println("getUser controller");
 	}
 
@@ -132,22 +138,35 @@ public class UserController {
 		return "redirect:/user/getUser?u_no=" + vo.getU_no();
 	}
 
+	// mypage 회원정보 변경
+	@RequestMapping(value = "updateUser")
+	public String updateUser(UserVO vo) {
+		userservice.updateUser(vo);		
+		return "redirect:/user/getUser?u_no="+ vo.getU_no();
+	}
+	
+	
 	// -----------------------------------------------------------
 	
-		// 위시리스트 추가
-		@ResponseBody
-		@RequestMapping(value = "addWish", method = RequestMethod.POST)
-		public void addWish(WishVO wishvo, HttpSession session) throws Exception {
-			UserVO uservo = (UserVO)session.getAttribute("u_no");
-			wishvo.setU_no(uservo.getU_no());
-			userservice.addWish(wishvo);
-		}
+	// 위시리스트 추가
+	@ResponseBody
+	@RequestMapping(value = "addWish", method = RequestMethod.POST)
+	public String addWish(WishVO wishvo) throws Exception {
+		System.out.println("addWish 들어갔게아니게");
+		 int result = userservice.addWish(wishvo);
+	      	if(result == 1 ) return "success";
+	     else return "fail";
+	}
+	
+	
+   // 위시리스트 삭제
+	@RequestMapping(value = "deleteWish")
+	public String deleteWish(UserVO vo, Model m) {
+		userservice.deleteWish(vo);
 		
-		// 위시리스트 삭제
-		@RequestMapping(value = "deleteWish")
-		public String deleteWish(WishVO vo) {
-			userservice.deleteWish(vo);
-			return "redirect:/user/getUser?u_no=" + vo.getWish_no();
-		}
+		List<WishVO> getWishList = userservice.getWishList(vo);
+		m.addAttribute("getWishList", getWishList);
+		return "redirect:/user/getUser?u_no=" + vo.getU_no();
+	}
 
 }

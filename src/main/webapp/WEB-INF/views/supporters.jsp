@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%String pjName = "/Feidear";%>
 
-<jsp:include page="header.jsp"></jsp:include>
-	
+   <!-- header.jsp -->
+   <%@ include file='header.jsp' %>
+   <!-- header.jsp 끝 -->
+
+
      <!-- custom CSS -->
    <style type="text/css">
       .fstv-grid{
@@ -50,7 +52,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-inner">
-                        <h1 class="page-title">디어유 모집</h1>
+                        <h1 class="page-title">서포터즈 모집</h1>
                         <ul class="page-list">
                           <li>페이디어 서포터즈가 되는 방법</li>
                         </ul>
@@ -88,8 +90,9 @@
                                                     <!-- 디어유 제목 탭 -->
                                                     <div class="col-lg-5" style="margin: 0px auto;">
                                                         <h3 style="text-align: center; margin-bottom: 30px;">디어유가 되어 줘!</h3>
+                                                        <div style="text-align: center; margin-bottom: 30px;">페이디어의 서포터즈를 모집해요!</div>
                                                         <div class="user-payment-card" style="text-align: center;">
-                                                            <img src="images/others/01.png" alt="img" style="margin-bottom: 1.25vw; border-radius: 70%">
+                                                            <img src="images/others/01.PNG" alt="img" style="margin-bottom: 1.25vw; border-radius: 70%">
                                                             <br/>
                                                             
                                                             
@@ -98,21 +101,21 @@
                                                     <div class="col-lg-10 widget-contact" style="margin: 0px auto;">
                                                         <p>
                                                             <i class="fa fa-thumb-tack" aria-hidden="true"></i>
-                                                            <span style="color: black;">디어유란? <br> 소정의 지원금을 받고 축제를 체험한 후 <br> 양질의 후기를 나누어 주는 페이디어의 서포터즈 </span>
+                                                            <span style="color: black;"><strong>디어유가 뭐에요?</strong> <br> 소정의 지원금을 받고 페이디어의 대표로 축제를 체험한 후 <br> 양질의 후기를 나누어 주는 페이디어의 서포터즈입니다! </span>
                                                         </p>
                                                         <p>
                                                             <i class="fa fa-thumb-tack" aria-hidden="true"></i>
-                                                            <span style="color: black;">디어유가 하는 일 <br> 막노동 <br> 사진 찍기 <br> 리뷰 올리기 </span>
+                                                            <span style="color: black;"><strong>디어유는 뭘 하죠?</strong> <br> - 페이디어 대표로 즐거운 축제들 참여하기! <br> - 즐거운 축제의 현장을 생생하게 담은 사진 찍기! <br> - 신나게 즐기고 온 축제의 짜릿함을 담은 리뷰 올리기! </span>
                                                         </p>
                                                         <p>
                                                             <i class="fa fa-thumb-tack" aria-hidden="true"></i>
-                                                            <span style="color: black;">디어유 혜택 <br> 소정의 경비 제공 <br> 뿌듯함 <br> 관심 받을 수 있음</span>
+                                                            <span style="color: black;"><strong>디어유의 혜택은 뭐에요?</strong><br> - 소정의 경비 제공 <br> - 많은 관심과 뿌듯함 <br> - 페이디어 매거진에 내 후기 싣기</span>
                                                         </p>
                                                         <p>
                                                             <i class="fa fa-thumb-tack" aria-hidden="true"></i>
-                                                            <span style="color: black;">디어유가 되는 방법 <br> 아래 첨부된 파일을 다운로드 후 작성하여 email@email.com 으로 보내 주면 끝! <br> 합불 여부에 관계없이 결과 메일은 모두에게 전송됩니다</span>
+                                                            <span style="color: black;"><strong>디어유에 지원하는 방법은 뭔가요?</strong><br> 아래 첨부된 파일을 다운로드 후 작성하여 feidear@gmail.com 으로 보내면 끝! <br> 합불 여부에 관계없이 결과 메일은 모두에게 전송됩니다!</span>
                                                             <!-- 신청서 양식 다운로드 버튼 시작 -->
-                                                            <a class="btn btn-transparent" href="images/fstv_form.docx"download style="color: #fff ; display: block; margin-top:10px; ">신청서 다운로드</a>
+                                                            <a class="btn btn-transparent" href="images/fstv_form.docx"download style="color: black ; display: block; margin-top:10px;">디어유 모집 신청서 다운로드 ☜(ﾟヮﾟ☜)</a>
                                                             <!-- 신청서 양식 다운로드 버튼 끝 -->
                                                         </p>
                                                         
@@ -122,37 +125,24 @@
                                                     <div class="newslatter-area-wrap border-tp-solid" >
                                                     <h4 style="text-align: center; margin-bottom: 70px;">지난 기수 활동 구경하기</h4>
                                                         <div class="fstv-grid"  style="overflow:auto;">
-                                                            <div class="col-lg-12" style="margin: 0px auto;">
-                                                                <div class="user-payment-card fstv-list" style="text-align: center;">
-                                                                    <img src="images/others/01.png" alt="img" style="margin-bottom: 1.25vw; border-radius: 70%">
-                                                                    <br/>
-                                                                    <span style="white-space: nowrap;"> OO축제 </span>
+                                                            <c:forEach items="${mgz3}" var="m">
+                                                                <div class="col-lg-12" style="margin: 0px auto; ">
+                                                                    <div class="user-payment-card fstv-list" style="text-align: center; width:150px; height:150px;">
+                                                                        <c:if test="${m.file_path != null}">
+                                                                            <img src="${m.file_path}"  alt="img" style="margin-bottom: 1.25vw; border-radius: 70%;">
+                                                                        </c:if>
+                                                                        <c:if test="${m.file_path == null}">
+                                                                            <img src="images/others/01.png" alt="img" style="margin-bottom: 1.25vw; border-radius: 70%;">
+                                                                        </c:if>
+                                                                        <br/>
+                                                                        <!--
+
+                                                                            <span style="white-space: nowrap;">${m.mgz_title}</span>
+                                                                        -->
+                                                                    </div>
                                                                 </div>
-                                                            </div>
+                                                            </c:forEach>
                                                             
-                                                            <div class="col-lg-12" style="margin: 0px auto;">
-                                                                <div class="user-payment-card fstv-list" style="text-align: center;">
-                                                                    <img src="images/others/01.png" alt="img" style="margin-bottom: 1.25vw; border-radius: 70%">
-                                                                    <br/>
-                                                                    <span style="white-space: nowrap;"> OO축제 </span>
-                                                                </div>
-                                                            </div>
-                                                            
-                                                            <div class="col-lg-12" style="margin: 0px auto;">
-                                                                <div class="user-payment-card fstv-list" style="text-align: center;">
-                                                                    <img src="images/others/01.png" alt="img" style="margin-bottom: 1.25vw; border-radius: 70%">
-                                                                    <br/>
-                                                                    <span style="white-space: nowrap;"> OO축제 </span>
-                                                                </div>
-                                                            </div>
-                                                            
-                                                            <div class="col-lg-12" style="margin: 0px auto;">
-                                                                <div class="user-payment-card fstv-list" style="text-align: center;">
-                                                                    <img src="images/others/01.png" alt="img" style="margin-bottom: 1.25vw; border-radius: 70%">
-                                                                    <br/>
-                                                                    <span style="white-space: nowrap;"> OO축제 </span>
-                                                                </div>
-                                                            </div>
                                                         </div>
                                                     </div>     
                                                 </div>

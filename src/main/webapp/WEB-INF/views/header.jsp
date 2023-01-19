@@ -160,7 +160,7 @@
                 <div class="nav-right-content">
                     <ul class="pl-0">
                         <li class="top-bar-btn-booking">
-                            <a class="btn btn-yellow" href="/tour-details">Book Now <i class="fa fa-paper-plane"></i></a>
+                            <a class="btn btn-yellow" href="/festival/calendar">축제 캘린더<i class="fa fa-paper-plane"></i></a>
                         </li>
 
                         <li class="notification">

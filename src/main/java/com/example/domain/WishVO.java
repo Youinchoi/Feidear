@@ -4,8 +4,14 @@ import lombok.Data;
 
 @Data
 public class WishVO {
-	private int wish_no;
-	private int fetv_no;
-	private int u_no;
-	private int wish_state;
+	private Integer wish_no;
+	private Integer fetv_no;
+	private Integer u_no;
+	private Integer wish_state;
+	private String fetv_name;
+	private String fetv_area;
+	private String fetv_image;
+	private String fetv_startdate;	//축제 시작일
+	private String fetv_enddate;
+	private String fetv_short;
 }

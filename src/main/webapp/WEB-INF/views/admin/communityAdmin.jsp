@@ -52,6 +52,12 @@
 <!-- Custom Theme Style -->
 <link href="build/css/custom.min.css"
 	rel="stylesheet">
+
+<!-- sweet alert창 -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+<link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+
 <style type="text/css">
 @font-face {
 	font-family: 'TmoneyRoundWindRegular';
@@ -161,7 +167,10 @@ a {
 										일기</a></li>
 								<li class="nav-item"><a class="nav-link" id="contact-tab"
 									data-toggle="tab" href="#contact" role="tab"
-									aria-controls="contact" aria-selected="false">매거진</a></li>
+									aria-controls="contact" aria-selected="false">매거진 등록</a></li>
+								<li class="nav-item"><a class="nav-link"
+									id="sMagazine-tab" data-toggle="tab" href="#sMagazine" role="tab"
+									aria-controls="sMagazine" aria-selected="true">매거진 목록</a></li>
 							</ul>
 						</div>
 						<div class="tab-content" id="myTabContent">
@@ -303,18 +312,20 @@ a {
 							</div>
 							<!-- 축제일기 테이블 끝-->
 
-							<!-- 매거진 등록 페이지 -->
-							<div class="tab-pane fade" id="contact" role="tabpanel"
+						 <!-- 매거진 등록 페이지 -->
+						 <div class="tab-pane fade" id="contact" role="tabpanel"
 								aria-labelledby="contact-tab">
 								<h2
 									style="margin: 20px auto; font-size: 32px; font-weight: bolder;">매거진
 									등록</h2>
+							<!--입력 폼 시작-->
+							<form action="saveMagazine" id="saveMagazine" method="post" enctype="multipart/form-data">
 
 								<!-- 글 제목 입력 input -->
 								<div class="form-group row">
 									<label class="col-form-label col-md-2 col-sm-2 ">글 제목</label>
 									<div class="col-md-10 col-sm-10 ">
-										<input type="text" class="form-control"
+										<input type="text" class="form-control" id="mgz_title" name="mgz_title"
 											placeholder="글 제목을 입력하세요">
 									</div>
 								</div>
@@ -397,25 +408,78 @@ a {
 
 									</div>
 
-									<div id="editor-one" class="editor-wrapper"></div>
-
+									<div id="mgz_content2" class="editor-wrapper"
+									style="height: 500px; border: 1px solid #ced4da; border-radius: 5px; margin-bottom: 20px;"></div>
 									<textarea name="descr" id="descr" style="display: none;"></textarea>
+									<input type="hidden" id="mgz_content" name="mgz_content" />
 
 								</div>
-								<!-- 첨부파일 입력 -->
-								<div class="x_content">
-									<form action="#" class="dropzone"></form>
-									<br />
-								</div>
+								<!-- 첨부파일 입력 시작 -->
+										<div class="x_content">
+											<a>파일은 최대 6개까지 등록 가능합니다</a>
+											<br/>
+											<input type="file" maxlength="60" size="40" name='file'>
+											<br/>
+										</div>
+										<!-- 첨부파일 입력 끝 -->
 
 								<!-- 전송 버튼 -->
 								<button class="btn btn-primary" type="reset">초기화</button>
-								<button type="submit" class="btn btn-success">등록</button>
-							</div>
-						</div>
+								<input type="button" id="subButton" class="btn btn-success" value="등록">
 
+							 </form>
+							 <!--입력 form 끝-->
+						</div>
 						<!-- 매거진 등록 페이지 끝-->
+
+
+						<!-- 매거진 보기 테이블 -->
+						<div class="tab-pane fade show" id="sMagazine"
+						role="tabpanel" aria-labelledby="home-tab">
+						<h2
+							style="margin: 20px auto; font-size: 32px; font-weight: bolder; white-space: nowrap;">매거진 목록 보기</h2>
+						<div class="table-responsive">
+							<table class="table" id="sMagazineTbl"
+								style="font-size: 1vw; white-space: nowrap;">
+								<thead>
+									<!-- 테이블 데이터 출력 -->
+									<tr>
+										<th class="column-title"
+										style="text-align: center; border-top: none;">글 번호</th>
+										<th class="column-title"
+										style="text-align: center; border-top: none;">매거진 제목</th>
+										<th class="column-title"
+										style="text-align: center; border-top: none;"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${magazineList}" var="magazineList">
+									<!-- 테이블 데이터 출력 -->
+									<!-- radio 버튼의 name을 tr 마다 다르게 둘 것 -->
+										<tr>
+										<td class=" "><a href="#">${magazineList.mgz_no}</a></td>
+										<td class=" "><a href="/magazine-details?mgz_no=${magazineList.mgz_no}">${magazineList.mgz_title}</a></td>
+										<td colspan="2" style="text-align: center;" id="delete_mgz" class="delete_mgz">
+											<button class="btn btn-secondary source2">삭제</button>
+										</tr>
+									</c:forEach>
+									<tr>
+										<td colspan="2"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 					</div>
+					<!-- 매거진 보기 테이블 끝 -->
+
+				  <!--탭팬 끝나는 div-->
+				  </div>
+
+
+				 </div>
+
+
+
 				</div>
 
 			</div>
@@ -517,6 +581,87 @@ a {
 		src="vendors/dropzone/dist/min/dropzone.min.js"></script>
 	<!-- Custom Theme Scripts -->
 	<script src="build/js/custom.min.js"></script>
+
+	<!-- Dropzone.js ( 하단 첨부파일 ) -->
+	<script src="/admin/vendors/dropzone/dist/min/dropzone.min.js"></script>
+
+	<!--파일 업로드 위해 만든 파일 -->
+	<script src="/js/uploadphotos3.js"></script>		
+
+	<!-- Custom Theme Scripts (없으면 텍스트 입력 못 함 ㅠ ) -->
+	<script src="/admin/build/js/custom.min.js"></script>
+
+	<script type="text/javascript">
+		//삭제버튼 클릭 시작
+		$('.delete_mgz').click(function(){
+
+			//for each 문이 돌아가는 행 안에서 선택한 버튼의 형제 중 첫 번째 td의 text를 가져온다. 
+			var th = $(this).siblings("td:first").text();
+
+			Swal.fire({
+			title: '정말로 삭제하시겠습니까?',
+			text: "확인 시 정보가 모두 삭제됩니다.",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#F0B153',
+			cancelButtonColor: '#d33',
+			confirmButtonText: '삭제'
+			}).then((result) => {
+				if (result.isConfirmed) {
+				Swal.fire({
+					title : '삭제 성공',
+					text : '삭제가 완료되었습니다.',
+					icon : 'success',
+					confirmButtonColor: '#F0B153'
+				}).then((result) => {
+					location.href='deleteMagazine?mgz_no='+th;
+					})//END THEN
+				}//end if
+			})//END THEN
+
+		})//삭제 클릭 끝
+
+
+		//제목이나 내용 공백 시 넘어가지 않게 설정
+		$('#subButton').click(function() {
+				var inputtitle = $("#mgz_title").val();			// 제목
+				
+				if(inputtitle == ""){
+					Swal.fire({
+						title : '등록 불가',
+						text  : '제목을 입력해주세요 !',
+						icon  : 'error',
+						confirmButtonColor: '#d33'
+					});
+					return false;
+				}
+
+				var inputcontent = $("#mgz_content").val();		// 내용
+				if(inputcontent == ""){
+					Swal.fire({
+						title : '등록 불가',
+						text : '내용을 입력해주세요 !',
+						icon : 'error',
+						confirmButtonColor: '#d33'
+					});
+					return false;
+				}
+
+				// 등록 성공 시
+				Swal.fire({
+						title : '등록 성공',
+						text  : '매거진 등록이 완료되었습니다.',
+						icon  : 'success',
+						confirmButtonColor: '#F0B153'
+				}).then((result) => {
+					if(result.isConfirmed){
+						$("#saveMagazine").submit()
+					}
+				});
+			}) // end of clickevent()
+
+
+	</script>
 
 
 </body>

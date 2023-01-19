@@ -51,8 +51,13 @@ public interface FestivalDAO {
 	
 	//DB에 검사결과가 있는지 조회
 	public List<String> getResult(String u_id);
-	/* ====== 추천 알고리즘 끝 ====== */
 	
+	//추천 결과 불러오기 : 축제 이름으로
+	public FestivalVO getRecommResult(String r_fetv_name);
+	
+	//DB에 저장된 검사결과 조회 (태그용)
+	public List<FestivalVO> getResultList(String u_id);
+	/* ====== 추천 알고리즘 끝 ====== */
 }
 
 

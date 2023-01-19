@@ -32,7 +32,6 @@ public interface FestivalService {
 	public int listCount(SearchCriteria scri) throws Exception;				
 
 	/* ====== 추천 알고리즘 ====== */
-	
 	//추천 알고리즘 테스트 페이지 축제목록 출력
 	public List<FestivalVO> getRecommList();
 	
@@ -47,6 +46,14 @@ public interface FestivalService {
 	
 	//DB에 검사결과가 있는지 조회
 	public List<String> getResult(String u_id);
+	
+	//추천 결과 불러오기 : 축제 이름으로
+	public FestivalVO getRecommResult(String r_fetv_name);
+	
+	//DB에 저장된 검사결과 조회 (태그용)
+	public List<FestivalVO> getResultList(String u_id);
+	
 	/* ====== 추천 알고리즘 끝 ====== */
+	
 	
 }

@@ -39,7 +39,7 @@
                                             <!-- 썸네일 왼쪽 상단 태그 시작 -->
                                             <div class="thumb">
                                                 <img src="../images/blog/1.png" alt="blog">
-                                                <a class="tag" href="#">왼</a>
+                                                <a class="tag" href="#">NEW</a>
                                             </div>
                                             <!-- 썸네일 왼쪽 상단 태그 끝 -->
 
@@ -82,10 +82,6 @@
                                     	
                                     	</a></li>
                                 	</c:forEach>
-                                	<!-- 
-                                    <li><span class="page-numbers current">2</span></li>
-                                    <li><a class="page-numbers" href="#">3</a></li>
-                                	-->                                	
                                     <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
                                     	<li><a class="next page-numbers" href="/reviews/getReviewList${pageMaker.makeQuery(pageMaker.endPage + 1)}"><i class="la la-long-arrow-right"></i></a></li>
                                 	</c:if> 
@@ -104,7 +100,12 @@
                           	<!-- 축제 일기(리뷰 작성 버튼) 시작 -->
                             <form class="write-form">
                                 <div class="form-group">
-                                  <button class="submit-btn" type="submit" ><a href="/reviews/insertReview">나의 일기 쓰러 가기</a><img src="/images/pencil_24.png" ></button>
+				                    <c:if test="${empty sessionScope.u_id}" >
+                                        <a id="test" class="btn btn-transparent signUp-btn" style="">로 그 인</a>
+                                    </c:if>
+                                    <c:if test="${not empty sessionScope.u_id}">
+                                        <button class="submit-btn" type="submit" ><a href="/reviews/insertReview">나의 일기 쓰러 가기</a><img src="/images/pencil_24.png" ></button>
+                                    </c:if>
                                 </div>
                             </form></br>
                           	<!-- 축제 일기(리뷰 작성 버튼) 끝 -->
@@ -129,23 +130,18 @@
                                         <div class="single-widget-search-input">
                                             <select class="nice-select w-100 custom-select" >
                                                 <option value="1">전체</option>
-                                                <option value="#서울">서울</option>
-                                                <option value="#강원">강원</option>
-                                                <option value="#경기">경기</option>
-                                                <option value="#경남">경남</option>
-                                                <option value="#경북">경북</option>
-                                                <option value="#광주">광주</option>
-                                                <option value="#대구">대구</option>
-                                                <option value="#대전">대전</option>
-                                                <option value="#부산">부산</option>
-                                                <option value="#세종">세종</option>
-                                                <option value="#울산">울산</option>
-                                                <option value="#인천">인천</option>
-                                                <option value="#전남">전남</option>
-                                                <option value="#전북">전북</option>
-                                                <option value="#제주">제주</option>
-                                                <option value="#충남">충남</option>
-                                                <option value="#충북">충북</option>
+                                                <option value="1월">1월</option>
+                                                <option value="2월">2월</option>
+                                                <option value="3월">3월</option>
+                                                <option value="4월">4월</option>
+                                                <option value="5월">5월</option>
+                                                <option value="6월">6월</option>
+                                                <option value="7월">7월</option>
+                                                <option value="8월">8월</option>
+                                                <option value="9월">9월</option>
+                                                <option value="10월">10월</option>
+                                                <option value="11월">11월</option>
+                                                <option value="12월">12월</option>
                                                 <option value="#온라">온라인</option>
                                             </select>
 								        </div>
@@ -155,26 +151,26 @@
                         </div>
                         <!-- 검색 바 끝 -->
                         
-                        <!-- 명예의 전당 시작 -->
+                        <!-- 인기글 시작 -->
                         <div class="widget widget-recent-post">
-                            <h2 class="widget-title">명예의 전당</h2>
+                            <h2 class="widget-title">인 기 글</h2>
                             <ul>
                                 <form action="getReview?rv_no=${reviews.rv_no}" class="tp-form-wrap" method="post">
                                     <c:forEach items="${rankList}" var="rank">
                                          <li>
                                             <div class="media">
-                                                <img src="/images/blog-details/12.png" alt="widget">
+                                                <div id="media-body" class="media-body" style='background-image:url("${reviews.file_path}"); display:block;'></div>
                                                 <div class="media-body">
-                                                    <span class="post-date">${rank.rv_regdate}</span>
+                                                    <b><span class="post-date">${rank.rv_regdate}</span></b>
                                                     <h6 class="title"><a href="getReview?rv_no=${rank.rv_no}">${rank.rv_title}</a></h6>
                                                 </div>
                                             </div>
                                         </li>
                                     </c:forEach>
-                                </form>    
+                                </form>
                             </ul>
                         </div>
-                        <!-- 명예의 전당 끝 -->
+                        <!-- 인기글 끝 -->
                         
                         <!-- 인기 태그 시작 -->
                         <div class="widget widget_tag_cloud">
@@ -232,7 +228,7 @@
     <script src="/js/jquery.nice-select.min.js"></script>
     <script src="/js/jquery-ui.min.js"></script>
     <script src="/js/jarallax.min.js"></script>
-
+    
     <!-- main js -->
     <script src="/js/main.js"></script>
 

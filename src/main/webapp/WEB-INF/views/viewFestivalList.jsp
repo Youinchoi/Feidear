@@ -112,7 +112,7 @@
                             <div class="widget-tour-list-search">
                                 <form role="search" class="search-form" id="festivalSearchForm" name="festivalSearchForm" action="/api/festival/search">
                                     <div class="form-group">
-                                        <input type="text" placeholder="키워드로 검색하기" name="log_word_searchword">
+                                        <input type="text" placeholder="키워드로 검색하기" name="log_word_searchword" autofocus>
                                         <c:if test="${empty sessionScope.u_no}">
                                             <input type="hidden" name="u_no" value="0">
                                         </c:if>

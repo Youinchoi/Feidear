@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%String pjName = "/Feidear";%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Meta, title, CSS, favicons, etc. -->
@@ -52,6 +52,13 @@
 <!-- Custom Theme Style -->
 <link href="build/css/custom.min.css"
 	rel="stylesheet">
+
+    <!-- sweet alert창 -->
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+	<link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+ 
+
 <style type="text/css">
 @font-face {
 	font-family: 'TmoneyRoundWindRegular';
@@ -141,73 +148,75 @@ a {
 			<!-- 본문 내용 -->
 			<!-- page content -->
 			<div class="right_col" role="main">
+				<!--이벤트 작성 저장 폼 시작-->
+				<form action="saveEvent" id="saveEvent" method="post" enctype="multipart/form-data">
 
-				<div class="row"
+					<div class="row"
 					style="width: 80%; margin: 0px auto; margin-top: 10%; text-align: center;">
 					<div class="col-md-12 col-sm-12 ">
 						
 						<div class="tab-pane fade show active" id="event"
-								role="tabpanel" aria-labelledby="home-tab">
-								<h2
-									style="margin: 20px auto; font-size: 32px; font-weight: bolder; white-space: nowrap;">이벤트 게시판</h2>
-								<div style="margin-bottom: 20px; float : right;">
-									<div class="btn-group">
-					                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
-					                      aria-haspopup="true" aria-expanded="false" style="margin-bottom: 5px;">
-					                      분류
-					                    </button>
-					                    <div class="dropdown-menu">
-					                      <a class="dropdown-item" href="#">서포터즈</a>
-					                      <a class="dropdown-item" href="#">이벤트</a>
-					                    </div>
-					               	</div>
-								</div>
-				               	
-								<!-- 글 제목 입력 input -->
-								<div class="form-group row">
-									<label class="col-form-label col-md-2 col-sm-2 ">글 제목</label>
-									<div class="col-md-10 col-sm-10 ">
-										<input type="text" class="form-control"
-											placeholder="글 제목을 입력하세요">
+						role="tabpanel" aria-labelledby="home-tab">
+						<h2
+										style="margin: 20px auto; font-size: 32px; font-weight: bolder; white-space: nowrap;">이벤트 게시판</h2>
+										<div style="margin-bottom: 20px; float : right;">
+											<div class="btn-group">
+												<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+												aria-haspopup="true" aria-expanded="false" style="margin-bottom: 5px;">
+											분류
+										</button>
+											<div class="dropdown-menu">
+												<a class="dropdown-item" href="#">서포터즈</a>
+												<a class="dropdown-item" href="#">이벤트</a>
+											</div>
+										</div>
 									</div>
-								</div>
-
-								<div class="x_content">
-									<!-- 글 입력 Text Editor -->
-									<div id="alerts"></div>
-									<div class="btn-toolbar editor" data-role="editor-toolbar"
+									
+									<!-- 글 제목 입력 input -->
+									<div class="form-group row">
+										<label class="col-form-label col-md-2 col-sm-2 ">글 제목</label>
+										<div class="col-md-10 col-sm-10 ">
+											<input type="text" class="form-control"
+											placeholder="글 제목을 입력하세요" id="ev_title" name="ev_title">
+										</div>
+									</div>
+									
+									<div class="x_content">
+										<!-- 글 입력 Text Editor -->
+										<div id="alerts"></div>
+										<div class="btn-toolbar editor" data-role="editor-toolbar"
 										data-target="#editor-one">
-
+										
 										<div class="btn-group">
 											<a class="btn dropdown-toggle" data-toggle="dropdown"
-												title="Font Size"><i class="fa fa-text-height"></i>&nbsp;<b
-												class="caret"></b></a>
+											title="Font Size"><i class="fa fa-text-height"></i>&nbsp;<b
+											class="caret"></b></a>
 											<ul class="dropdown-menu">
 												<li><a data-edit="fontSize 5">
-														<p style="font-size: 17px">Huge</p>
+													<p style="font-size: 17px">Huge</p>
 												</a></li>
 												<li><a data-edit="fontSize 3">
-														<p style="font-size: 14px">Normal</p>
-												</a></li>
-												<li><a data-edit="fontSize 1">
+													<p style="font-size: 14px">Normal</p>
+													</a></li>
+													<li><a data-edit="fontSize 1">
 														<p style="font-size: 11px">Small</p>
-												</a></li>
-											</ul>
-										</div>
-
-										<div class="btn-group">
-											<a class="btn" data-edit="bold" title="Bold (Ctrl/Cmd+B)"><i
-												class="fa fa-bold"></i></a> <a class="btn" data-edit="italic"
-												title="Italic (Ctrl/Cmd+I)"><i class="fa fa-italic"></i></a>
-											<a class="btn" data-edit="strikethrough"
-												title="Strikethrough"><i class="fa fa-strikethrough"></i></a>
-											<a class="btn" data-edit="underline"
-												title="Underline (Ctrl/Cmd+U)"><i
-												class="fa fa-underline"></i></a>
-										</div>
-
-										<div class="btn-group">
-											<a class="btn" data-edit="insertunorderedlist"
+													</a></li>
+												</ul>
+											</div>
+											
+											<div class="btn-group">
+												<a class="btn" data-edit="bold" title="Bold (Ctrl/Cmd+B)"><i
+													class="fa fa-bold"></i></a> <a class="btn" data-edit="italic"
+													title="Italic (Ctrl/Cmd+I)"><i class="fa fa-italic"></i></a>
+													<a class="btn" data-edit="strikethrough"
+													title="Strikethrough"><i class="fa fa-strikethrough"></i></a>
+													<a class="btn" data-edit="underline"
+													title="Underline (Ctrl/Cmd+U)"><i
+													class="fa fa-underline"></i></a>
+											</div>
+											
+											<div class="btn-group">
+												<a class="btn" data-edit="insertunorderedlist"
 												title="Bullet list"><i class="fa fa-list-ul"></i></a> <a
 												class="btn" data-edit="insertorderedlist"
 												title="Number list"><i class="fa fa-list-ol"></i></a> <a
@@ -215,10 +224,10 @@ a {
 												title="Reduce indent (Shift+Tab)"><i
 												class="fa fa-dedent"></i></a> <a class="btn" data-edit="indent"
 												title="Indent (Tab)"><i class="fa fa-indent"></i></a>
-										</div>
-
-										<div class="btn-group">
-											<a class="btn" data-edit="justifyleft"
+											</div>
+											
+											<div class="btn-group">
+												<a class="btn" data-edit="justifyleft"
 												title="Align Left (Ctrl/Cmd+L)"><i
 												class="fa fa-align-left"></i></a> <a class="btn"
 												data-edit="justifycenter" title="Center (Ctrl/Cmd+E)"><i
@@ -227,46 +236,53 @@ a {
 												class="fa fa-align-right"></i></a> <a class="btn"
 												data-edit="justifyfull" title="Justify (Ctrl/Cmd+J)"><i
 												class="fa fa-align-justify"></i></a>
-										</div>
-
-										<div class="btn-group">
-											<a class="btn dropdown-toggle" data-toggle="dropdown"
-												title="Hyperlink"><i class="fa fa-link"></i></a>
-											<div class="dropdown-menu input-append">
-												<input class="span2" placeholder="URL" type="text"
-													data-edit="createLink" />
-												<button class="btn" type="button">링크 추가</button>
 											</div>
-											<a class="btn" data-edit="unlink" title="링크 제거"><i
-												class="fa fa-cut"></i></a>
+											
+											<div class="btn-group">
+												<a class="btn dropdown-toggle" data-toggle="dropdown"
+												title="Hyperlink"><i class="fa fa-link"></i></a>
+												<div class="dropdown-menu input-append">
+													<input class="span2" placeholder="URL" type="text"
+													data-edit="createLink" />
+													<button class="btn" type="button">링크 추가</button>
+												</div>
+												<a class="btn" data-edit="unlink" title="링크 제거"><i
+													class="fa fa-cut"></i></a>
+												</div>
+												
+											</div>
+											
+											<div id="ev_content2" class="editor-wrapper"
+											style="height: 500px; border: 1px solid #ced4da; border-radius: 5px; margin-bottom: 20px;"></div>
+											<textarea name="descr" id="descr" style="display: none;"></textarea>
+
+											<input type="hidden" id="ev_content" name="ev_content" />
+											
 										</div>
-
+										<!-- 첨부파일 입력 시작 -->
+										<div class="x_content">
+											<a>파일은 최대 6개까지 등록 가능합니다</a>
+											<br/>
+											<input type="file" maxlength="60" size="40" name='file'>
+											<br/>
+										</div>
+										<!-- 첨부파일 입력 끝 -->
+										
+										<!-- 전송 버튼 -->
+										<button class="btn btn-primary" type="reset">초기화</button>
+										<input type="button" id="subButton" class="btn btn-success" value="등록">
 									</div>
-
-									<div id="editor-one" class="editor-wrapper"></div>
-
-									<textarea name="descr" id="descr" style="display: none;"></textarea>
-
 								</div>
-								<!-- 첨부파일 입력 -->
-								<div class="x_content">
-									<form action="#" class="dropzone"></form>
-									<br />
-								</div>
-
-								<!-- 전송 버튼 -->
-								<button class="btn btn-primary" type="reset">초기화</button>
-								<button type="submit" class="btn btn-success">등록</button>
+								
+								
+								
+								<!-- 매거진 등록 페이지 끝-->
 							</div>
-							</div>
-
+						</div>
 						
-
-						<!-- 매거진 등록 페이지 끝-->
 					</div>
-				</div>
-
-			</div>
+				</form>
+				<!--이벤트 작성 폼 끝-->
 		</div>
 	<br />
 
@@ -365,6 +381,55 @@ a {
 	<!-- Custom Theme Scripts -->
 	<script src="build/js/custom.min.js"></script>
 
+	<!-- Dropzone.js ( 하단 첨부파일 ) -->
+	<script src="/admin/vendors/dropzone/dist/min/dropzone.min.js"></script>
+
+	<!--파일 업로드 위해 만든 파일 -->
+	<script src="/js/uploadphotos2.js"></script>		
+
+	<!-- Custom Theme Scripts (없으면 텍스트 입력 못 함 ㅠ ) -->
+	<script src="/admin/build/js/custom.min.js"></script>
+	
+	<script type="text/javascript">
+		//제목이나 내용 공백 시 넘어가지 않게 설정
+			$('#subButton').click(function() {
+				var inputtitle = $("#ev_title").val();			// 제목
+				
+				if(inputtitle == ""){
+					Swal.fire({
+						title : '등록 불가',
+						text  : '제목을 입력해주세요 !',
+						icon  : 'error',
+						confirmButtonColor: '#d33'
+					});
+					return false;
+				}
+
+				var inputcontent = $("#ev_content").val();		// 내용
+				if(inputcontent == ""){
+					Swal.fire({
+						title : '등록 불가',
+						text : '내용을 입력해주세요 !',
+						icon : 'error',
+						confirmButtonColor: '#d33'
+					});
+					return false;
+				}
+
+				// 등록 성공 시
+				Swal.fire({
+						title : '등록 성공',
+						text  : '이벤트 등록이 완료되었습니다.',
+						icon  : 'success',
+						confirmButtonColor: '#F0B153'
+				}).then((result) => {
+					if(result.isConfirmed){
+						$("#saveEvent").submit()
+					}
+				});
+			}) // end of clickevent()
+		
+	</script>	
 
 </body>
 </html>

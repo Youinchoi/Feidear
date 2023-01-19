@@ -38,15 +38,19 @@
                         <div class="col-lg-6 col-md-6 tp-gallery-item">
                             <div class="single-blog">
                                 <div class="thumb">
+                                  <c:if test="${events.file_path != null}">
+                                    <img src="${events.file_path}" alt="blog">
+                                    <a class="tag" href="#">진행 중</a>
+                                  </c:if>
+                                  <c:if test="${events.file_path == null}">
                                     <img src="images/blog/1.png" alt="blog">
                                     <a class="tag" href="#">진행 중</a>
+                                  </c:if>
                                 </div>
-                                <!-- 여기 바꿔주세요!! -->
                                 <div class="single-blog-details">
                                     <p class="date">${events.ev_regdate}</p>
                                     <h4 class="title"><a href="event-details?ev_no=${events.ev_no}">${events.ev_title}</a></h4>
-                                    <p class="content">${events.ev_content}</p>
-                                    <a class="btn-read-more" href="event-details"><span>Read More<i class="la la-arrow-right"></i></span></a>
+                                    <a class="btn-read-more" href="event-details?ev_no=${events.ev_no}"><span>Read More<i class="la la-arrow-right"></i></span></a>
                                 </div>
                             </div>
                         </div>
@@ -95,13 +99,34 @@
 <!-- 페이징 -->
                 </div>
                 <!-- 이벤트 설명 area end -->
+                
+ <!-- 축제 일기 우측 사이드바 시작 -->
+                <div class="col-lg-4"  id="select-category">
+                    <aside class="sidebar-area sidebar-area-4">
+                        
+                        <!-- 인기 태그 시작 -->
+                        <div class="widget widget_tag_cloud">
+                            <h2 class="widget-title">인기 태그</h2>
+                            <div class="tagcloud">
+                                <a href="#">눈꽃</a>
+                                <a href="#">데이트</a>
+                                <a href="#">별빛</a>
+                                <a href="#">사랑</a>
+                                <a href="#">빙어</a>
+                            </div>
+                        </div>
+                        <!-- 인기 태그 끝 -->
+                        
+                        <!-- 광고 배너 시작 -->
+                            <div class="widget widget_tag_cloud">
+	                            <h2 class="widget-title">광고 배너</h2>
+	                           <a href="#"><img src="/images/others/01.png" alt="img"></a>
+                            </div>
+                        <!-- 광고 배너 끝 -->
+                    </aside>
+                </div>
+                <!-- 축제 일기 우측 사이드바 끝 -->    
                  
-                <!-- 서포터즈 모집 광고 배너 start-->
-	<div style="position:fixed; z-index:2;left:50%; margin-left:505px; margin-top:180px; width:110px; height:-50px;  border:0px solid gray;">
-	<a class="tag" href="#">서포터즈 모집 중</a>
-	<a href="http://localhost:8090/destination-details"><img src="images/blog/10.png" alt="blog"></a>
-	</div>
-	<!-- 서포터즈 모집 광고 배너 end-->
                 </div>
             </div>
         </div>

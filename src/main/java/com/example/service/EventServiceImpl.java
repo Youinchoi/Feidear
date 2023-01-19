@@ -33,5 +33,15 @@ public class EventServiceImpl implements EventService {
 		return eventDAO.listCount();
 	}
 
+	@Override
+	public void saveEvent(EventVO vo) {
+		eventDAO.saveEvent(vo);
+	}
+
+	@Override
+	public void deleteEvent(EventVO vo) {
+		eventDAO.deleteEvent(vo);
+	}
+
 
 }

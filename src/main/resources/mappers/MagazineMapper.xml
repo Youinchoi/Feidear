@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.dao.MagazineDAO">
+	
+	<!-- 회원정보 가져오기 -->
+	<select id="getMagazine" resultType="magazineVO" parameterType="magazineVO">
+		SELECT *
+		FROM magazine
+		WHERE mgz_no = #{mgz_no}
+	</select>
+	
+	<!-- 이벤트 목록 내림차순으로 가져오기 -->
+	<select id="getMagazineList" resultType="magazineVO" parameterType="magazineVO">
+		select *
+		from (
+			   select *,
+			   row_number () over(order by mgz_no desc) as ROWNUM
+		 	   from magazine
+	 		 ) rv
+		where ROWNUM between #{rowStart} AND #{rowEnd}
+		order by mgz_no desc
+	</select>
+
+	<!-- 페이징 -->
+	 <select id="listCount" resultType="int">
+	<![CDATA[
+		SELECT COUNT(mgz_no)
+		  FROM magazine
+		 WHERE mgz_no > 0
+	]]>
+	</select>
+	
+	<!-- 매거진 작성하기 -->
+	<insert id="saveMagazine" parameterType="MagazineVO">
+		INSERT INTO magazine 
+			  		(mgz_title, mgz_content, mgz_regdate
+			  		<if test="file_name !=null">
+			  		, file_name, origin_file_name, file_size, file_path
+			  		</if>)
+		VALUES	 	(#{mgz_title}, #{mgz_content}, NOW()
+					<if test="file_name !=null">
+					, #{file_name}, #{origin_file_name}
+					, #{file_size}, #{file_path}
+					</if>)
+	</insert>
+	
+	<!-- 매거진 삭제하기 -->
+	<delete id="deleteMagazine" parameterType="MagazineVO">
+		DELETE FROM magazine
+		WHERE 		mgz_no = #{mgz_no}
+	</delete>
+	
+	<!-- 이벤트 목록 내림차순으로 4개만 가져오기 -->
+	<select id="getMagazine3" resultType="MagazineVO">
+		select *
+		from (
+				select *,
+					   row_number () over(order by mgz_no desc) as rnum
+				from magazine
+			 ) mgz
+		where rnum between 1 and 4
+		order by mgz_no desc
+	</select>
+
+</mapper>

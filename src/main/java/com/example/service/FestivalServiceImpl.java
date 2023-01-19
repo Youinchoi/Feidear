@@ -90,6 +90,17 @@ public class FestivalServiceImpl implements FestivalService {
 	public List<String> getResult(String u_id) {
 		return festivalDAO.getResult(u_id);
 	}
+
+	//추천 결과 불러오기 : 축제 이름으로
+	public FestivalVO getRecommResult(String r_fetv_name) {
+		return festivalDAO.getRecommResult(r_fetv_name);
+	}
+	
+	//DB에 저장된 검사결과 조회(태그용)
+	@Override
+	public List<FestivalVO> getResultList(String u_id) {
+		return festivalDAO.getResultList(u_id);
+	}
 		
 	/* ====== 추천 알고리즘 끝 ====== */
 	

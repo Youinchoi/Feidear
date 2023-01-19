@@ -68,7 +68,7 @@
                                     <a class="nav-link"  data-toggle="tab" href="#tabs_3"><i class="fa fa-address-card"></i>비밀번호 변경</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link"  data-toggle="tab" href="#tabs_4"><i class="fa fa-bookmark" aria-hidden="true"></i>내 찜 목록</a>
+                                    <a class="nav-link"  data-toggle="tab" href="#tabs_4"><i class="fa fa-bookmark" aria-hidden="true"></i>북마크</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link"  data-toggle="tab" href="#tabs_6"><i class="fa fa-book" aria-hidden="true"></i>내 후기</a>
@@ -91,18 +91,19 @@
                                 <div class="tab-pane fade show active" id="tabs_1" >
                                     <div class="user-details">
                                         <h3 class="user-details-title">회원정보 변경</h3>
-                                        <form action="updateUser" id="updateUser" name="updateUser" class="tp-form-wrap" method="post">
+                                        <form action="updateUser" id="updateUser" name="updateUser" class="tp-form-wrap" method="post"  enctype="multipart/form-data">
                                         <div class="tp-img-upload">
                                         
                                         <!-- 사진 업로드 파일VO 설정했던 걸로 설정 다시하고 받아와야함 -->
                                         
                                             <div class="tp-avatar-preview">
-                                                <div id="tp_imagePreview" value="${user.u_image}" style="${user.u_image}">
+                                                <div id="tp_imagePreview"
+                                                 style='background-image:url("${user.file_path}");
+                                                 display=block;'>
                                                 </div>
-                                                	<input type="image" value="${user.u_image}">
                                             </div>
                                             <div class="tp-avatar-edit">
-                                                <input type='file' name="u_image" id="tp_imageUpload"accept=".png, .jpg, .jpeg" />
+                                                <input type='file' name="file" id="tp_imageUpload" accept=".png, .jpg, .jpeg" />
                                                 <label class="btn btn-transparent" for="tp_imageUpload"><i class="fa fa-picture-o"></i>사진 변경</label>
                                                 <input type="hidden" name="u_id" value="${sessionScope.u_id}"> <!--잊지말고 세션 값을 잘 받아오자ㅠ....-->
                                                 <input type="hidden" name="u_no" value="${sessionScope.u_no}">
@@ -209,76 +210,36 @@
                            <!-- 비밀번호 변경 end -->
                                 
                                 
-                           <!-- 내찜목록 start -->
-                                <div class="tab-pane fade" id="tabs_4">
-                                    <div class="user-recent-view">
-                                        <h3 class="user-details-title">내 찜 목록</h3>
-                                          <span>
-                                          <input type="checkbox" value='selectall' onclick='selectAll(this)'/>전체 선택
-                                        &nbsp;
-                                          <input type="button" class="btn btn-yellow mt-3 text-center" value="찜 삭제">
-                                          </span>
-                                        <br/><br/>
-                                        <div class="row">
-                                            <!-- 페이징 필요함 -->
-                                            <div class="col-sm-6">
-                                                <div class="single-destinations-list style-two">
-                                                    <div class="checkboxes">
-                                                       <input type="checkbox">
-                                                    </div>
-                                                    <div class="thumb">
-                                                        <img src="/images/destination-list/4.png" alt="list">
-                                                    </div>
-                                                    <div class="details">
-                                                        <p class="location"><img src="/images/icons/1.png" alt="map">위치</p>
-                                                        <h4 class="title"><a href="tour-details">어쩌고 축제</a></h4>
-                                                        <p class="content">뭘로쓰지</p>
-                                                        <div class="tp-price-meta">
-                                                            <h2>축제기간? <small>$</small></h2>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="single-destinations-list style-two">
-                                                    <div class="checkboxes">
-                                                       <input type="checkbox">
-                                                    </div>
-                                                    <div class="thumb">
-                                                        <img src="/images/destination-list/4.png" alt="list">
-                                                    </div>
-                                                    <div class="details">
-                                                        <p class="location"><img src="/images/icons/1.png" alt="map">위치</p>
-                                                        <h4 class="title"><a href="tour-details">어쩌고 축제</a></h4>
-                                                        <p class="content">뭘로쓰지</p>
-                                                        <div class="tp-price-meta">
-                                                            <h2>축제기간? <small>$</small></h2>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="single-destinations-list style-two">
-                                                    <div class="checkboxes">
-                                                       <input type="checkbox">
-                                                    </div>
-                                                    <div class="thumb">
-                                                        <img src="/images/destination-list/4.png" alt="list">
-                                                    </div>
-                                                    <div class="details">
-                                                        <p class="location"><img src="/images/icons/1.png" alt="map">위치</p>
-                                                        <h4 class="title"><a href="tour-details">어쩌고 축제</a></h4>
-                                                        <p class="content">뭘로쓰지</p>
-                                                        <div class="tp-price-meta">
-                                                            <h2>축제기간? <small>$</small></h2>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                           <!-- 북마크 목록 start -->
+                           <div class="tab-pane fade" id="tabs_4">
+                            <div class="user-recent-view">
+                                <h3 class="user-details-title"><i class="fa fa-bookmark" aria-hidden="true" style="color: darkorange;"></i>&nbsp북마크 목록</h3>
+                                <span><br/>
+                                <hr class="six" size="36px;"><br/><br/>
+                                    <div class="col-sm-8">
+                                        <div class="single-destinations-list style-two">
+                                            <c:forEach items="${getWishList}" var="getWishList">
+                                                <a href= "/user/getUser?u_no=${sessionScope.u_no}"><input name="deleteWish" type="button" class="btn btn-yellow4" value="x"></h5></a>
+                                            <div class="thumb">
+                                                <img src="/festival_imgs/${getWishList.fetv_image}" alt="list">
+                                            </div><br>
+                                                <div class="details-bookmark">
+                                                    <h5 name="fetv_area" style="color: darkorange;">${getWishList.fetv_area}</h5>
+                                                    <h4 name="fetv_name"><a href="/festival/festivalDetails?fetv_no=${getWishList.fetv_no}">${getWishList.fetv_name}</a></h4>
+                                                    <c:if test="${not empty getWishList.fetv_startdate}">
+                                                    <b style="font-size: 1.4em; color: darkorange;"><i class="fa fa-calendar-o"></i>&nbsp&nbsp&nbsp${getWishList.fetv_startdate} &nbsp&nbsp~&nbsp&nbsp ${getWishList.fetv_enddate}</b><br>
+                                                    </c:if>
+                                                    <c:if test="${empty getWishList.fetv_startdate}">
+                                                        <b style="font-size: 1.3em; color: rgb(97, 210, 201);"><i class="fa fa-exclamation-triangle"></i>&nbsp&nbsp&nbsp일정이 업데이트 될 예정입니다</b>
+                                                    </c:if><br>
+                                                </div><br>
+                                                <hr><br>
+                                            </c:forEach><br>
                                         </div>
                                     </div>
-                                </div>
-                           <!-- 내찜목록 end -->
+                            </div>
+                        </div>
+                   <!--북마크 목록  end -->
                                 
                                 
                            <!-- 내 후기 start -->
@@ -293,7 +254,7 @@
                                         <li>
                                            <div class="single-comment-wrap">
                                                 <div class="thumb">
-                                                    <img src="/images/client/2.png" alt="img">
+                                                    <img src="${user.file_path}" alt="img">
                                                 </div>
                                                     <a href="/reviews/getReview?rv_no=${getReviewList.rv_no}">
                                                 <div class="content" style="text-align:right;">
@@ -404,6 +365,9 @@
 
     <!-- main js -->
     <script src="../js/main.js"></script>
+
+    <!-- file js -->
+    <script src="../js/uploadphotos.js"></script>
     
     <script type="text/javascript">
     

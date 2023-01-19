@@ -2,8 +2,6 @@ package com.example.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,11 +13,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.domain.Criteria;
 import com.example.domain.EventVO;
 import com.example.domain.FestivalVO;
+import com.example.domain.MagazineVO;
 import com.example.domain.PageMaker;
-import com.example.domain.ReviewsVO;
 import com.example.domain.SearchCriteria;
 import com.example.service.EventService;
 import com.example.service.FestivalService;
+import com.example.service.MagazineService;
 
 @Controller
 public class MainController {
@@ -30,12 +29,25 @@ public class MainController {
 	@Autowired
 	private EventService eventService;
 	
+	@Autowired
+	private MagazineService magazineService;
+	
 	//DB 안 거치고 화면만 띄우는 것들 >> 매번매번 MAPPING 하지 않고 여기 거치도록
     @RequestMapping(value = "/{url}")
     public String userJoin(@PathVariable String url) {
     System.out.println("경로:" + url);
      return url;
     }
+    
+    //------------------------------------------index--------------------------------------------------
+    @RequestMapping(value = "/index")
+    public void index(MagazineVO vo, Model m) throws Exception {
+    	List<MagazineVO> list = magazineService.getMagazine3();
+    	m.addAttribute("mm",list);
+    	System.out.println("index 실행");
+    }
+    
+    //------------------------------------------index--------------------------------------------------
  	
     // 축제 정보 클릭 시 전체 목록 출력
     @RequestMapping(value = "viewFestivalList")
@@ -70,9 +82,8 @@ public class MainController {
     	return mv;
     }
     
-    //-----------------------------------------------------------------------------------
-    
-    
+    //--------------------------------------event start---------------------------------------------
+        
     //이벤트 리스트 불러오기
     @RequestMapping("/event")
     public String getEventList(Model m, Criteria cri) throws Exception {
@@ -93,8 +104,43 @@ public class MainController {
  		
  		return "event-details";
  	} // end of getReviews()
+ 	//--------------------------------------event end---------------------------------------------
  	
+ 	//------------------------------------magazine 시작----------------------------------------------- 	
+ 	//매거진 리스트 불러오기
+ 	@RequestMapping("/magazine")
+ 	public String getMagazineList(Model m, Criteria cri) throws Exception {
+ 		List<MagazineVO> list = magazineService.getMagazineList(cri);
+ 		m.addAttribute("mgzList", list);		// 리뷰 목록
+ 		PageMaker pageMaker = new PageMaker();
+ 		pageMaker.setCri(cri);
+ 		pageMaker.setTotalCount(magazineService.listCount());
+ 		m.addAttribute("pageMaker", pageMaker);
+ 		return "magazine";
+ 	} // end of getReviewsList()
  	
+ 	//매거진 상세 불러오기
+ 	@RequestMapping("/magazine-details")
+ 	public String getMagazine(MagazineVO vo, Model m) {
+ 		MagazineVO result = magazineService.getMagazine(vo);
+ 		m.addAttribute("mgz", result);
+ 		
+ 		return "magazine-details";
+ 	} // end of getReviews()
+ 	//------------------------------------magazine 끝-----------------------------------------------
+ 	
+ 	//------------------------------------서포터즈 시작-----------------------------------------------
+ 	
+ 	//가장 최신 매거진 3개 가져오기
+ 	@RequestMapping("/supporters")
+ 	public String getMagazine3(MagazineVO vo, Model m) throws Exception {
+ 		List<MagazineVO> list = magazineService.getMagazine3();
+ 		System.out.println(">>> list : "+list);
+ 		m.addAttribute("mgz3", list);		// 매거진 3개 목록
+ 		return "/supporters";
+ 	}
+ 	
+ 	//------------------------------------서포터즈 끝-----------------------------------------------
     
     
 

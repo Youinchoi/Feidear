@@ -175,7 +175,7 @@
 								</tr>
 								<tr class="odd pointer">
 									<td class=" ">121000040</td>
-									<td class=" ">씨바씨바</td>
+									<td class=" ">정인정인</td>
 									<td class=" ">윤정인</td>
 									<td class=" ">2019.12.23</td>
 									<td class=" "><span class="badge badge-warning">축제
