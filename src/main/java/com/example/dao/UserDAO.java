@@ -48,8 +48,18 @@ public interface UserDAO {
 	// 위시리스트 중복체크
 	public int checkWish(WishVO vo);
 	
+	//-----------------------------
 	
+	// 관리자 페이지에서 회원 관리 눌렀을 때 유저 목록 가져오기
+	public List<UserVO> getUserList();
+	
+	// 관리자 페이지에서 회원 관리 - 보기 눌렀을 때 유저 정보 가져오기
+	public UserVO getUserInfo(int u_no);
+	
+	// 관리자 페이지에서 회원 정보 수정 - 저장 버튼 클릭 시 정보 수정
+	public void updateUserSubmit(UserVO vo);
 }
+
 
 
 /*

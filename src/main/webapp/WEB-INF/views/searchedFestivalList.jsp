@@ -47,7 +47,7 @@
                         <div class="single-destinations-list style-three">
                         
                             <div class="thumb">
-                                <img src="images/destination-list/12.png" alt="list">
+                                 <img src="/festival_imgs/${content.fetv_image}" alt="list" style="width:526px; height:260px;">
                             </div>
                             
                             <div class="details">

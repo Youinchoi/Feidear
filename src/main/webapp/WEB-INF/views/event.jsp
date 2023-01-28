@@ -8,7 +8,7 @@
 
 
     <!-- 이벤트 제휴 페이지 상단바 밑 제목 area start -->
-   <div class="breadcrumb-area jarallax" style="background-image:url(images/bg/1.png);">
+   <div class="breadcrumb-area jarallax" style="background-image:url(/images/bg/banner.png);">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -37,14 +37,12 @@
                                 <c:forEach items="${eventList}" var="events">
                         <div class="col-lg-6 col-md-6 tp-gallery-item">
                             <div class="single-blog">
-                                <div class="thumb">
+                                <div class="thumb" >
                                   <c:if test="${events.file_path != null}">
-                                    <img src="${events.file_path}" alt="blog">
-                                    <a class="tag" href="#">진행 중</a>
+                                    <img src="${events.file_path}" alt="blog" style="height:15.6em; width:26em;">
                                   </c:if>
                                   <c:if test="${events.file_path == null}">
-                                    <img src="images/blog/1.png" alt="blog">
-                                    <a class="tag" href="#">진행 중</a>
+                                    <img src="images/blog/event_pic.png" alt="blog" style="height:15.6em; width:26em;">
                                   </c:if>
                                 </div>
                                 <div class="single-blog-details">
@@ -103,29 +101,21 @@
  <!-- 축제 일기 우측 사이드바 시작 -->
                 <div class="col-lg-4"  id="select-category">
                     <aside class="sidebar-area sidebar-area-4">
-                        
-                        <!-- 인기 태그 시작 -->
-                        <div class="widget widget_tag_cloud">
-                            <h2 class="widget-title">인기 태그</h2>
-                            <div class="tagcloud">
-                                <a href="#">눈꽃</a>
-                                <a href="#">데이트</a>
-                                <a href="#">별빛</a>
-                                <a href="#">사랑</a>
-                                <a href="#">빙어</a>
-                            </div>
-                        </div>
-                        <!-- 인기 태그 끝 -->
-                        
                         <!-- 광고 배너 시작 -->
-                            <div class="widget widget_tag_cloud">
-	                            <h2 class="widget-title">광고 배너</h2>
-	                           <a href="#"><img src="/images/others/01.png" alt="img"></a>
+                            <div class="widget widget_tag_cloud" style="text-align:center;">
+	                            <h2 class="widget-title" style="text-align:left;">이런 축제는 어때요?</h2>
+	                           <a href="#"><img src="/images/others/rhkdrh.jpg" alt="img"></a>
+                            </div>
+                        <!-- 광고 배너 끝 -->
+                        <!-- 광고 배너 시작 -->
+                            <div class="widget widget_tag_cloud" style="text-align:center;">
+	                            <h2 class="widget-title" style="text-align:left;">이런 축제도 있어요!</h2>
+	                           <a href="#"><img src="/images/others/rhkdrh.jpg" alt="img"></a>
                             </div>
                         <!-- 광고 배너 끝 -->
                     </aside>
                 </div>
-                <!-- 축제 일기 우측 사이드바 끝 -->    
+<!-- 축제 일기 우측 사이드바 끝 -->    
                  
                 </div>
             </div>

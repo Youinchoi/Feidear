@@ -35,13 +35,17 @@ public class ReviewsCommentController {
 	@GetMapping("replies")
 	public List<ReviewsCommentVO> selectAll(Integer rv_no){
 		List<ReviewsCommentVO> list = reveiwscommentService.getReviewReply(rv_no); // 리뷰 번호로 가져오기
-		System.out.println("list.size()" + list.size());
+//		System.out.println("list.size()" + list.size());
+		for (ReviewsCommentVO vo : list) {
+			System.out.println(">>> "+vo);
+		}
 		return list;
 	} // end of selectAll()
 	
-	//리뷰 댓글 삭제
-	@DeleteMapping("replies/{rv_cmt_no}")
-	public void delete(@PathVariable Integer rv_cmt_no) {
+	//리뷰 댓글 삭제 (댓글 번호 : rv_cmt_no)
+	@PostMapping("deleteReply")
+	public void deleteReply(int rv_cmt_no) {
+		System.out.println("컨트롤러 호출 굿");
 		reveiwscommentService.deleteReviewReply(rv_cmt_no);
 	} // end of delete()
 

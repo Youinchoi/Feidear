@@ -64,7 +64,7 @@
 
 
     <!-- 매거진 상세 상단 area start -->
-    <div class="breadcrumb-area jarallax" style="background-image:url(images/bg/1.png);">
+    <div class="breadcrumb-area jarallax" style="background-image:url(images/bg/banner.png);">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -88,7 +88,12 @@
                 <div class="col-lg-8">
                     <div class="single-blog mb-0">
                         <div class="thumb">
-                            <img src="${mgz.file_path}" alt="blog">
+                          <c:if test="${not empty mgz.file_path}">
+                            <img src="${mgz.file_path}" alt="blog">                          
+                          </c:if>
+                          <c:if test="${empty mgz.file_path}">
+                            <img src="/images/bg/banner.png" alt="blog">                          
+                          </c:if>
                         </div>
                         <div class="single-blog-details">
                             <p class="date mb-0">${mgz.mgz_regdate}</p>
@@ -142,49 +147,10 @@
                     </div>
                     <!-- details-gallery-end -->
                     <p>위에 사진에서 보여준 매거진 내용</p>
-                    <!-- details-video-start -->
-                    <h4 class="single-page-small-title mt-5">매거진 관련 영상</h4>
-                    <div class="video-popup-wrap style-two">
-                        <div class="thumb">
-                            <img src="images/blog-details/7.png" alt="video">
-                        </div>
-                        <div class="video-popup-btn">
-                            <a href="https://www.youtube.com/watch?v=c7XEhXZ_rsk" class="video-play-btn mfp-iframe"><i class="fa fa-play"></i></a>
-                        </div>
-                    </div>
-                    <!-- details-video-end -->
-                    <p>매거진 관련 영상에서 보여준 것</p>
-                    <p>매거진 영상대로 하면 끝</p>
+
                     <div class="row tag-share-area">
-                        <div class="col-lg-6">
-                            <span class="mr-2">공유 및 찜:</span>
-                            <ul class="social-icon style-two">
-                                <li>
-                                    <a class="facebook" href="#"><i class="fa fa-facebook"></i></a>
-                                </li>
-                                <li>
-                                    <a class="twitter" href="#"><i class="fa fa-twitter"></i></a>
-                                </li>
-                                <li>
-                                    <a class="pinterest" href="#"><i class="fa fa-instagram"></i></a>
-                                </li>
-                                <li>
-                                    <a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a>
-                                </li>
-                            </ul>
-                        </div>
                         <div class="col-xl-5 col-lg-6 offset-xl-1">
-                            <div class="single-blog-post-tags d-flex">
-                                <span class="all-tags-title">관련 태그 :</span>
-                                <div class="all-tags">
-                                    <a href="#">태그 1</a>
-                                    <a href="#">태그 2</a>
-                                    <a href="#">태그 3</a>
-                                    <a href="#">Discover</a>
-                                    <a href="#">Travel</a>
-                                    <a href="#">Asia</a>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                     <nav class="navigation post-navigation single-post-navigation">
@@ -216,17 +182,6 @@
                 </div>
                 <div class="col-lg-4">
                     <aside class="sidebar-area sidebar-area-4">
-                    
-                        <div class="widget widget_tag_cloud">
-                            <h2 class="widget-title">관련 태그</h2>
-                            <div class="tagcloud">
-                                <a href="#">태그1</a>
-                                <a href="#">태그2</a>
-                                <a href="#">태그3</a>
-                                <a href="#">태그4</a>
-                                <a href="#">태그5</a>
-                            </div>
-                        </div>
                         <!-- 광고 배너 위치  -->
                             <div class="widget widget_tag_cloud">
 	                            <h2 class="widget-title">광고 배너</h2>

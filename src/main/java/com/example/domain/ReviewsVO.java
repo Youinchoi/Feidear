@@ -16,15 +16,18 @@ public class ReviewsVO {				// 축제 일기(리뷰)
 	private String 	rv_content;			// 리뷰 내용
 	private String 	rv_tag;				// 리뷰 태그
 	private String 	rv_image;			// 리뷰 이미지
-	private String 	rv_like;			// 리뷰 좋아요 수
+	private Integer rv_cnt;				// 리뷰 조회수
 	private String  rv_regdate;			// 리뷰 작성일
 	private Integer u_no;				// 리뷰 작성자 번호
+	private String  u_id;				// 리뷰 작성자 아이디
+	private String  u_comment;			// 리뷰 작성자 소개
 	
 	private Integer file_num;			// 파일 번호
 	private String 	file_name;			// 파일 이름
 	private String 	origin_file_name;	// 원본 파일 이름
 	private long 	file_size;			// 파일 사이즈
-	private String  file_path;			// 파일 경로
+	private String  file_path;			// 파일 경로 (리뷰 상세보기 : 사용자 파일 경로로 쓰임)
+	private String 	r_file;				// 		  (리뷰 상세보기 : 리뷰 파일 경로로 쓰임)
 
 //	화면에서 type='file' name='file'이라서 변수명이 file
 	
@@ -46,12 +49,11 @@ public class ReviewsVO {				// 축제 일기(리뷰)
 			UUID uuid = UUID.randomUUID();
 			this.origin_file_name = uuid.toString()+"_"+file_name;
 			
+			// 로컬에 저장되는 파일 경로
+			File f = new File("D:/springbootFinal/Feidear/src/main/resources/static/upload_img_file/"+origin_file_name);
 			
-			this.origin_file_name = file_name;
-			
-			File f = new File("D:\\springbootFinal\\Feidear\\src\\main\\resources\\static\\upload_img_file\\"+origin_file_name);
-			
-			this.file_path = "D:\\springbootFinal\\Feidear\\src\\main\\resources\\static\\upload_img_file\\"+origin_file_name;
+			// jsp에서 불러와야 하는 파일 경로
+			this.file_path = "/upload_img_file/"+origin_file_name;
 			// 파일 저장 위치를 추후에 서버 경로를 얻어서 상대경로로 수정하기
 			try {
 				

@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@page import="java.util.List"%>
 <%@page import="com.example.domain.FestivalVO"%>
+
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -52,6 +53,12 @@
    <!-- 캘린더 css 손본거 플러그인 -->
     <link href="/admin/css/calander.css" rel="stylesheet">
     
+   <!-- sweet alert창 -->
+   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+   <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+    
+    
   </head>
 
   <body >
@@ -64,7 +71,7 @@
           
     <!-- navbar area start -->
 
-    <nav class="navbar navbar-area navbar-expand-lg nav-style-03" style="margin-top:unset;">
+    <nav class="navbar navbar-area navbar-expand-lg nav-style-03" style="margin-top:unset; background:#2A3F54;">
         <div class="container nav-container">
             <div class="responsive-mobile-menu">
                 <div class="mobile-logo">
@@ -82,14 +89,15 @@
                 </button>
                 <div class="nav-right-content">
                     <ul class="pl-0">
-                        <li class="top-bar-btn-booking">
-                            <a class="btn btn-yellow" href="/tour-details">Book Now <i class="fa fa-paper-plane"></i></a>
-                        </li>
-
                         <li class="notification">
-                            <a class="signUp-btn" href="/#">
+                          <c:if test="${empty sessionScope.u_id}">
+                            <a class="signUp-btn" href="#" id="icon">
                                 <i class="fa fa-user-o"></i>
                             </a>
+                          </c:if>
+                          <c:if test="${not empty sessionScope.u_id}">
+                            <a class="signUp-btn" href="/user/getUser?u_no=${sessionScope.u_no}">
+                          </c:if>
                         </li>
                     </ul>
                 </div>
@@ -103,7 +111,7 @@
                         <img src="/images/sticky-logo.png" alt="logo">
                     </a>
                 </div>
-                <ul class="navbar-nav">
+                               <ul class="navbar-nav">
                     <li class="menu-item-has-children">
                         <a>축제 둘러보기</a>
                         <ul class="sub-menu">
@@ -114,7 +122,7 @@
                     <li class="menu-item-has-children">
                         <a>커뮤니티</a>
                         <ul class="sub-menu">
-                            <li><a href="/review-list">축제 일기</a></li>
+                            <li><a href="/reviews/getReviewList">축제 일기</a></li>
                             <li><a href="/magazine">매거진</a></li>
                         </ul>
                     </li>
@@ -122,25 +130,38 @@
                         <a>이벤트</a>
                         <ul class="sub-menu">
                             <li><a href="/event">제휴 이벤트</a></li>
-                      		<li><a href="/destination-details">서포터즈</a></li>
+                      		<li><a href="/supporters">서포터즈</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="/smart-page">스마트 페이지</a>
-                    </li>
+                    <c:if test="${empty sessionScope.u_id}">
+                        <li>
+                            <a href="#" id="emptySmart">스마트 페이지</a>
+                        </li>
+                    </c:if>
+                    <c:if test="${not empty sessionScope.u_id}">
+                        <li>
+                            <a href="/smart/smart-page">스마트 페이지</a>
+                        </li>
+                    </c:if>
                     <li class="menu-item-has-children">
                         <a>문의사항</a>
                         <ul class="sub-menu">
-                            <li><a href="/faq">FAQ</a></li>
-                            <li><a href="/qna">1:1 문의</a></li>
+                            <li><a href="/faq/faq">FAQ</a></li>
+                            <li><a href="/faq/qna">1:1 문의</a></li>
                         </ul>
                     </li>
                 </ul>
             </div>
             <div class="nav-right-content">
                 <ul>
-                    <li><a href="/user/getUser">MY PAGE</a>
+                 <c:if test="${empty sessionScope.u_id}">
+					<li><a href="#" style="color:white;" id="emptyMypage" >MY PAGE</a>
                     </li>
+                 </c:if>
+                 <c:if test="${not empty sessionScope.u_id}">
+                    <li><a href="/user/getUser?u_no=${sessionScope.u_no}" style="color:white;">MY PAGE</a>
+                    </li>
+                 </c:if>
                 </ul>
             </div>
         </div>
@@ -326,7 +347,7 @@
         editable: true,
         events: [
           <%List<FestivalVO> calendarList = (List<FestivalVO>) request.getAttribute("calList");%>
-          <%if (calendarList != null) {%>
+          <%if (calendarList != null) { %>
            <%for (FestivalVO vo : calendarList) {%>
            {
             	title : '<%=vo.getFetv_name()%>',
@@ -342,6 +363,37 @@
     });
 
 };
+
+	//로그인 안하고 마이페이지 클릭했을 시
+	$("#emptyMypage").click(function(){
+		Swal.fire({
+            		title : '접근 불가',
+                    text : '로그인 후 이용해주세요!',
+                    icon : 'error',
+                    confirmButtonColor: '#d33'
+	            })
+	});
+
+	//로그인 안하고 마이페이지 클릭했을 시
+	$("#icon").click(function(){
+		Swal.fire({
+            		title : '접근 불가',
+                    text : '로그인 후 이용해주세요!',
+                    icon : 'error',
+                    confirmButtonColor: '#d33'
+	            })
+	});
+
+	//로그인 안하고 스마트페이지 클릭했을 시
+	$("#emptySmart").click(function(){
+		Swal.fire({
+            		title : '접근 불가',
+                    text : '로그인 후 이용해주세요!',
+                    icon : 'error',
+                    confirmButtonColor: '#d33'
+	            })
+	});
+
     </script>
 
   </body>

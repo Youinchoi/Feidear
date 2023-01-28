@@ -5,32 +5,20 @@ $(function(){
     //'comment' 버튼 클릭했을 때
     $('#submitBtn').click(function(event){
 
-		
         //사용자 입력값 받아옴				
         let param = { rv_no   : Number($('input[name="rv_no"]').val()),
-                     u_no : Number($('input[name="u_no"]').val()),
-                     rv_cmt   : $('#rv_cmt').val()
+                      u_no 	  : Number($('input[name="u_no"]').val()),
+                      rv_cmt  : $('#rv_cmt').val(),
+                      u_id 	  : $('#u_id').val()
                     };
                     
-        if($('input[name="u_no"]').val()==null || $('input[name="u_no"]').val()==0){
-			// alert("로그인이 필요합니다.");
-			Swal.fire({
-						title : '댓글 등록 불가',
-						text  : '로그인이 필요합니다',
-						icon  : 'error',
-						confirmButtonColor: '#d33'
-					});
-					// 로그인 하지 않은 상태로 댓글 작성할 경우 textarea 비우기
-					$('#rv_cmt').val('').change();	
-					return false;
-		}
-        console.log(param);  
         $.ajax({
             type 	: 'post',
             url  	: '../replies/new',
             data 	: param,
             success : function(result){
-                rv_cmtList();					//댓글목록 다시 조회함.
+					  $('#rv_cmt').val(''); 		// 댓글 저장 후 비우기
+                	  rv_cmtList();					//댓글목록 다시 조회함.
             },
             error : function(err){
                 console.log(err);
@@ -39,7 +27,7 @@ $(function(){
         })//end of ajax
         
     })//end of click
-
+	
 })//end of function
 
 
@@ -59,25 +47,26 @@ $('#replyList').on("click","#modifyRply",function(event){
     $(this).attr('id','modifyRply2');
 });//end of click
 
-$('#replyList').on("click","#modifyRply2",function(event){			//수정 버튼을 다시 눌렀을 때 
+$('#replyList').on("click","#modifyRply2",function(event){				//수정 버튼을 다시 눌렀을 때 
     
-    let rrno = $(this).parents("div.media-body").find('input[name="rno"]').val();
-    var param = {		rno : rrno,
-        replyer : $('#mReplyer').text(),
-        reply : 	$('#mReply').val()
+    let rv_no = $(this).parents("div.media-body").find('input[name="rv_no"]').val();
+    
+    var param = {	rv_cmt_no 	: Number($('input[name="rv_cmt_no"]').val()),
+        			replyer 	: Number($('input[name="u_no"]').val()),
+        			reply 		: $('#rv_cmt').val()
         };
         
     console.log(param);
 
     $.ajax({
         type:'post',
-        url:'../replies/'+rrno,
+        url:'../replies/'+rv_no,
         data:param,
         success : function(result){
             replyList();
         },
         error : function(err){
-            alert('에러');
+            alert('수정_에러');
         }
 
     });//end of ajax
@@ -85,26 +74,33 @@ $('#replyList').on("click","#modifyRply2",function(event){			//수정 버튼을 
 })//end of click(수정버튼을 다시 누름)
 
 //삭제 버튼을 클릭했을 때
-
 $('#rv_cmtList').on("click","#deleteRply",function(){
-    let status=confirm("댓글을 삭제하시겠습니까?");
-		
-		if(status){
-	        let rv_cmt_no=$(this).parents("ul.sinlge-post-meta").find('input[name="rv_cmt_no"]').val();
-			
-	        $.ajax({
-	            type:'delete',
-	            url:'../replies/'+rv_cmt_no,
-	            success : function(result){
-	                replyList();
-	            },
-	            error : function(err){
-	                alert('에러');
-	            }
-	        
-	        });//end of ajax
-	    }//end of if
-    
+				
+	Swal.fire({
+			    title: '삭제 하시겠습니까?',
+			    text: "버튼을 누를 시 댓글이 삭제됩니다.",
+			    icon: 'warning',
+			    showCancelButton: true,
+			    confirmButtonColor: '#F0B153',
+			    cancelButtonColor: '#d33',
+			    confirmButtonText: '삭제'
+	 }).then((result) => {
+	    if (result.isConfirmed) {
+		        $.ajax({
+					type: "POST",
+		            data: {rv_cmt_no: $(this).parent().parent().parent().find('input[name="rv_cmt_no"]').val()},
+		            url: "../deleteReply",
+		            success : function(result){
+							  rv_cmtList();
+		            },
+		            error : function(err){
+		                alert('에러'+err);
+		            } // end of error
+					        
+	        	});//end of ajax
+	        	
+	    }//end if
+	  })//END THEN	
 
 })//end of click
 
@@ -113,8 +109,7 @@ $('#rv_cmtList').on("click","#deleteRply",function(){
 
 rv_cmtList(); //목록조회 함수 호출
 //댓글 목록 전체 조회
-function rv_cmtList(event)
-{
+function rv_cmtList(event){
 	
     $.ajax({
         type:'get',
@@ -122,30 +117,35 @@ function rv_cmtList(event)
         data: {rv_no : $('input[name="rv_no"]').val()},
         dataType : 'json', 				// 라이브러리 필요(pom.xml)
         success : function(result){
-           
-            
             let rv_cmtList = $('#rv_cmtList');
             rv_cmtList.empty();
             
             for(row of result){
 				
-				// 주석은 다시 달아서 보내드릴게요!!!
-				var img = $('<img src="../images/blog-details/9.png" alt="img"/>')//나중에 수정하세요!
+				// 사용자 프로필 사진을 등록하지 않았을 경우에 디폴트 사진
+				if(row.u_file_path==null || row.u_file_path==undefined){
+					var img = $('<img src="/upload_img_file/부적0.png" alt="img">')
+				} else{
+					var img = $('<img src="'+row.u_file_path+'" alt="img">')					
+				}
 				var rv_cmt_no = $('<input type="hidden" name="rv_cmt_no"/>');
+				
+				
 				rv_cmt_no.val(row.rv_cmt_no);
 				var thumb = $('<div class="thumb"/>')	
 				
 				thumb.append(img).trigger("create");
 				thumb.append(rv_cmt_no).trigger("create");
-				//
+				
+				// h4 태그에 댓글 작성자 번호 넣기
                 var h4 = $('<h4 class="title"/>');
-                h4.html(row.u_no);
+                h4.html(row.u_id);
                 
-                //
+                // span 태그에 댓글 작성일자 넣기
                 var span = $('<span class="date"/>');
                 span.text(row.rv_cmt_regdate);
                 
-                //
+                // p 태그에 댓글 내용 넣기
                 var p = $('<p/>');
                 p.text(row.rv_cmt);
                 
@@ -160,25 +160,29 @@ function rv_cmtList(event)
                 div.append(thumb).trigger("create");
                 div.append(contentDiv).trigger("create");
                 
+                var table = $('<table style="text-align:center;"/>');
+                
+                
                 var li = $('<li/>');
                 //수정 아이콘(버튼)
-                var modLi=$('<li/>');
-                modLi.html('<a href="" id="modifyRply"><i class="fa fa-calendar"></i>수정</a>').trigger("create");
+                var modLi=$('<td/>');
+                modLi.html('<div id="modifyRply" class="btn btn-transparent" style="border:none; margin: 1vw;"><i class="fa fa-pencil-square-o" aria-hidden="true" style="padding-left:1em; padding-top:1em;"></i>수정</div>').trigger("create");
 
                 //삭제 아이콘(버튼)
-                var delLi=$('<li/>');
-                delLi.html('<a href="" id="deleteRply"><i class="fa fa-trash-o" aria-hidden="true"></i>삭제</a>').trigger("create");
-
-                li.append(div).trigger("create");
+                var delLi=$('<td/>');
+                delLi.html('<div id="deleteRply" class="btn btn-transparent" style="border:none; margin: 1vw;"><i class="fa fa-trash-o" aria-hidden="true" style="padding-left:1em; padding-top:1em;"></i>삭제</div>').trigger("create");
+				
+                                                            
+               
+                
                 if($('input[name="u_no"]').val()==row.u_no){
-                    li.append(modLi).trigger("create");
-                    li.append(delLi).trigger("create");						
+                    table.append(modLi).trigger("create");
+                    table.append(delLi).trigger("create");
+                    
+                    div.append(table).trigger("create");					
                 }
-                
-                
+                li.append(div).trigger("create");
                 rv_cmtList.append(li).trigger("create");
-                
-
                 
             }//end of for
             

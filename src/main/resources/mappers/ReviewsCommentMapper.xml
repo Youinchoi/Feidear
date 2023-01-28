@@ -14,15 +14,18 @@
    <!-- 댓글 목록 조회 -->
    <select id="getReviewReply" parameterType="Integer" resultType="ReviewsCommentVO">
 	SELECT 		cmt.u_no as u_no, cmt.rv_no rv_no, cmt.rv_cmt_no as rv_cmt_no
-				, cmt.rv_cmt as rv_cmt, to_char(cmt.rv_cmt_regdate, 'YYYY-MM-DD') as rv_cmt_regdate
+				, cmt.rv_cmt as rv_cmt, to_char(cmt.rv_cmt_regdate, 'YYYY-MM-DD HH24:MI') as rv_cmt_regdate
+				, u."U_ID" u_id, u.file_path u_file_path
 	FROM 		(SELECT *
 				 FROM "REVIEWS_COMMENT"
 				 WHERE rv_no = #{rv_no}) as cmt
-	ORDER BY 	cmt.rv_cmt_regdate
+				 LEFT OUTER JOIN "USER" u
+	ON			cmt.u_no = u."U_NO"
+	ORDER BY 	cmt.rv_cmt_regdate desc
    </select>
    
    <!-- 댓글 삭제 -->
-   <delete id="deleteReviewReply" parameterType="ReviewsCommentVO">
+   <delete id="deleteReviewReply" parameterType="int">
       DELETE FROM 	"REVIEWS_COMMENT"
       WHERE 		rv_cmt_no=#{rv_cmt_no}
    </delete>

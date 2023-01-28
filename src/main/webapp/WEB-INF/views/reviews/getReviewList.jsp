@@ -1,11 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"     pageEncoding="UTF-8"%>
 
 
-	<!-- header -->
+	<!-- header 시작 -->
 	<%@ include file='../header.jsp' %>
+    <!-- header 끝 -->
+
+    <style>
+        .title, .content {
+        display: block;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+        line-height: 1.2;
+/*        height: 4.8em;*/
+        text-align: left;
+        word-wrap: break-word;
+        display: -webkit-box;
+        -webkit-line-clamp: 1 ;
+        -webkit-box-orient: vertical;
+    	}
+	</style>
 
     <!-- breadcrumb area start -->
-    <div class="breadcrumb-area style-three jarallax" style="background-image:url(../images/bg/1.png);">
+    <div class="breadcrumb-area style-three jarallax" style="background-image:url(../images/index/breadcrumb.jpg);">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -38,7 +56,12 @@
                                         <div class="single-blog">
                                             <!-- 썸네일 왼쪽 상단 태그 시작 -->
                                             <div class="thumb">
-                                                <img src="../images/blog/1.png" alt="blog">
+                                                <c:if test="${reviews.file_path != null}">
+                                                    <img src="${reviews.file_path}" alt="blog" style="width: 526px; height: 320px;">
+                                                </c:if>
+                                                <c:if test="${reviews.file_path == null}">
+                                                    <img src="/images/sticky-logo.png" alt="blog" style="width: 526px; height: 320px;">
+                                                </c:if>
                                                 <a class="tag" href="#">NEW</a>
                                             </div>
                                             <!-- 썸네일 왼쪽 상단 태그 끝 -->
@@ -48,7 +71,8 @@
                                                     <p class="date" name="rv_regdate">${reviews.rv_regdate}</p>
                                                     <h4 class="title"><a name="rv_title" href="getReview?rv_no=${reviews.rv_no}">${reviews.rv_title}</a></h4>
                                                     <p class="content" name="rv_content">${reviews.rv_content}</p>
-                                                    <a class="btn-read-more" href="getReview?rv_no=${reviews.rv_no}"><span>더 보기<i class="la la-arrow-right"></i></span></a>
+                                                    <h8><i class="fa fa-eye"></i>&nbsp;&nbsp;${reviews.rv_cnt}</h8>
+                                                    <a class="btn-read-more" href="getReview?rv_no=${reviews.rv_no}"><span style="padding-left:20em;">더 보기<i class="la la-arrow-right"></i></span></a>
                                             </div>
                                             <!-- 날짜, 제목, 내용 끝 -->
                                         </div>
@@ -98,58 +122,25 @@
                     <aside class="sidebar-area sidebar-area-4">
                         <div class="widget widget_search bg-none pd-none">
                           	<!-- 축제 일기(리뷰 작성 버튼) 시작 -->
-                            <form class="write-form">
-                                <div class="form-group">
-				                    <c:if test="${empty sessionScope.u_id}" >
-                                        <a id="test" class="btn btn-transparent signUp-btn" style="">로 그 인</a>
-                                    </c:if>
-                                    <c:if test="${not empty sessionScope.u_id}">
-                                        <button class="submit-btn" type="submit" ><a href="/reviews/insertReview">나의 일기 쓰러 가기</a><img src="/images/pencil_24.png" ></button>
-                                    </c:if>
-                                </div>
+                            <form class="write-form" action="/reviews/insertReview">
+                                <c:if test="${not empty sessionScope.u_id}">
+                                    <div class="form-group">
+                                        <button class="submit-btn" type="submit" ><a href="/reviews/insertReview">나의 일기 쓰러 가기</a>&nbsp;<img src="/images/pencil_24.png" ></button>
+                                    </div>
+                                </c:if>
                             </form></br>
                           	<!-- 축제 일기(리뷰 작성 버튼) 끝 -->
 							
 							<!-- 축제명 검색 시작 -->
-                            <form class="search-form">
+                            <form class="search-form" action="getReviewList">
                                 <div class="form-group">
-                                    <input type="text" placeholder="축제명 검색">
+                                    <input type="text" name="searchKeyword" placeholder="축제 일기 제목" >
                                 </div>
-                                <button class="submit-btn" type="submit"><i class="ti-search"></i></button>
+                                <button class="submit-btn" type="submit" style="background: #254a79;"><i class="ti-search"></i></button>
                             </form>
 							<!-- 축제명 검색 끝 -->
                         </div>
                         
-                        <!-- 검색 바 시작 -->
-                        <div class="widget widget_categories reviews" >
-                            <h2 class="widget-title">이 축제 일기만 보여줘 !</h2>
-                            <ul>
-                            	<div class="widget-tour-list-meta" style="width: 90%; padding: 0 0 0 38px;">
-                            	    <div class="single-widget-search-input-title"><i class="fa fa-plus-circle"></i> 지역별 검색</div>
-                                        <!-- 지역별 분류 시작 -->
-                                        <div class="single-widget-search-input">
-                                            <select class="nice-select w-100 custom-select" >
-                                                <option value="1">전체</option>
-                                                <option value="1월">1월</option>
-                                                <option value="2월">2월</option>
-                                                <option value="3월">3월</option>
-                                                <option value="4월">4월</option>
-                                                <option value="5월">5월</option>
-                                                <option value="6월">6월</option>
-                                                <option value="7월">7월</option>
-                                                <option value="8월">8월</option>
-                                                <option value="9월">9월</option>
-                                                <option value="10월">10월</option>
-                                                <option value="11월">11월</option>
-                                                <option value="12월">12월</option>
-                                                <option value="#온라">온라인</option>
-                                            </select>
-								        </div>
-                                        <!-- 지역별 분류 끝 -->
-								</div>
-                            </ul>
-                        </div>
-                        <!-- 검색 바 끝 -->
                         
                         <!-- 인기글 시작 -->
                         <div class="widget widget-recent-post">
@@ -159,7 +150,9 @@
                                     <c:forEach items="${rankList}" var="rank">
                                          <li>
                                             <div class="media">
-                                                <div id="media-body" class="media-body" style='background-image:url("${reviews.file_path}"); display:block;'></div>
+                                                <div id="media-body" class="media-body" style='display:block;'>
+                                                    <img src="${rank.file_path}" alt="blog" style="">
+                                                </div>
                                                 <div class="media-body">
                                                     <b><span class="post-date">${rank.rv_regdate}</span></b>
                                                     <h6 class="title"><a href="getReview?rv_no=${rank.rv_no}">${rank.rv_title}</a></h6>

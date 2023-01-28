@@ -1,4 +1,5 @@
 package com.example.controller;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -27,6 +28,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.domain.FestivalVO;
 import com.example.service.FestivalService;
+import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvException;
+
+
 
 @Controller
 @RequestMapping("/smart")
@@ -37,20 +42,20 @@ public class SmartPageController {
 	
 	//DB 안 거치고 화면만 띄우는 것들 >> 매번매번 MAPPING 하지 않고 여기 거치도록
     @RequestMapping(value = "/{url}")
-    public String userJoin(@PathVariable String url) {
-    System.out.println("경로:" + url);
-     return "smart/"+url;
+    public String moving(@PathVariable String url) {
+	    System.out.println("경로:" + url);
+	     return "smart/"+url;
     }
     
     /* 스마트 페이지 이동 */
 	@RequestMapping("/smart-page")
     public String smartPage(HttpServletRequest request,HttpSession session){
-    	String u_id = (String) session.getAttribute("u_id");  //session 값 저장
-    	System.out.println(">>>> u_id : "+u_id);
+		System.out.println("** controller : smart-page");
+		String u_id = (String) session.getAttribute("u_id");  //session 값 저장
     	/* 가장 많이 나온 태그 */
-    	if (u_id != null) {
+    	if (u_id != null) { 			
         	List<FestivalVO> rList = festivalService.getResultList(u_id);
-				System.out.println(">>>> rList : "+rList);
+				//System.out.println(">>>> rList : "+rList);
         		if (rList != null && !rList.isEmpty()) {
         			String temp1 = "";
                 	for(FestivalVO vo : rList) {
@@ -78,12 +83,12 @@ public class SmartPageController {
             		
             		HashMap<String,String> result = new HashMap<String, String>();
             		for(String key : newKeySetList) {
-            			System.out.println("key : " + key + " / " + "value : " + res.get(key));
+            			//System.out.println("key : " + key + " / " + "value : " + res.get(key));
             			String count = res.get(key);
             			key = key.substring(1);
             			result.put(key, count);
             		}
-            		System.out.println(result);
+            		//System.out.println(">>> result : "+result);
             		request.setAttribute("tags", result);
         		}
     	}
@@ -135,16 +140,11 @@ public class SmartPageController {
 				int vonum = 0;
 				for (String t : temp) {
 					FestivalVO vo2 = festivalService.getRecommResult(t);
-					//System.out.println(">>> vo2 :: "+vo2);
+					//System.out.println(">>> vo2 :: "+vo2.getFetv_name());
 					vList.add(vo2);
 					vonum++;
 				}//end of for
 				request.setAttribute("vList", vList);
-				
-				// 테스트 결과 div를 띄우기 위해 보내는 값.
-				if ( u_id != null && !vList.isEmpty() && vList.get(0) != null ) {
-					request.setAttribute("selected", "test");			
-				}
 			}//end of try2
 		} catch (Throwable e) {
 			e.printStackTrace();
@@ -152,12 +152,36 @@ public class SmartPageController {
 			
 		return "/smart/smart-page";
     }
-	
-    /* 웹소켓 통신 메소드 : 날씨 정보를 받아서 정보 반환함 (파일주소가 아닌 데이터를 반환) */
+
+	/* 혼잡도 -- 광역 별 방문자 수 */
+	@ResponseBody
+	@RequestMapping(value="/visitor", method=RequestMethod.GET)
+	public List<String[]> congestion1(HttpServletRequest request) throws IOException, CsvException  {
+		
+		// 각자 환경에 맞게 local 경로 수정
+		CSVReader csvReader = new CSVReader(new FileReader("D:/springbootFinal/Feidear/src/main/resources/static/csv/광역별_방문자_수.csv"));
+		List<String[]> lines = csvReader.readAll();
+		return lines;
+	}
+
+	/* 혼잡도 -- 방문자 수 추이 */
+	@ResponseBody
+	@RequestMapping(value="/visitorProgress", method=RequestMethod.GET)
+	public List<String[]> congestion2(HttpServletRequest request) throws IOException, CsvException  {
+		// 각자 환경에 맞게 local 경로 수정
+		CSVReader csvReader = new CSVReader(new FileReader("D:/springbootFinal/Feidear/src/main/resources/static/csv/방문자_수_추이.csv"));
+	    List<String[]> lines = csvReader.readAll();
+	    //System.out.println(lines);
+	    //lines.forEach(line -> System.out.println(String.join(",", line)));
+		return lines;
+	}
+
+	/* 웹소켓 통신 메소드 : 날씨 정보를 받아서 정보 반환함 (파일주소가 아닌 데이터를 반환) */
 	@ResponseBody
 	@RequestMapping(value="/weather", method=RequestMethod.GET)
 	public String weather(Integer idx) {
-		//System.out.println(">>>>>>>>>>>>> idx : "+idx);
+		System.out.println("** controller : weather");
+		
 		//실시간 날씨 API 받아오기 (Python(server) - java(client) socket 통신)
 		// 소켓을 선언한다.
 		try (Socket client = new Socket()) {
@@ -212,7 +236,8 @@ public class SmartPageController {
 	/* 추천 알고리즘 테스트 페이지 : 축제 정보 리스트업 */
 	@RequestMapping("/fbti-test")
 	public String getFstvList(Model m, HttpServletRequest request) {
-		List<FestivalVO> list = null;
+		System.out.println("** controller : fbti-test");
+		List<FestivalVO> list;
 		try {
 			list = festivalService.getRecommList(); //축제 정보를 받아옴 (랜덤으로 30개 추출)
 			request.setAttribute("fList", list); //view에 결과 보냄.
@@ -225,6 +250,7 @@ public class SmartPageController {
 	/* 테스트 결과 저장 */
 	@PostMapping("/insertTest")
 	public String insertTest(HttpServletRequest request,HttpSession session, @RequestParam(value="fetv_no", required=true) List<Integer> fetv_no, @RequestParam(value="r_fetv_est", required=true) List r_fetv_est) throws IOException {
+		System.out.println("** controller : insertTest");
 		String u_id = (String) session.getAttribute("u_id");  //session 값 저장
 		//검사한 적 있는지 확인
 		List<String> isRes = festivalService.getResult(u_id);
@@ -247,8 +273,8 @@ public class SmartPageController {
 			// DB에 테스트 내역 저장
 			festivalService.insertTest(res); 					
 		}//end of for
-		request.setAttribute("selected", "test");
-		return "redirect:/smart/smart-page";
+		return "redirect:/smart/smart-page?cont=recomm";
 	}
+	
 }
 

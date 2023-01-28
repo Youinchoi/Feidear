@@ -7,7 +7,7 @@
 
 
     <!-- breadcrumb area start -->
-    <div class="breadcrumb-area jarallax" style="background-image:url(images/bg/1.png);">
+    <div class="breadcrumb-area jarallax" style="background-image:url(/images/index/breadcrumb.jpg);">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12"><br>
@@ -65,7 +65,7 @@
                                     <b style="font-size: 1.3em; color: aqua;"><i class="fa fa-exclamation-triangle"></i>&nbsp&nbsp&nbsp일정이 업데이트 될 예정입니다</b>
                                 </c:if><br>
                                 
-                                <h4 style="font-size: 3.5em; width: 30em;" name = "fetv_name" id="fetv_name">${view.fetv_name}</h4>
+                                <h4 style="font-size: 3.5em; width: 25em;" name = "fetv_name" id="fetv_name">${view.fetv_name}</h4>
                             </div>
                         </div><br>
                         <div class="col-xl-9 col-lg-8">
@@ -73,27 +73,27 @@
                                 <p class="book-list-content" style="font-size: 1.5em;">${view.fetv_short}</p><br>
                             </div><br>
                             <ul class="tp-list-meta border-tp-solid">
-                                <p class="location mb-0" style="font-size: 1.3em; width: 100%; color: white;"><i class="fa fa-map-marker"></i>&nbsp ${view.fetv_place}</p><br>
+                                <p class="location mb-0" id="fetv_place" style="font-size: 1.3em; width: 100%; color: white;"><i class="fa fa-map-marker"></i>&nbsp ${view.fetv_place}</p><br>
                                 
                                 <c:if test="${not empty view.fetv_time}">
-                                    <li class="ml-0" style="font-size: 1.2em;"><i class="fa fa-clock-o"></i>&nbsp&nbsp${view.fetv_time}</li>
+                                    <li class="ml-0" style="font-size: 1.2em;"><i class="fa fa-clock-o"></i>&nbsp&nbsp${view.fetv_time}</li><br>
                                 </c:if>
                                 <c:if test="${empty view.fetv_time}">
-                                    <li class="ml-0" style="font-size: 1.2em;"><i class="fa fa-clock-o"></i>&nbsp&nbsp미정</li>
+                                    <li class="ml-0" style="font-size: 1.2em;"><i class="fa fa-clock-o"></i>&nbsp&nbsp미정</li><br>
                                 </c:if>
 
                                 <c:if test="${not empty view.fetv_tel}">
-                                    <li class="ml-0" style="font-size: 1.2em;"><i class="fa fa-phone"></i>&nbsp&nbsp${view.fetv_tel}</li>
+                                    <li class="ml-0" style="font-size: 1.2em;"><i class="fa fa-phone"></i>&nbsp&nbsp${view.fetv_tel}</li><br>
                                 </c:if>
                                 <c:if test="${empty view.fetv_tel}">
-                                    <li class="ml-0" style="font-size: 1.2em;"><i class="fa fa-phone"></i>&nbsp&nbsp홈페이지 참조</li>
+                                    <li class="ml-0" style="font-size: 1.2em;"><i class="fa fa-phone"></i>&nbsp&nbsp홈페이지 참조</li><br>
                                 </c:if>
 
                                 <c:if test="${not empty view.fetv_homePage}">
-                                    <li class="ml-0" style="font-size: 1.2em;"><i class="fa fa-info-circle"></i>&nbsp&nbsp<a href = "${view.fetv_homePage}">${view.fetv_homePage}</a></li>
+                                    <li class="ml-0" style="font-size: 1.2em;"><i class="fa fa-info-circle"></i>&nbsp&nbsp<a href = "${view.fetv_homePage}">${view.fetv_homePage}</a></li><br>
                                 </c:if>
                                 <c:if test="${empty view.fetv_homePage}">
-                                    <li class="ml-0" style="font-size: 1.2em;"><i class="fa fa-info-circle"></i>&nbsp&nbsp등록된 정보가 없습니다</li>
+                                    <li class="ml-0" style="font-size: 1.2em;"><i class="fa fa-info-circle"></i>&nbsp&nbsp등록된 정보가 없습니다</li><br>
                                 </c:if>
 
                                 <c:if test="${not empty view.fetv_fee}">
@@ -105,7 +105,10 @@
 
                                 <i style="font-size: 1.2em; color: darkorange;">${view.fetv_tag}</i>
                             </ul>
-                        </div>  
+                        </div> 
+                        <input type="hidden" id="fetv_lat" value="${view.fetv_lat}"> 
+                        <input type="hidden" id="fetv_long" value="${view.fetv_long}"> 
+                        <input type="hidden" id="fetv_addr" value="${view.fetv_addr}"> 
                         </form> 
                     </div>
                 </div>
@@ -123,9 +126,11 @@
                         <div class="package-included-location">
                             <h4 class="single-page-small-title" style="font-size: 2.7em;">축제 사진</h4><br>
                             <div>
-                                <img src="/images/others/damgom.jpg">
-                                <img src="/images/others/damgom.jpg">
-                            </div><br><br>
+                                <img src="/festival_imgs/${view.fetv_image}">
+                            </div><br><br><br>
+
+                            <!-- 여기 아래엔 건드린거 없음.. 근데 추천코스 지우면 사이드바 고장남...... 환장 by.유인 -->
+
                             <h4 class="single-page-small-title" style="font-size: 2.7em;">추천 코스</h4><br>
                             <div class="row">
                                 <div class="col-lg-4 col-md-4">
@@ -177,11 +182,16 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div><br>
+
                         <div class="service-location-map">
                             <h4 class="single-page-small-title" style="font-size: 2.7em; color: darkorange;">Service Location</h4>
-                                <div id="map" style="width:100%;height:350px;"></div>
+                                <input type="button" id="matjip" value="식당">
+                                <input type="button" id="parkingLot" value="주차장">
+                                <input type="button" id="hotel" value="숙소">
+                                <div id="map" style="width:100%;height:350px; margin-top: 2%;"></div>
                         </div><br><br>
+                        
                         <div class="comments-area tour-details-review-area">
                             <h4 class="comments-title">Reviews</h4>
                             <ul class="comment-list mb-0">
@@ -205,7 +215,7 @@
                                     </div>
                                 </li>
                             </ul>
-                        </div>
+                        </div><br>
                         <div class="location-review-area">
                             <form class="tp-form-wrap bg-gray tp-form-wrap-one">
                                 <div class="row">
@@ -323,6 +333,7 @@
 
     <!-- main js -->
     <script src="/js/main.js"></script>
+    <script src="/js/infra.js"></script>
 
     <script type="text/javascript">
         window.onload = function () {
@@ -354,9 +365,12 @@
     // 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
     var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 
+    var lat = $('#fetv_lat').val();
+    var long = $('#fetv_long').val();
+
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
-    center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+    center: new kakao.maps.LatLng(lat, long), // 지도의 중심좌표
     level: 3 // 지도의 확대 레벨
     };  
 
@@ -364,46 +378,7 @@
     // 지도를 생성합니다    
     var map = new kakao.maps.Map(mapContainer, mapOption); 
 
-    // 장소 검색 객체를 생성합니다
-    var ps = new kakao.maps.services.Places(); 
 
-    // 키워드로 장소를 검색합니다
-    ps.keywordSearch('이태원 맛집', placesSearchCB); 
-
-    // 키워드 검색 완료 시 호출되는 콜백함수 입니다
-    function placesSearchCB (data, status, pagination) {
-    if (status === kakao.maps.services.Status.OK) {
-
-    // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
-    // LatLngBounds 객체에 좌표를 추가합니다
-    var bounds = new kakao.maps.LatLngBounds();
-
-    for (var i=0; i<data.length; i++) {
-    displayMarker(data[i]);    
-    bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
-        }       
-
-    // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
-    map.setBounds(bounds);
-        } 
-    }
-
-    // 지도에 마커를 표시하는 함수입니다
-    function displayMarker(place) {
-        
-        // 마커를 생성하고 지도에 표시합니다
-        var marker = new kakao.maps.Marker({
-            map: map,
-            position: new kakao.maps.LatLng(place.y, place.x) 
-        });
-
-        // 마커에 클릭이벤트를 등록합니다
-        kakao.maps.event.addListener(marker, 'click', function() {
-            // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
-            infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
-            infowindow.open(map, marker);
-        });
-    }
 </script>             
     
     <jsp:include page="footer.jsp"></jsp:include>

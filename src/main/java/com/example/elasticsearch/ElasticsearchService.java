@@ -30,7 +30,7 @@ public class ElasticsearchService {
 	public ArrayList<ElasticsearchVO> getByQuery(String query) {
 		try {
 			// 검색 작업을 수행하기 위해 SearchRequest 객체 생성(조회하려는 인덱스를 지정해야 한다 - 미지정 시 전체 인덱스를 대상으로 조회)
-			SearchRequest request = new SearchRequest("feidear_festival_list"); // 인덱스명
+			SearchRequest request = new SearchRequest("feidear_festival_list2"); // 인덱스명
 			
 			// SearchRequest에 넣을 쿼리 소스를 만들기 위한 소스 빌더
 			SearchSourceBuilder ssb = new SearchSourceBuilder();

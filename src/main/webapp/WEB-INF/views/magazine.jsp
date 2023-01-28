@@ -4,9 +4,26 @@
 	<!-- header.jsp -->
 	<%@ include file='header.jsp' %>
 	<!-- header.jsp 끝 -->
+	
+	<style>
+        .title, .content{
+        display: block;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+        line-height: 1.2;
+/*        height: 4.8em;*/
+        text-align: left;
+        word-wrap: break-word;
+        display: -webkit-box;
+        -webkit-line-clamp: 1 ;
+        -webkit-box-orient: vertical;
+    	}
+	</style>
 
     <!-- 매거진 상단바 제목 밑 글 area start -->
-    <div class="breadcrumb-area jarallax" style="background-image:url(images/bg/1.png);">
+    <div class="breadcrumb-area jarallax" style="background-image:url(images/index/breadcrumb.jpg);">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -31,13 +48,11 @@
                     <div class="single-blog">
                         <div class="thumb">
                         	<c:if test="${mgzList.file_path != null}">
-                            	<img src="${mgzList.file_path}" alt="blog" style="width:526px; height:280px;">
+                            	<img src="${mgzList.file_path}" alt="blog" style="width:500px; height:280px;">
 							</c:if>
                         	<c:if test="${mgzList.file_path == null}">
-                            	<img src="images/blog/1.png" alt="blog" style="width:526px; height:280px;">
+                            	<img src="images/blog/magazine_pic.png" alt="blog" style="width:500px; height:280px;">
 							</c:if>
-				                            
-                            <a class="tag" href="#">NEW</a>
                         </div>
                         <div class="single-blog-details">
                             <p class="date">${mgzList.mgz_regdate}</p>

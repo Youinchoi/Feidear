@@ -4,65 +4,8 @@
  	
  	<!-- header -->
     <%@ include file='../header.jsp' %>
-
-    <!-- //. sign up Popup -->
-    <div class="signUp-popup login-register-popup" id="signUp-popup">
-        <div class="login-register-popup-wrap">
-            <div class="row no-gutters">
-                <div class="col-lg-6">
-                    <div class="thumb">
-                        <img src="images/others/signup.png" alt="img">
-                    </div>
-                </div>
-                <div class="col-lg-6 align-self-center">
-                    <div class="shape-thumb">
-                        <img src="images/others/signup-shape.png" alt="img">
-                    </div>
-                    <form class="login-form-wrap">
-                        <h4 class="text-center">Sign Up</h4>
-                        <div class="single-input-wrap style-two">
-                            <input type="text" placeholder="Name">
-                            <span class="single-input-title"><i class="fa fa-user"></i></span>
-                        </div>
-                        <div class="single-input-wrap style-two">
-                            <input type="text" placeholder="Email">
-                            <span class="single-input-title"><i class="fa fa-envelope"></i></span>
-                        </div>
-                        <div class="single-input-wrap style-two">
-                            <input type="text" placeholder="Password">
-                            <span class="single-input-title"><i class="fa fa-lock"></i></span>
-                        </div>
-                        <label class="checkbox">
-                            <input type="checkbox">
-                            <span>Remember me</span>
-                        </label>
-                        <div class="single-input-wrap style-two">
-                            <button class="btn btn-yellow w-100">Sign Up</button>
-                        </div>
-                        <div class="sign-in-btn">I already have an account. <a href="#">Sign In</a></div> 
-                        <div class="social-wrap">
-                            <p>Or Continue With</p>
-                            <ul class="social-icon">
-                                <li>
-                                    <a class="facebook" href="#" target="_blank"><i class="fa fa-facebook  "></i></a>
-                                </li>
-                                <li>
-                                    <a class="twitter" href="#" target="_blank"><i class="fa fa-twitter  "></i></a>
-                                </li>
-                                <li>
-                                    <a class="pinterest" href="#" target="_blank"><i class="fa fa-pinterest"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- //. sign up Popup End -->
-
     <!-- breadcrumb area start -->
-    <div class="breadcrumb-area jarallax" style="background-image:url(images/bg/1.png);">
+    <div class="breadcrumb-area jarallax" style="background-image:url(/images/index/breadcrumb.jpg);">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">

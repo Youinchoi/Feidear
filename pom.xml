@@ -89,8 +89,17 @@
       <dependency>
          <groupId>org.springframework.boot</groupId>
          <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
-         <!-- <version>2.5.7</version> -->
       </dependency>
+     <!-- <version>2.5.7</version> -->
+     
+     <!-- csv 파일 여는 것 -->
+	<!-- https://mvnrepository.com/artifact/com.opencsv/opencsv -->
+	<dependency>
+	    <groupId>com.opencsv</groupId>
+	    <artifactId>opencsv</artifactId>
+	    <version>5.7.1</version>
+	</dependency>
+      
    </dependencies>
    <build>
       <plugins>

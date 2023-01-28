@@ -1,4 +1,15 @@
-         /************** smart-page.jsp : 여행 성향 분석 ***************/
+    /************** smart-page.jsp : 혼잡도 체크 ***************/
+    .chart-wrapper{
+    	text-align: center;
+    }
+    
+    .chartDiv, #select_chart_div #select_chart, #select_chart_div #testtest {
+    	text-align:center;
+    	display : inline-block;
+    	margin : 0 -2px;
+    }
+    
+    /************** smart-page.jsp : 여행 성향 분석 ***************/
       .fstv-grid{
          display : grid;
           margin-bottom: 5px;   
@@ -71,9 +82,20 @@
 	     }
      
       /************** smart-page.jsp : 실시간 날씨 검색 ***************/
+      
+      #searchArea {
+    	text-align: center;
+      }
+      
+      #selectArea, #testtest2{
+    	text-align:center;
+    	display : inline-block;
+    	margin : 0 -2px;
+      }
+      
       .categ-filter {
          float : left;
-         width : 40%;
+         width : 100%;
          margin-right :0.5vw;
       }
       

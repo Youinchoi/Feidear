@@ -13,7 +13,7 @@ public interface ReviewsCommentService {
 	public void updateReviewReply(ReviewsCommentVO vo);
 	
 	// 댓글 삭제 (댓글 번호)
-	void deleteReviewReply(Integer rv_cmt_no);
+	void deleteReviewReply(int rv_cmt_no);
 	
 	// 댓글 조회 (리뷰 번호)
 	public List<ReviewsCommentVO> getReviewReply(Integer rv_no);

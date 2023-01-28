@@ -7,7 +7,7 @@
  
   
     <!-- breadcrumb area start -->
-    <div class="breadcrumb-area jarallax" style="background-image:url(images/bg/1.png);">
+    <div class="breadcrumb-area jarallax" style="background-image:url(images/index/breadcrumb.jpg);">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -35,7 +35,7 @@
             <div class="row">
                 <div class="col-xl-5 offset-xl-1 col-lg-6">
                     <div class="thumb">
-                        <img src="images/others/human.jpg" alt="img">
+						<img src="images/index/sign-up.jpg" alt="img">
                     </div>
                 </div>
                 			<div class="col-xl-3 col-lg-4">

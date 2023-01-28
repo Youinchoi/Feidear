@@ -63,7 +63,7 @@
     <!-- //. sign up Popup End -->
 
     <!-- breadcrumb area start -->
-    <div class="breadcrumb-area jarallax" style="background-image:url(images/bg/1.png);">
+    <div class="breadcrumb-area jarallax" style="background-image:url(/images/index/breadcrumb.jpg);">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">

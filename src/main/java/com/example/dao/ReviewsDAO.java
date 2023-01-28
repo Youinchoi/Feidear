@@ -26,13 +26,9 @@ public interface ReviewsDAO {
 	
 	public int listCount() throws Exception;				// 게시물 총 갯수
 
+	public void updateView_cnt(Integer rv_no);				// 리뷰 조회수 카운팅
+	
+	// 관리자 - 우측의 내가 쓴 리뷰 가져오기
+	public List<ReviewsVO> getReviewListAdmin(int u_no);
 } // end of interface
 
-
-/*
- *	기본적인 구조라면 인터페이스를 구현한 클래스 BoardDAOImpl.java 가 필요함
- *	그 클래스를 @Repository 로 지정해야 함
- * 	@Mapper 를 사용하면 이 단계들을 뛰어넘어 사용 가능.
- * 	이름을 맞춰주어야 사용 가능함.
- * 
- */

@@ -7,7 +7,7 @@
 
 
     <!-- breadcrumb area start -->
-    <div class="breadcrumb-area style-two jarallax" style="background-image:url(images/bg/1.png);">
+    <div class="breadcrumb-area style-two jarallax" style="background-image:url(images/index/breadcrumb.jpg);">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -31,10 +31,9 @@
                 <div class="col-xl-9 col-lg-8 order-lg-12">
                     <div class="tp-tour-list-search-area">
                         <div class="row">
-                            <div class="col-xl-3 col-sm-6">
+                            <div class="col-xl-6 col-sm-12">
                                 <label class="single-input-wrap">
-                                    <i class="fa fa-paper-plane"></i>
-                                    <input type="text" placeholder="이거 지우면 단차생김 ㅠㅠ">
+                                    <strong>지금 진행 중인 축제가 궁금하다면? <a href="/festival/calendar" style="color:#f3941e;">▶Click!◀</a></strong>
                                 </label>
                             </div>
                         </div>
@@ -47,7 +46,7 @@
                         <div class="single-destinations-list style-three">
                         
                             <div class="thumb">
-                                <img src="/images/destination-list/12.png" alt="list">
+                                <img src="/festival_imgs/${list.fetv_image}" alt="list" style="width:526px; height:260px;">
                             </div>
                             
                             <div class="details">

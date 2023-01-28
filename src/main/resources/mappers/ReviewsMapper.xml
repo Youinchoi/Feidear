@@ -7,45 +7,49 @@
 	<!-- 리뷰 작성하기 -->
 	<insert id="insertReview" parameterType="ReviewsVO">
 		INSERT INTO "REVIEWS" 
-			  		(rv_title, rv_content, rv_image, rv_tag, rv_regdate
+			  		(rv_title, rv_content, rv_image, u_no, rv_regdate
 			  		<if test="file_name !=null">
 			  		, file_name, origin_file_name, file_size, file_path
 			  		</if>)
-		VALUES	 	(#{rv_title}, #{rv_content}, #{rv_image}, #{rv_tag}
-					,  NOW()
+		VALUES	 	(#{rv_title}, #{rv_content}, #{rv_image}, #{u_no}, NOW()
 					<if test="file_name !=null">
-					, #{file_name}, #{origin_file_name}
-					, #{file_size}, #{file_path}
+					, #{file_name}, #{origin_file_name}, #{file_size}, #{file_path}
 					</if>)
 	</insert>
 
 	<!-- 리뷰 목록 내림차순으로 가져오기 -->
 	<select id="getReviewList" resultType="ReviewsVO" parameterType="ReviewsVO">
-		select *
-		from (
+		SELECT to_char(rv_regdate, 'YYYY-MM-DD HH24:MI') AS rv_regdate, rv_no, rv_title, rv_content, rv_cnt, file_path
+		FROM (
 			   select *,
 			   row_number () over(order by rv_no desc) as rnum
 		 	   from "REVIEWS"
 	 		 ) rv
-		where rnum between #{rowStart} AND #{rowEnd}
-		order by rv_no desc
+		WHERE rnum between #{rowStart} AND #{rowEnd}
+		ORDER BY rv_no desc
 	</select>
 		<!-- ORDER BY 	rv_no DESC -->
 		
-	<!-- 명예의 전당 가져오기 -->
+	<!-- 인기글 가져오기 -->
 	<select id="getRankList" parameterType="ReviewsVO" resultType="ReviewsVO">
-		SELECT 		*
+		SELECT 		rv_title, to_char(rv_regdate, 'YYYY-MM-DD HH24:MI') AS rv_regdate, file_path, rv_cnt
 		FROM 		"REVIEWS"
-		WHERE		rv_like is not null
-		ORDER BY 	rv_like desc
+		WHERE		rv_cnt is not null
+		ORDER BY 	rv_cnt desc
 		LIMIT 3
 	</select>
 
 	<!-- 리뷰 상세 보기 -->
-	<select id="getReview" resultType="ReviewsVO">
-		SELECT		* 
-		FROM		"REVIEWS"
-		WHERE		rv_no = #{rv_no}
+	<select id="getReview" parameterType="ReviewsVO" resultType="ReviewsVO">
+		SELECT		to_char(r.rv_regdate, 'YYYY-MM-DD HH24:MI') as rv_regdate, r.rv_no rv_no
+					, r.u_no u_no, r.rv_title rv_title, r.rv_content rv_content, u."U_COMMENT" u_comment
+					, u."U_ID" u_id, u.file_path file_path, r.rv_cnt rv_cnt, r.file_path r_file
+		FROM 		 (SELECT  	*
+					  FROM 		"REVIEWS"
+					  where 	rv_no=#{rv_no}) r
+		 			LEFT OUTER JOIN "USER" u
+		ON			r.u_no = u."U_NO"
+		<!--  ORDER BY 	r.rv_no desc-->
 	</select>
 	
 	<!-- 리뷰 삭제하기 -->
@@ -58,17 +62,20 @@
 	<update id="updateReview" parameterType="ReviewsVO">
 		UPDATE "REVIEWS" SET
 				rv_title 	= #{rv_title},
-				rv_content  = #{rv_content},
-				rv_tag		= #{rv_tag}
+				rv_content  = #{rv_content}
 		WHERE	rv_no 		= #{rv_no}
 	</update>
-				<!-- 리뷰 수정하기에서 일단 빼놓은 부분  
-				rv_tag 		= #{rv_tag},
-				rv_image 	= #{rv_image} -->
+				
+	<!-- 리뷰 조회수 count -->
+	<update id="updateView_cnt" parameterType="Integer">
+		UPDATE	"REVIEWS"
+		SET		rv_cnt = rv_cnt + 1
+		WHERE	rv_no = #{rv_no}
+	</update>
 				
 	<!-- 내 리뷰 목록 전부 가져오기 / 마이페이지 -->
 	<select id="getMyReviewList" resultType="ReviewsVO" parameterType="ReviewsVO">
-		select *
+		select  rv_title, rv_content, rv_no, to_char(rv_regdate,'YYYY-MM-DD HH24:MI') rv_regdate
 		from (
 			   select *,
 			   row_number () over(order by rv_no desc) as rnum
@@ -89,6 +96,14 @@
 		  FROM "REVIEWS"
 		 WHERE rv_no > 0
 	]]>
+	</select>
+	
+	<!-- ............ ADMIN ............ -->
+	<!-- 관리자 - 우측의 내가 쓴 리뷰 가져오기 -->
+	<select id="getReviewListAdmin" parameterType="int" resultType="ReviewsVO">
+	SELECT *
+	FROM "REVIEWS"
+	WHERE u_no = #{u_no}
 	</select>
 	
 </mapper>

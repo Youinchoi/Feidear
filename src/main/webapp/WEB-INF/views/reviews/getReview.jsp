@@ -4,62 +4,6 @@
  	<!-- header -->
      <%@ include file='../header.jsp' %>
  	
-    <!-- //. sign up Popup -->
-    <div class="signUp-popup login-register-popup" id="signUp-popup">
-        <div class="login-register-popup-wrap">
-            <div class="row no-gutters">
-                <div class="col-lg-6">
-                    <div class="thumb">
-                        <img src="../images/others/signup.png" alt="img">
-                    </div>
-                </div>
-                <div class="col-lg-6 align-self-center">
-                    <div class="shape-thumb">
-                        <img src="../images/others/signup-shape.png" alt="img">
-                    </div>
-                    <form class="login-form-wrap">
-                        <h4 class="text-center">Sign Up</h4>
-                        <div class="single-input-wrap style-two">
-                            <input type="text" placeholder="Name">
-                            <span class="single-input-title"><i class="fa fa-user"></i></span>
-                        </div>
-                        <div class="single-input-wrap style-two">
-                            <input type="text" placeholder="Email">
-                            <span class="single-input-title"><i class="fa fa-envelope"></i></span>
-                        </div>
-                        <div class="single-input-wrap style-two">
-                            <input type="text" placeholder="Password">
-                            <span class="single-input-title"><i class="fa fa-lock"></i></span>
-                        </div>
-                        <label class="checkbox">
-                            <input type="checkbox">
-                            <span>Remember me</span>
-                        </label>
-                        <div class="single-input-wrap style-two">
-                            <button class="btn btn-yellow w-100">Sign Up</button>
-                        </div>
-                        <div class="sign-in-btn">I already have an account. <a href="#">Sign In</a></div> 
-                        <div class="social-wrap">
-                            <p>Or Continue With</p>
-                            <ul class="social-icon">
-                                <li>
-                                    <a class="facebook" href="#" target="_blank"><i class="fa fa-facebook  "></i></a>
-                                </li>
-                                <li>
-                                    <a class="twitter" href="#" target="_blank"><i class="fa fa-twitter  "></i></a>
-                                </li>
-                                <li>
-                                    <a class="pinterest" href="#" target="_blank"><i class="fa fa-pinterest"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- //. sign up Popup End -->
-
     <!-- breadcrumb area start -->
     <div class="breadcrumb-area style-three jarallax" style="background-image:url(../images/bg/1.png);">
         <div class="container">
@@ -86,21 +30,19 @@
                     <form action="updateReview" class="tp-form-wrap" method="post">
                         <div class="single-blog mb-0">
                             <div class="thumb">
-                                <img src="../images/blog-details/1.png" alt="blog">
+                                <img src="${reviews.r_file}" alt="blog">
                             </div>
                             <div class="single-blog-details">
                                 <input type="hidden" name="rv_no" id="rv_no" value="${reviews.rv_no}">
-                                <p class="date mb-0" name="rv_regdate">작성일 : ${reviews.rv_regdate}</p>
-                                <h3 class="title" name="rv_title">${reviews.rv_title}</h3>
+                                    <div>
+                                        <span class="date mb-0" name="rv_regdate">작성일 : ${reviews.rv_regdate}</span>
+                                        <p style="margin-left:50em;">조회수 : ${reviews.rv_cnt}</p>
+                                    </div>
+                                <h3 class="title" name="rv_title" id="rv_title">${reviews.rv_title}</h3>
                                 <p class="content mb-0" name="rv_content">${reviews.rv_content}</p>
                             </div>
                         </div>
-                    <!-- 인용문구 시작 details-blockquote-start -->
-                    <blockquote class="blockquote tp-blockquote bg-dark-blue">
-                      <p class="mb-0">인용 문구 어쩌구 저쩌구 인용 문구 어쩌구 저쩌구 인용 문구 어쩌구 저쩌구 인용 문구 어쩌구 저쩌구 </p>
-                    </blockquote>
-                    <!-- 인용문구 끝 details-blockquote-end -->
-                    <p>리뷰 내용 어쩌구 저쩌구 리뷰 내용 어쩌구 저쩌구 리뷰 내용 어쩌구 저쩌구 리뷰 내용 어쩌구 저쩌구 리뷰 내용 어쩌구 저쩌구 </p>
+                    
                     <h4 class="single-page-small-title mt-5">축제 사진</h4>
 
                     <!-- 축제 사진 시작 details-gallery-start -->
@@ -112,7 +54,6 @@
                                 <div class="tp-gallery-item col-md-4 col-sm-6 mb-10">
                                     <div class="tp-gallery-item-img">
                                         <img src="../images/blog-details/2.png" alt="image">
-                                        ${reviews.rv_image}
                                     </div>
                                 </div>
                                 <!-- gallery-item 2-->
@@ -159,43 +100,15 @@
                     <p>나는 동영상 아래 설명이야 히히</p>
                     <p>난 동영상 아래 설명 아래 설명이야 히히힛</p>
 
-                    <!-- 좋아요 및 태그 시작 -->
-                    <div class="row tag-share-area">
-                        <!-- 좋아요 시작 -->
-                        <div class="col-lg-6">
-                            <span class="mr-2">리뷰 좋아요 </span>
-                            <ul class="social-icon style-two">
-                                <li>
-                                    <a class="linkedin" href="#"><i class="fa fa-thumbs-o-up"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- 좋아요 끝 -->
-
-                        <div class="col-xl-5 col-lg-6 offset-xl-1">
-                            <form action="updateReview" class="tp-form-wrap" method="post">
-                                <div class="single-blog-post-tags d-flex">
-                                    <span class="all-tags-title">관련 태그 :</span>
-                                    <div class="all-tags">
-                                        <c:forEach items="${reviewList}" var="reviews">
-                                            <a href="#">${reviews.rv_tag}</a>
-                                        </c:forEach>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <!-- 좋아요 및 태그 끝 -->
-
                     <nav class="navigation post-navigation single-post-navigation">
                         <div class="nav-links tp-control-nav">
-                            <div class="row">
+                            <div class="row" style="margin-top: 3em;">
                                 <div class="col-xl-5 col-lg-6 col-6 ">
                                     <div class="nav-previous w-100">
                                         <a href="#">
-                                            <span class="slick-arrow float-left"><i class="la la-long-arrow-left"></i></span>
+                                            <span class="slick-arrow float-left" id="last_review"><i class="la la-long-arrow-left"></i></span>
                                             <span class="nav-post-text pl-2 float-left">이전 리뷰 : </span>
-                                            <h4 class="float-left">${reviews.rv_title}</h4>
+                                            <h4 class="float-left">이전 리뷰 보기</h4>
                                         </a> 
                                     </div>
                                 </div>
@@ -204,100 +117,86 @@
                                         <a href="#">
                                             <span class="pr-2 nav-post-text">다음 리뷰 : </span>
                                             <span class="slick-arrow float-right"><i class="la la-long-arrow-right"></i></span>
-                                            <h4 class="float-right">${reviews.rv_title}</h4>
+                                            <h4 class="float-right">다음 리뷰 보기</h4>
                                         </a> 
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </nav>
-                    <!-- author-area-start -->
+
+                    <!-- 리뷰 작성자 시작 author-area-start -->
                     <div class="author-area media">
                         <div class="media-left">
-                            <img src="../images/blog-details/8.png" alt="img">
+                            <img src="${reviews.file_path}" alt="img">
                         </div>
                         <div class="media-body">
                             <h4>리뷰 작성자 정보</h4>
-                            <h7><b>리뷰 작성자</b>${reviews.u_no}</h7>
-                            <p><b>리뷰 작성자 소개</b>${user.u_comment}</p>
+                            <h7><b>리뷰 작성자</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${reviews.u_id}</h7>
+                            <p><b>리뷰 작성자 소개</b>&nbsp;&nbsp;&nbsp;&nbsp;${reviews.u_comment}</p>
                             <ul class="social-icon style-three">
-                                <li>
-                                    <a class="facebook" href="#"><i class="fa fa-facebook"></i></a>
-                                </li>
-                                <li>
-                                    <a class="twitter" href="#"><i class="fa fa-twitter"></i></a>
-                                </li>
-                                <li>
-                                    <a class="pinterest" href="#"><i class="fa fa-instagram"></i></a>
-                                </li>
-                                <li>
-                                    <a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a>
-                                </li>
                             </ul>
                         </div>
                     </div>
-                    <!-- author-area-end -->
-                    <!-- comments-area-start -->
+                    <!-- 리뷰 작성자 끝 author-area-end -->
+
+                    <!-- 댓글 시작 comments-area-start -->
                     <div class="comments-area">
                         <h4 class="comments-title">댓 글</h4>
                         <ul class="comment-list" id="rv_cmtList">
+                            <input type="hidden" name="rv_cmt_no" value="${sessionScope.rv_cmt_no}">
                             <li>
                                 <div class="single-comment-wrap">
+                                    
                                     <div class="thumb">
-                                        <img src="../images/blog-details/9.png" alt="img">
+                                        <img src="${user.file_path}" alt="img">
                                     </div>
                                     <div class="content">
-                                        <h4 class="title">${reviews.u_no}</h4>
+                                        <h4 class="title">${sessionScope.u_id}</h4>
                                         <span class="date">${list.rv_cmt_regdate}</span>
                                         <p>${list.rv_cmt}</p>
                                         <!-- <a href="#" class="reply btn btn-yellow"><span><i class="fa fa-reply"></i>답글 달기</span></a> -->
                                     </div>
                                 </div>
                             </li>
-                            <!--<li>
-                                 <ul class="children">
-                                    <li >
-                                        <div class="single-comment-wrap">
-                                            <div class="thumb">
-                                                <img src="../images/blog-details/10.png" alt="img">
-                                            </div>
-                                            <div class="content">
-                                                <h4 class="title">Laurie</h4>
-                                                <span class="date">17 SEP 2019</span>
-                                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren</p>
-                                                <a href="#" class="reply btn btn-yellow"><span><i class="fa fa-reply"></i>Reply</span></a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul> 
-                            </li>-->
                         </ul>
                     </div>
                 </form>
-                    <!-- comments-area-end -->
+                    <!-- 댓글 끝 comments-area-end -->
+
                     <!-- blog-comment-area start -->
-                    <div class="blog-comment-area">
-                        <form class="tp-form-wrap bg-gray tp-form-wrap-one" action="">
-                            <h4 class="single-page-small-title">댓글 작성하기</h4>
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6">
-                                    <label class="single-input-wrap">
-                                        <input type="hidden" name="u_no" value="${reviews.u_no}" >
-                                        <span class="single-input-title">아이디 : ${reviews.u_no} </span>
-                                    </label>
+                    <!-- 댓글 작성 폼 시작 -->
+                    <c:if test="${empty sessionScope.u_id}">
+                        <div class="blog-comment-area" style="text-align:center; padding-top:2.7vw;">
+                            <h4>로그인이 필요한 서비스입니다.</h4>
+                        </div>
+                    </c:if>
+                    <c:if test="${not empty sessionScope.u_id}">
+                        <div class="blog-comment-area">
+                            <form class="tp-form-wrap bg-gray tp-form-wrap-one" action="">
+                                <h4 class="single-page-small-title">댓글 작성하기</h4>
+                                <div class="row">
+                                    
+                                    <div class="col-lg-6 col-md-6">
+                                        <label class="single-input-wrap">
+                                            <input type="hidden" name="u_no" value="${sessionScope.u_no}">
+                                            <span class="single-input-title">아이디 : ${sessionScope.u_id}</span>
+                                        </label>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <label class="single-input-wrap">
+                                            <span class="single-input-title">댓글 내용</span>
+                                            <textarea id="rv_cmt" name="rv_cmt"></textarea>
+                                        </label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="button" class="btn btn-yellow" id="submitBtn" value="저 장">
+                                    </div>
                                 </div>
-                                <div class="col-lg-12">
-                                    <label class="single-input-wrap">
-                                        <span class="single-input-title">댓글 내용</span>
-                                        <textarea id="rv_cmt" name="rv_cmt"></textarea>
-                                    </label>
-                                </div>
-                                <div class="col-12">
-                                    <input type="button" class="btn btn-yellow" id="submitBtn" value="저 장">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                            </form>
+                        </div>
+                    </c:if>
+                    <!-- 댓글 작성 폼 끝 -->
                     <!-- blog-comment-area start -->
                 </div>
                 
@@ -308,17 +207,26 @@
                             <h2 class="widget-title">인 기 글</h2>
                             <div>
 	                            <ul>
-                                    <c:forEach items="${rankList}" var="rank">
-                                        <li  style="padding-top: 15px; padding-bottom: 15px;">
-                                            <div class="media">
-                                                <img src="/upload_img_file/부적5.png" alt="widget" style="width:35%;">
-                                                <div class="media-body" style="margin: 10px;">
-                                                    <span class="post-date">${rank.rv_regdate}</span>
-                                                    <h6 class="title"><a href="getReview?rv_no=${rank.rv_no}">${rank.rv_title}</a></h6>
+                                    <form action="getReview?rv_no=${reviews.rv_no}" class="tp-form-wrap" method="post">
+                                         <c:forEach items="${rankList}" var="rank">
+                                            <li>
+                                                <div class="media">
+                                                    <div id="media-body" class="media-body" style='display:block;'>
+                                                        <c:if test="${rank.file_path != null}">
+                                                            <img src="${rank.file_path}" alt="blog">
+                                                        </c:if>
+                                                        <c:if test="${rank.file_path == null}">
+                                                            <img src="/images/blog/12.png" alt="blog" style="width: 15em; height:auto;">
+                                                        </c:if>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h7 class="post-date"><b>${rank.rv_regdate}</b></h7>
+                                                        <h6 class="title"><a href="getReview?rv_no=${rank.rv_no}">${rank.rv_title}</a></h6>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </li>
-                                    </c:forEach>
+                                            </li>
+                                        </c:forEach>
+                                    </form>
 	                            </ul>
                         	</div>
                         </div>
@@ -355,9 +263,7 @@
     </div>
 </div>
 <!-- newslatter area End -->
-    
-    <!-- footer -->
-    <jsp:include page="../footer.jsp"></jsp:include>
+
 
     <!-- Additional plugin js -->
     <script src="../js/jquery-2.2.4.min.js"></script>
@@ -382,11 +288,7 @@
     <!-- main js -->
     <script src="../js/main.js"></script>
 
-    <!--<script type="text/javascript">
-        $("#submitBtn").click(function(){
-
-        })
-
-    </script>-->
+    <!-- footer -->
+    <jsp:include page="../footer.jsp"></jsp:include>
 </body>
 </html>

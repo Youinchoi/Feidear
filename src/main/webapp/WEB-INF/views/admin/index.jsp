@@ -106,8 +106,7 @@
 
           <div class="row">
 
-
-            <iframe src="http://52.78.179.3:5601/app/dashboards#/view/c6f12630-971a-11ed-9f07-8dd3f249f4a0?embed=true&_g=(filters%3A!()%2CrefreshInterval%3A(pause%3A!t%2Cvalue%3A0)%2Ctime%3A(from%3Anow-15m%2Cto%3Anow))" width="100%" height="1200px"></iframe>
+            <iframe src="http://3.35.210.75:5601/app/dashboards#/view/c6f12630-971a-11ed-9f07-8dd3f249f4a0?embed=true&_g=(filters%3A!()%2CrefreshInterval%3A(pause%3A!t%2Cvalue%3A0)%2Ctime%3A(from%3Anow-15m%2Cto%3Anow))" width="100%" height="1200px"></iframe>
 
           </div>
  

@@ -193,21 +193,6 @@
 										</div>
 									</div>
 									<div class="item form-group">
-										<label class="col-form-label col-md-3 col-sm-3 label-align">축제
-											상태 <span class="required">*</span>
-										</label>
-										<div class="col-md-6 col-sm-6 ">
-											<select id="fstv_state" name="fstv_state"
-												class="select2_single form-control" tabindex="-1">
-												<option value="0">진행 중</option>
-												<option value="1">진행 전</option>
-												<option value="2">종료</option>
-												<option value="3">취소</option>
-												<option value="4">미정</option>
-											</select>
-										</div>
-									</div>
-									<div class="item form-group">
 										<label class="col-form-label col-md-3 col-sm-3 label-align"
 											for="FSTV_STARTDATE">시작일 <span class="required">*</span>
 										</label>

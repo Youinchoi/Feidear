@@ -43,6 +43,16 @@ public class MainController {
     @RequestMapping(value = "/index")
     public void index(MagazineVO vo, Model m) throws Exception {
     	List<MagazineVO> list = magazineService.getMagazine3();
+    	
+    	//<div>로 되어있는 content 맨 앞 줄만 잘라서 보여주기
+        for (MagazineVO vo2 : list) {
+            String cont = vo2.getMgz_content();
+            int idx = cont.indexOf("<div>");
+            if (idx != -1) {
+               cont = cont.substring(0, idx);             
+               vo2.setMgz_content(cont);
+            }
+         }   	
     	m.addAttribute("mm",list);
     	System.out.println("index 실행");
     }
@@ -115,6 +125,17 @@ public class MainController {
  		PageMaker pageMaker = new PageMaker();
  		pageMaker.setCri(cri);
  		pageMaker.setTotalCount(magazineService.listCount());
+ 		
+    	//<div>로 되어있는 content 맨 앞 줄만 잘라서 보여주기
+        for (MagazineVO vo2 : list) {
+            String cont = vo2.getMgz_content();
+            int idx = cont.indexOf("<div>");
+            if (idx != -1) {
+               cont = cont.substring(0, idx);             
+               vo2.setMgz_content(cont);
+            }
+         } 
+	
  		m.addAttribute("pageMaker", pageMaker);
  		return "magazine";
  	} // end of getReviewsList()

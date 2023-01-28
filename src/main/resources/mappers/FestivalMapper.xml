@@ -38,17 +38,16 @@
 		]]>
 	</select>	
 
-	<!-- 축제 정보 클릭 시 전체 목록 출력 -->
-	<select id="viewFestivalList" resultType="FestivalVO">
-		SELECT *
-		FROM (
-		select *,
-		row_number () over(order by fetv_no desc) as rnum
-		from festival
-		) fs
-		WHERE rnum BETWEEN #{rowStart} AND #{rowEnd}
-		ORDER BY fetv_startdate
-	</select>
+   <!-- 축제 정보 클릭 시 전체 목록 출력 -->
+   <select id="viewFestivalList" resultType="FestivalVO">
+      SELECT *
+      FROM (
+      select *,
+      row_number () over(order by coalesce (fetv_startdate,'') desc) as rnum
+      from festival ) fs
+      WHERE rnum BETWEEN #{rowStart} AND #{rowEnd}
+
+   </select>
 
 	<!-- 축제 상세페이지 -->
 	<select resultType="FestivalVO" id="viewFestival"

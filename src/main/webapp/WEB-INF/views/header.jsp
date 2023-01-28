@@ -47,7 +47,6 @@
 </head>
 <body>
 
-
     <!-- preloader area start -->
     <div class="preloader" id="preloader">
         <div class="preloader-inner">
@@ -67,13 +66,11 @@
             <div class="row no-gutters">
                 <div class="col-lg-6">
                     <div class="thumb">
-                        <img src="/images/others/signup.png" alt="img">
+                        <a href="festival/festivalDetails?fetv_no=53"><img src="/images/index/fetv_no_53.png" alt="img"></a>
                     </div>
                 </div>
                 <div class="col-lg-6 align-self-center">
-                    <div class="shape-thumb">
-                        <img src="/images/others/signup-shape.png" alt="img">
-                    </div>
+                    
                     <form class="login-form-wrap" method="POST" action="/user/loginUser">
                         <h4 class="text-center">Log In</h4>
                         <div class="single-input-wrap style-two">
@@ -127,7 +124,7 @@
                             <li class="notification">
                                 <a class="signUp-btn">
                                     <c:if test="${empty sessionScope.u_id}">
-                                    <i class="fa fa-user-o"></i>
+                                        <i class="fa fa-user-o"></i>
                                     </c:if>
                                 </a>
                                     <c:if test="${not empty sessionScope.u_id}">
@@ -181,13 +178,7 @@
                     </a>
                 </div>
                 <ul class="navbar-nav">
-                    <li class="menu-item-has-children">
-                        <a>축제 둘러보기</a>
-                        <ul class="sub-menu">
-                            <li><a href="/viewFestivalList">축제 정보</a></li>
-                            <li><a href="#">근처 맛집</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="/viewFestivalList">축제 둘러보기</a></li>
                     <li class="menu-item-has-children">
                         <a>커뮤니티</a>
                         <ul class="sub-menu">
@@ -202,15 +193,23 @@
                       		<li><a href="/supporters">서포터즈</a></li>
                         </ul>
                     </li>
+                    <c:if test="${empty sessionScope.u_id}">
+                        <li>
+                            <a class="signUp-btn" href="#">스마트 페이지</a>
+                        </li>
+                    </c:if>
+                    <c:if test="${not empty sessionScope.u_id}">
+                        <li class="menu-item-has-children">
+                            <a>스마트 페이지</a>
+                            <ul class="sub-menu">
+                                <li><a href="/smart/smart-page?cont=smart">혼잡도 체크</a></li>
+                                <li><a href="/smart/smart-page?cont=weather">실시간 날씨</a></li>
+                                <li><a href="/smart/smart-page?cont=recomm">유저 PICK 추천</a></li>
+                            </ul>
+                        </li>
+                    </c:if>
                     <li>
-                        <a href="/smart/smart-page">스마트 페이지</a>
-                    </li>
-                    <li class="menu-item-has-children">
-                        <a>문의사항</a>
-                        <ul class="sub-menu">
-                            <li><a href="/faq/faq">FAQ</a></li>
-                            <li><a href="/faq/qna">1:1 문의</a></li>
-                        </ul>
+                        <a href="/faq/faq">FAQ</a>
                     </li>
                 </ul>
             </div>

@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,9 +48,27 @@ public class ReviewsController {
     
     // 리뷰 목록 보기
     @RequestMapping("/getReviewList")
-    public void getReviewList(Model m, Criteria cri) throws Exception {
-        System.out.println(">>>>>>>> cri : "+cri);
-    	m.addAttribute("reviewList", reviewsService.getReviewList(cri));		// 리뷰 목록
+    public void getReviewList(String searchKeyword, Model m, Criteria cri) throws Exception {
+    	
+    	System.out.println("searchKeyword: " + searchKeyword);
+    	System.out.println(">>>>>>>> cri : "+cri);
+        
+    	HashMap map = new HashMap();
+        map.put("searchKeyword", searchKeyword);
+    	
+    	List<ReviewsVO> list = reviewsService.getReviewList(cri);
+        
+        // <div>로 되어있는 content 맨 앞 줄만 잘라서 보여주기 (정인아 제발 나에게 도움을 줘 ㅠ)
+        for (ReviewsVO vo : list) {
+            String cont = vo.getRv_content();
+            int idx = cont.indexOf("<div>");
+            if (idx != -1) {
+               cont = cont.substring(0, idx);
+               vo.setRv_content(cont);
+            } // end of if()
+         } // end of for() 
+        
+    	m.addAttribute("reviewList", list);		// 리뷰 목록
     	PageMaker pageMaker = new PageMaker();
     	pageMaker.setCri(cri);
     	pageMaker.setTotalCount(reviewsService.listCount());
@@ -61,14 +80,19 @@ public class ReviewsController {
  	
  	// 리뷰 상세 보기
  	@RequestMapping("/getReview")
- 	public void getReview(ReviewsVO vo, Model m) {
+ 	public String getReview(ReviewsVO vo, Model m) {
  	
  		ReviewsVO result = reviewsService.getReview(vo);
- 		System.out.println("[Controller : getReviews 요청] 상세보기 : "+result.getRv_no());
+ 		System.out.println("[Controller : getReviews 요청] 상세보기 : "+result );
+ 		reviewsService.updateView_cnt(vo.getRv_no());
+ 		
+ 		System.out.println("getReviews 요청 >>> 조회수 카운팅 될까?" + result.getRv_cnt());
  		m.addAttribute("reviews", result);
  		
  		List<ReviewsVO> rankList = reviewsService.getRankList();
- 		m.addAttribute("rankList", rankList);					// 명예의 전당 목록
+ 		m.addAttribute("rankList", rankList);
+ 		return "reviews/getReview";
+ 		// 명예의 전당 목록
  	} // end of getReviews()
  	
  	

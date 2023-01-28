@@ -1,5 +1,6 @@
 package com.example.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.example.domain.Criteria;
@@ -19,6 +20,9 @@ public interface ReviewsService {
 	// 리뷰 상세 보기(getReview)
 	public ReviewsVO getReview(ReviewsVO vo);
 	
+	// 리뷰 조회수 카운팅
+	public void updateView_cnt(Integer rv_no);			
+	
 	// 리뷰 삭제하기(deleteReview)
 	public void deleteReview(ReviewsVO vo);
 	
@@ -29,4 +33,6 @@ public interface ReviewsService {
 	
 	public int listCount() throws Exception;				// 게시물 총 갯수
 	
+	// 관리자 우측의 내가 쓴 리뷰 가져오기
+	public List<ReviewsVO> getReviewList(int u_no);
 } // end of interface

@@ -22,16 +22,6 @@ public class ReviewsServiceImpl implements ReviewsService {
 	// 리뷰 목록 보기
 	@Override
 	public List<ReviewsVO> getReviewList(Criteria cri) {
-		/*
-		  
-		List<ReviewsVO> list = reviewsDAO.getReviewList();
-		
-		for(int i=0; i<list.size(); i++) {
-			ReviewsVO review = list.get(i);
-		}
-		System.out.println("[ReivewsService] 리스트 개수(목록보기) : "+list.size());
-		 */
-		
 		return reviewsDAO.getReviewList(cri);
 	} // end of getReviewList()
 	
@@ -47,9 +37,15 @@ public class ReviewsServiceImpl implements ReviewsService {
 	@Override
 	public ReviewsVO getReview(ReviewsVO vo) {
 		ReviewsVO list = reviewsDAO.getReview(vo);
-		System.out.println("[ReviewsService] getReview(상세보기) : serviceImpl");
+		System.out.println("[ReviewsService] getReview(상세보기) : serviceImpl" );
 		return list;
 	} // end of getReview()
+	
+	// 리뷰 조회수 카운팅
+	@Override
+	public void updateView_cnt(Integer rv_no) {
+		reviewsDAO.updateView_cnt(rv_no);
+	}
 	
 	// 새 리뷰 작성하기
 	@Override
@@ -82,7 +78,13 @@ public class ReviewsServiceImpl implements ReviewsService {
 		return reviewsDAO.listCount();
 	}
 
+
 	
+	// 관리자 우측의 내가 쓴 리뷰 가져오기
+	public List<ReviewsVO> getReviewList(int u_no){
+		return reviewsDAO.getReviewListAdmin(u_no);
+	}
+
 	
 	
 

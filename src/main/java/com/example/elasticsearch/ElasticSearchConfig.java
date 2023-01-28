@@ -12,7 +12,7 @@ public class ElasticSearchConfig{
     @Bean
     public RestHighLevelClient elasticsearchClient() {
         ClientConfiguration clientConfiguration = ClientConfiguration.builder()
-                .connectedTo("13.209.66.45:9200")	// Elasticsearch가 존재하는 서버의 IP:9200(포트 번호)
+                .connectedTo("43.200.173.91:9200")	// Elasticsearch가 존재하는 서버의 IP:9200(포트 번호)
                 .build();
         return RestClients.create(clientConfiguration).rest();
     }

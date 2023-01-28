@@ -28,7 +28,7 @@ public class ReviewsCommentServiceImpl implements ReviewsCommentService{
 	   
 	   //댓글 삭제
 	   @Override
-	   public void deleteReviewReply(Integer rv_cmt_no) {
+	   public void deleteReviewReply(int rv_cmt_no) {
 		   reviewscommentDAO.deleteReviewReply(rv_cmt_no);
 	   }
 	   

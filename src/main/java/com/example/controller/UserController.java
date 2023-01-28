@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.dao.UserDAO;
 import com.example.domain.Criteria;
+import com.example.domain.MagazineVO;
 import com.example.domain.PageMaker;
+import com.example.domain.ReviewsVO;
 import com.example.domain.UserVO;
 import com.example.domain.WishVO;
 import com.example.service.ReviewsService;
@@ -32,7 +34,7 @@ public class UserController {
 	@Autowired
 	private UserDAO userDAO;
 	@Autowired
-	private ReviewsService Reviewsservice;
+	private ReviewsService reviewsservice;
 
 	// DB 안 거치고 화면만 띄우는 것들 >> 매번매번 MAPPING 하지 않고 여기 거치도록
 	@RequestMapping(value = "/{url}")
@@ -100,15 +102,25 @@ public class UserController {
        m.addAttribute("user",result);
  
 	// my page에 축제일기 리뷰 불러오기
+    List<ReviewsVO> list = reviewsservice.getMyReviewList(cri);
     //session의 u_no 받아와 저장
     int uno = (int) session.getAttribute("u_no");
     //criteria에 변수 만들어서 저장한 곳에 uno값 set 하기
     cri.setU_no(uno);
+   //<div>로 되어있는 content 맨 앞 줄만 잘라서 보여주기
+    for (ReviewsVO vo2 : list) {
+        String cont = vo2.getRv_content();
+        int idx = cont.indexOf("<div>");
+        if (idx != -1) {
+           cont = cont.substring(0, idx);             
+           vo2.setRv_content(cont);
+        }
+     }  
     //set 한 채로 cri 보내기
-    m2.addAttribute("getReviewList", Reviewsservice.getMyReviewList(cri));
+    m2.addAttribute("getReviewList", list);
 	PageMaker pageMaker = new PageMaker();
 	pageMaker.setCri(cri);
-	pageMaker.setTotalCount(Reviewsservice.listCount());
+	pageMaker.setTotalCount(reviewsservice.listCount());
 	m2.addAttribute("pageMaker", pageMaker);
 	
 	// mypage에 북마크 목록 불러오기
@@ -168,5 +180,21 @@ public class UserController {
 		m.addAttribute("getWishList", getWishList);
 		return "redirect:/user/getUser?u_no=" + vo.getU_no();
 	}
+
+	// --------------------------내 후기---------------------------------
+	
+	// 내후기 삭제
+	@RequestMapping(value = "deleteMyReview")
+	public String deleteMyReview(ReviewsVO vo, Model m, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		Integer num = (Integer)session.getAttribute("u_no");
+		System.out.println(num);
+		reviewsservice.deleteReview(vo);
+		return "redirect:/user/getUser?myReview=on&u_no=" + num;
+	}
+	
+	// --------------------------내 후기---------------------------------
+	
+	
 
 }

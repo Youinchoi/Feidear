@@ -31,6 +31,45 @@
     <!-- responsive css -->
     <link rel="stylesheet" href="/css/responsive.css">
 
+    <!-- 챗봇 띄우는 CSS -->
+    <style type="text/css">
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translate3d(0, 100%, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translateZ(0);
+                z-index: 123456789;
+            }
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+                transform: translateZ(0);
+                z-index: 1;
+            }
+            to {
+                opacity: 0;
+                transform: translate3d(0, 100%, 0);
+                z-index: -123456789!important;
+            }
+        }
+    
+        .test_obj {
+            position: relative;
+            animation: fadeInUp 1s;
+        }   
+
+        .close {
+            position: relative;
+            animation: fadeOut 1s;
+            
+        }
+    </style>
+
     <!-- 네이버 스크립트 : 아직 안됨!! -->
     <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 
@@ -84,6 +123,8 @@
     }
     </script>
 
+
+
 </head>
 <body>
 
@@ -102,11 +143,11 @@
                     <div class="footer-widget widget text-center">
                         <ul class="widget_nav_menu text-center">
                             <li><a href="/#">Home</a></li>
-                            <li><a href="/tour-list">Festival</a></li>
-                            <li><a href="/blog04">Community</a></li>
-                            <li><a href="/blog03">Events</a></li>
-                            <li><a href="/faq">FAQ</a></li>
-                            <li><a href="/contact">Q&A</a></li>
+                            <li><a href="/viewFestivalList">Festival</a></li>
+                            <li><a href="/reviews/getReviewList">Community</a></li>
+                            <li><a href="/event">Events</a></li>
+                            <li><a href="/faq/faq">FAQ</a></li>
+                            <li><a href="/faq/qna">Q&A</a></li>
                         </ul>
                     </div>  
                 </div>  
@@ -131,22 +172,11 @@
                             </p>
                             <p class="text-left">
                                 <i class="fa fa-paper-plane"></i> 
-                                <span><a href="/#">Support</a></span>
+                                <span><a href="/festival/calendar">축제 일정</a></span>
                             </p>
                         </div>
                     </div>
                 </div> 
-                <div class="col-lg-5">
-                    <div class="widget input-group newslatter-wrap style-two">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fa fa-envelope"></i></span>
-                        </div>
-                        <input type="text" class="form-control" placeholder="Email">
-                        <div class="input-group-append">
-                            <button class="btn btn-yellow" type="button">Subscribe</button>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="copyright-inner border-tp-solid">
@@ -160,15 +190,20 @@
     <!-- footer area end -->
     
 	<!-- mini-menu (right section) area start -->
-    <div class="back-to-top2" style="display: block;">
+    <div class="back-to-top2" id="chatbot_icon" style="display: block;">
         <span class="back-top">
-			<a href="/contact"><img src="/images/chatbot_smile.png"></a>
+			<a><img src="/images/chatbot_smile.png"></a>
 		</span>
     </div>
     
     <div class="back-to-top3" style="display: block;">
         <span class="back-top">
-			<a href="/tour-list"><img src="/images/heart.png"></a>
+            <c:if test="${empty sessionScope.u_id}">
+                <a class="signUp-btn" href="#"><img src="/images/user.png"></a>
+            </c:if>
+            <c:if test="${not empty sessionScope.u_id}">
+                <a href="/user/getUser?u_no=${sessionScope.u_no}"><img src="/images/user.png"></a>
+            </c:if>
 		</span>
     </div>
     
@@ -182,6 +217,31 @@
     <!-- back to top area end -->
     
     
-
+    <!-- 챗봇 div -->
+    <div id="chatbot" class="close" style="display:none; position:fixed; bottom:-15px; right: 100px; z-index: 123456789;">
+        <iframe width="350" height="430" allow="microphone;" src="https://console.dialogflow.com/api-client/demo/embedded/50d4fa2d-a85c-4483-b66a-55c4493013e4"></iframe>
+    </div>
+    <!-- 챗봇 modal div 끝 -->
 </body>
+
+
+<script src="/js/jquery-2.2.4.min.js"></script>
+<!-- 챗봇 나타나게 하는 JS -->
+<script type="text/javascript">
+    $(function(){
+        let icon = $('#chatbot_icon img');
+
+        let chat = $('div#chatbot');
+
+        icon.click(function(){
+            chat.toggleClass('test_obj');
+            chat.toggleClass('close');
+
+            chat.fadeToggle();
+            // chat.toggle();
+        })//end of click
+
+    })//end of function
+</script>
+
 </html>

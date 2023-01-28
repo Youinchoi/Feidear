@@ -23,6 +23,12 @@ public class FestivalVO {
 	private int fetv_state;			//축제 상태
 	private String fetv_area;		//축제 지역 분류
 	private int fetv_cnt;			//축제 조회수
+
+	//지도 API 추가
+	private String fetv_lat;		//축제 지역 분류
+	private String fetv_long;		//축제 지역 분류
+	
+	
 	
 	//mldataset 에서 나온 변수들
 	private String r_fetv_name;

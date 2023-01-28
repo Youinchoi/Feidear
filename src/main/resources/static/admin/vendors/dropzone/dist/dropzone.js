@@ -114,11 +114,11 @@
     Dropzone.prototype.events = ["drop", "dragstart", "dragend", "dragenter", "dragover", "dragleave", "addedfile", "addedfiles", "removedfile", "thumbnail", "error", "errormultiple", "processing", "processingmultiple", "uploadprogress", "totaluploadprogress", "sending", "sendingmultiple", "success", "successmultiple", "canceled", "canceledmultiple", "complete", "completemultiple", "reset", "maxfilesexceeded", "maxfilesreached", "queuecomplete"];
 
     Dropzone.prototype.defaultOptions = {
-      url: null,
+      url: null, //전송할 서버
       method: "post",
       withCredentials: false,
-      parallelUploads: 2,
-      uploadMultiple: false,
+      parallelUploads: 6,
+      uploadMultiple: true,
       maxFilesize: 256,
       paramName: "file",
       createImageThumbnails: true,
@@ -130,11 +130,11 @@
       params: {},
       clickable: true,
       ignoreHiddenFiles: true,
-      acceptedFiles: null,
+      acceptedFiles: '.jpeg,.jpg,.png,.gif,.JPEG,.JPG,.PNG,.GIF',
       acceptedMimeTypes: null,
       autoProcessQueue: true,
       autoQueue: true,
-      addRemoveLinks: false,
+      addRemoveLinks: true,
       previewsContainer: null,
       hiddenInputContainer: "body",
       capture: null,

@@ -90,49 +90,9 @@
                     </div>
                     <!-- 이벤트 사진-end -->
                     <p>위에 사진에서 보여준 이벤트 내용</p>
-                    <!-- 이벤트 관련 비디오-start -->
-                    <h4 class="single-page-small-title mt-5">이벤트 관련 영상</h4>
-                    <div class="video-popup-wrap style-two">
-                        <div class="thumb">
-                            <img src="images/blog-details/7.png" alt="video">
-                        </div>
-                        <div class="video-popup-btn">
-                            <a href="https://www.youtube.com/watch?v=c7XEhXZ_rsk" class="video-play-btn mfp-iframe"><i class="fa fa-play"></i></a>
-                        </div>
-                    </div>
-                    <!-- 이벤트 관련 비디오 -end -->
-                    <p>이벤트 관련 영상에서 보여준 것</p>
-                    <p>이벤트 영상대로 하면 끝</p>
+
                     <div class="row tag-share-area">
-                        <div class="col-lg-6">
-                            <span class="mr-2">공유 및 찜:</span>
-                            <ul class="social-icon style-two">
-                                <li>
-                                    <a class="facebook" href="#"><i class="fa fa-facebook"></i></a>
-                                </li>
-                                <li>
-                                    <a class="twitter" href="#"><i class="fa fa-twitter"></i></a>
-                                </li>
-                                <li>
-                                    <a class="pinterest" href="#"><i class="fa fa-instagram"></i></a>
-                                </li>
-                                <li>
-                                    <a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a>
-                                </li>
-                            </ul>
-                        </div>
                         <div class="col-xl-5 col-lg-6 offset-xl-1">
-                            <div class="single-blog-post-tags d-flex">
-                                <span class="all-tags-title">관련 태그:</span>
-                                <div class="all-tags">
-                                    <a href="#">태그1</a>
-                                    <a href="#">태그2</a>
-                                    <a href="#">태그3</a>
-                                    <a href="#">태그4</a>
-                                    <a href="#">travel</a>
-                                    <a href="#">겨울</a>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <nav class="navigation post-navigation single-post-navigation">
@@ -165,22 +125,12 @@
                 </div>
                 <div class="col-lg-4">
                     <aside class="sidebar-area sidebar-area-4">
- 						<!-- 태그 -->                       
-                        <div class="widget widget_tag_cloud">
-                            <h2 class="widget-title">Tags</h2>
-                            <div class="tagcloud">
-                                <a href="#">태그1</a>
-                                <a href="#">태그2</a>
-                                <a href="#">태그3</a>
-                                <a href="#">태그4</a>
-                                <a href="#">태그5</a>
+                        <!-- 광고 배너 시작 -->
+                            <div class="widget widget_tag_cloud" style="text-align:center;">
+	                            <h2 class="widget-title" style="text-align:left;">광고 배너</h2>
+	                           <a href="#"><img src="/images/others/rhkdrh.jpg" alt="img"></a>
                             </div>
-                        </div>
-                        <!-- 광고 배너 위치  -->
-                            <div class="widget widget_tag_cloud">
-	                            <h2 class="widget-title">광고 배너</h2>
-                            <a href="#"><img class="w-100" src="images/others/01.png" alt="img"></a>
-                        </div>
+                        <!-- 광고 배너 끝 -->
                     </aside>
                 </div>
             </div>

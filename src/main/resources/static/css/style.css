@@ -3406,7 +3406,7 @@ ul.wp-block-latest-posts.is-grid.alignwide {
   position: relative;
   border-radius: 10px;
   margin: 13px 0 20px 0; }
-  .tp-blockquote p {
+  .tp-blockquote p, .tp-blockquote div {
     color: #ffffff;
     font-weight: 200;
     font-size: 16px; }
@@ -5695,7 +5695,6 @@ ul.wp-block-latest-posts.is-grid.alignwide {
     right: 0;
     border-radius: 4px; }
     .search-form button:after {
-      content: '';
       position: absolute;
       left: auto;
       right: 0px;
@@ -5775,6 +5774,10 @@ ul.wp-block-latest-posts.is-grid.alignwide {
       color: var(--main-color-one); }
     .widget_categories ul li:last-child {
       border-bottom: 0; }
+      
+    .widget_categories .media .media-body img{
+    	max-width: 80%;
+    }
 
 .widget-recent-post ul {
   list-style: none;
@@ -5788,7 +5791,7 @@ ul.wp-block-latest-posts.is-grid.alignwide {
       -ms-flex-align: center;
       align-items: center; }
       .widget-recent-post ul li .media .media-body {
-        margin-left: 18px; }
+        margin-left: 20px; }
         .widget-recent-post ul li .media .media-body .title {
           font-size: 16px;
           line-height: 24px;
@@ -5804,7 +5807,7 @@ ul.wp-block-latest-posts.is-grid.alignwide {
           .widget-recent-post ul li .media .media-body .title:hover {
             color: var(--main-color-one); }
         .widget-recent-post ul li .media .media-body .post-date {
-          font-size: 12px;
+          font-size: 15px;
           font-weight: 400;
           color: rgba(66, 84, 134, 0.85); }
     .widget-recent-post ul li:first-child {

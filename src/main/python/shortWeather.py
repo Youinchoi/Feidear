@@ -65,7 +65,7 @@ def shortWeather():
         temp = { city : result }
         rResult.update(temp)
         num += 1
-    print(rResult)
+    # print(rResult)
     return rResult
 
 if __name__ == "__main__":

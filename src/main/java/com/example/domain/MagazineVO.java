@@ -15,7 +15,7 @@ public class MagazineVO {
 	private Integer mgz_no;			//매거진 글 번호
 	private String	mgz_content;	//매거진 글 내용
 	private String	mgz_title;		//매거진 글 제목
-	private Date	mgz_regdate;	//매거진 글 쓴 시간
+	private String	mgz_regdate;	//매거진 글 쓴 시간
 	
 	private String 	file_name;			// 파일 이름
 	private String 	origin_file_name;	// 원본 파일 이름

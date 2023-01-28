@@ -1,22 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-<%@ include file='../header.jsp' %>
+   <!-- header.jsp -->
+   <%@ include file='../header.jsp' %>
+   <!-- header.jsp 끝 -->
+   
 <style>
         .word {
         display: block;
         width: 100%;
         overflow: hidden;
         text-overflow: ellipsis;
-        white-space: normal;
-        line-height: 1.2;
+        white-space: nowrap;
+        line-height: 1;
 /*        height: 4.8em;*/
-        text-align: left;
+        text-align: right;
         word-wrap: break-word;
-        display: -webkit-box;
-        -webkit-line-clamp: 3 ;
+        -webkit-line-clamp: 1 ;
         -webkit-box-orient: vertical;
+    	}
+    	
+    	.title {
+        display: block;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        line-height: 1;
+/*        height: 4.8em;*/
+        text-align: right;
+        word-wrap: break-word;
+        -webkit-line-clamp: 1 ;
+        -webkit-box-orient: vertical;
+        margin-top:19px;
     	}
     	
    	.single-comment-wrap a, .single-comment-wrap a:hover,
@@ -27,11 +43,32 @@
     display: grid;
     text-align: left;
 	}
+	
+	#deleteReview{
+		width:1.8em;
+		height:1.8em;
+		position:relative;
+		border-radius:4px;
+		background:#F0B153;
+		color:white; 
+		border:none;
+		text-align:-webkit-center;
+		vertical-align:middle;
+		margin:auto;
+		cursor:pointer;
+	}
+	
+	#XpButton {
+	 display:block;
+	 margin:auto;
+	 float:right;
+	}
+	
 </style>
 
 
     <!-- 상단바 밑 제목 area start -->
-    <div class="breadcrumb-area jarallax" style="background-image:url(/images/bg/1.png);">
+    <div class="breadcrumb-area jarallax" style="background-image:url(/images/index/header.jpg);">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -50,13 +87,13 @@
 
     <!-- 마이페이지 본문 area start -->
     
-       <!-- 마이페이지 탭팬 리스트 start -->
+            <!-- 마이페이지 탭팬 리스트 start -->
     <div class="user-profile-area pd-top-120">
         <div class="container">
-            <div class="row">
+            <div class="row" id="tabs">
                 <div class="col-xl-10 col-lg-12">
                     <div class="row">
-                        <div class="col-lg-4">
+                        <div class="col-lg-4" >
                             <ul class="nav nav-tabs tp-tabs style-two">
                                 <li class="nav-item">
                                     <a class="nav-link active" data-toggle="tab" href="#tabs_1"><i class="fa fa-user"></i>회원정보 변경</a>
@@ -78,7 +115,7 @@
                                 </li>
                             </ul>
                         </div>
-       <!-- 마이페이지 탭팬 리스트 end -->
+            <!-- 마이페이지 탭팬 리스트 end -->
                         
                         <!-- tabpan 목록 start-->
                         
@@ -89,12 +126,10 @@
                         <div class="col-xl-7 col-lg-8 offset-xl-1">
                             <div class="tab-content user-tab-content">
                                 <div class="tab-pane fade show active" id="tabs_1" >
-                                    <div class="user-details">
+                                    <div class="user-details" >
                                         <h3 class="user-details-title">회원정보 변경</h3>
                                         <form action="updateUser" id="updateUser" name="updateUser" class="tp-form-wrap" method="post"  enctype="multipart/form-data">
                                         <div class="tp-img-upload">
-                                        
-                                        <!-- 사진 업로드 파일VO 설정했던 걸로 설정 다시하고 받아와야함 -->
                                         
                                             <div class="tp-avatar-preview">
                                                 <div id="tp_imagePreview"
@@ -185,6 +220,9 @@
                                         <form action="modifyPassword" id="modifyPassword" method="post">
                                         <div class="row">
                                             <div class="col-lg-7">
+					                                <c:if test="${not empty selected and not empty sessionScope.u_id}">
+					                                    <input type="hidden" name="select" value="${selected}" id="selected"/>
+					                                </c:if>
                                                 <label class="single-input-wrap style-two">
                                                     <span class="single-input-title mb-3">비밀번호를 변경합니다.</span>
                                                     <input type="password" placeholder="현재 비밀번호" id="u_npw" name="u_npw">
@@ -219,9 +257,10 @@
                                     <div class="col-sm-8">
                                         <div class="single-destinations-list style-two">
                                             <c:forEach items="${getWishList}" var="getWishList">
-                                                <a href= "/user/getUser?u_no=${sessionScope.u_no}"><input name="deleteWish" type="button" class="btn btn-yellow4" value="x"></h5></a>
-                                            <div class="thumb">
-                                                <img src="/festival_imgs/${getWishList.fetv_image}" alt="list">
+                                                
+                                                <a href= "/user/getUser?u_no=${sessionScope.u_no}"><input name="deleteWish" type="button" class="btn btn-yellow5" value="X" style="width: 100%;"></h5></a>
+                                            <div>
+                                                <a href="/festival/festivalDetails?fetv_no=${getWishList.fetv_no}"><img src="/festival_imgs/${getWishList.fetv_image}" alt="list"></a>
                                             </div><br>
                                                 <div class="details-bookmark">
                                                     <h5 name="fetv_area" style="color: darkorange;">${getWishList.fetv_area}</h5>
@@ -230,7 +269,8 @@
                                                     <b style="font-size: 1.4em; color: darkorange;"><i class="fa fa-calendar-o"></i>&nbsp&nbsp&nbsp${getWishList.fetv_startdate} &nbsp&nbsp~&nbsp&nbsp ${getWishList.fetv_enddate}</b><br>
                                                     </c:if>
                                                     <c:if test="${empty getWishList.fetv_startdate}">
-                                                        <b style="font-size: 1.3em; color: rgb(97, 210, 201);"><i class="fa fa-exclamation-triangle"></i>&nbsp&nbsp&nbsp일정이 업데이트 될 예정입니다</b>
+                                                        <b style="font-size: 1.3em; color: rgb(97, 210, 201);"><i class="fa fa-exclamation-triangle"></i>&nbsp&nbsp&nbsp일정이 업데이트 될 예정입니다</b><br>
+                                                        
                                                     </c:if><br>
                                                 </div><br>
                                                 <hr><br>
@@ -255,11 +295,20 @@
                                            <div class="single-comment-wrap">
                                                 <div class="thumb">
                                                     <img src="${user.file_path}" alt="img">
+                                                    <input type="hidden" id="myReview" name="myReview" value="${param.myReview}"/>
                                                 </div>
-                                                    <a href="/reviews/getReview?rv_no=${getReviewList.rv_no}">
+                                                <div style="text-align:right;">
+                                                	<p id="XpButton" value=${getReviewList.rv_no}>
+                                                	<a class="reviews">
+                                                    <input name="deleteReview" id="deleteReview"
+                                                    type="button" value="X">
+                                                	</a>
+                                                	</p>
+                                                </div>
+                                                    <a href="/reviews/getReview?rv_no=${getReviewList.rv_no}&u_no=${getReviewList.u_no}">
                                                 <div class="content" style="text-align:right;">
                                                     <h4 class="title">${getReviewList.rv_title}</h4>
-                                                    <span class="date">${getReviewList.rv_regdate}</span>
+                                                    <span class="date" style="padding-top:unset;">${getReviewList.rv_regdate}</span>
                                                     <p class="word">${getReviewList.rv_content}</p>
                                                 </div>
                                                     </a>
@@ -278,7 +327,7 @@
                                     	<li><a class="prev page-numbers" href="/user/getUser${pageMaker.makeQuery(pageMaker.startPage - 1)}&u_no=${sessionScope.u_no}"><i class="la la-long-arrow-left"></i></a></li>
                                 	</c:if>
                                 	<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">                                	
-                                    <li><a href="/user/getUser${pageMaker.makeQuery(idx)}&u_no=${sessionScope.u_no}">
+                                    <li><a href="/user/getUser${pageMaker.makeQuery(idx)}&u_no=${sessionScope.u_no}&myReview=on">
                                     	<!--현재 파라미터로 넘겨받은 페이지의 숫자가 생성되는 숫자와 같으면(현재 페이지) -->
                                     	<c:if test="${param.page eq idx}">
                                     	<span class="page-numbers current">${idx}</span>
@@ -296,7 +345,7 @@
                                     <li><a class="page-numbers" href="#">3</a></li>
                                 	-->                                	
                                     <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-                                    	<li><a class="next page-numbers" href="/user/getUser${pageMaker.makeQuery(pageMaker.endPage + 1)}&u_no=${sessionScope.u_no}"><i class="la la-long-arrow-right"></i></a></li>
+                                    	<li><a class="next page-numbers" href="/user/getUser${pageMaker.makeQuery(pageMaker.endPage + 1)}&u_no=${sessionScope.u_no}&myReview=on"><i class="la la-long-arrow-right"></i></a></li>
                                 	</c:if> 
                                 </ul>                          
                             </div>
@@ -320,29 +369,7 @@
     
     <!-- 뉴스레터 area Start -->
     <div class="newslatter-area pd-top-120">
-        <div class="container">
-            <div class="newslatter-area-wrap border-tp-solid">
-                <div class="row">
-                    <div class="col-xl-3 col-lg-6 col-md-5 offset-xl-2">
-                        <div class="section-title mb-md-0">
-                            <h2 class="title">Newsletter</h2>
-                            <p>Sign up to receive the best offers</p>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-6 col-md-7 align-self-center offset-xl-1">
-                        <div class="input-group newslatter-wrap">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fa fa-envelope"></i></span>
-                            </div>
-                            <input type="text" class="form-control" placeholder="Email">
-                            <div class="input-group-append">
-                                <button class="btn btn-yellow" type="button">Subscribe</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+       
     </div>
     <!-- 뉴스레터 area End -->
     
@@ -362,6 +389,9 @@
     <script src="../js/jquery.nice-select.min.js"></script>
     <script src="../js/jquery-ui.min.js"></script>
     <script src="../js/jarallax.min.js"></script>
+
+    <!-- 탭팬 새로고침 JS -->
+        <script src="../js/tappan.js"></script>
 
     <!-- main js -->
     <script src="../js/main.js"></script>
@@ -582,8 +612,34 @@
           })//END THEN
     
     })
-	   
     
+    //내 후기 삭제버튼 누르면 뜨게 함
+    $('.reviews').click(function(){
+    	//for each 문이 돌아가는 행 안에서 선택한 버튼의 부모의 value를 가져오기
+		var th = $(this).parent().attr('value');
+    
+    	Swal.fire({
+            title: '정말 삭제하시겠습니까?',
+            text: "확인을 누를 시 게시글이 삭제됩니다.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#F0B153',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '확인'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire({
+                title : '삭제 성공',
+                text : '게시글이 삭제되었습니다.',
+                icon : 'success',
+                confirmButtonColor: '#F0B153'
+              }).then((result) => {
+              	location.href="/user/deleteMyReview?rv_no="+th;
+                   })//END THEN
+            }//end if
+          })//END THEN
+    })
+
     </script>
 
 <jsp:include page="../footer.jsp"></jsp:include>

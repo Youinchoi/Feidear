@@ -22,67 +22,51 @@
 		<!-- Switchery -->
 		<link href="/admin/vendors/switchery/dist/switchery.min.css" rel="stylesheet">
 
-		<!-- Dropzone.js -->
-		<link href="/admin/vendors/dropzone/dist/min/dropzone.min.css" rel="stylesheet">
+		<style rel="stylesheet">
+			
+			#fileWrapper {
+				height:100%;
+				display:flex;
+				align-items:center;
+				justify-content:center;
 
-		<!-- 일단 이상 없는 것들 끝 -->
-		<!-- Custom Theme Style 
-			<link href="admin/build/css/custom.min.css"
-			rel="stylesheet"> -->
+			}
+			.form-input {
+				width:15rem;
+				padding:20px;
+				background:#fff;
+				margin: 0.5rem;
+				box-shadow: -3px -3px 7px rgba(94, 104, 121, 0.377),
+							3px 3px 7px rgba(94, 104, 121, 0.377);
+				}
+			.form-input input {
+				display:none;
+			}
+			.form-input label {
+				display:block;
+				width:45%;
+				height:45px;
+				margin-left: 25%;
+				line-height:50px;
+				text-align:center;
+				background:#1172c2;
 
-		<!-- //. sign up Popup -->
-		<div class="signUp-popup login-register-popup" id="signUp-popup">
-			<div class="login-register-popup-wrap">
-				<div class="row no-gutters">
-					<div class="col-lg-6">
-						<div class="thumb">
-							<img src="images/others/signup.png" alt="img">
-						</div>
-					</div>
-					<div class="col-lg-6 align-self-center">
-						<div class="shape-thumb">
-							<img src="images/others/signup-shape.png" alt="img">
-						</div>
-						<form class="login-form-wrap">
-							<h4 class="text-center">Sign Up</h4>
-							<div class="single-input-wrap style-two">
-								<input type="text" placeholder="Name"> <span class="single-input-title"><i
-										class="fa fa-user"></i></span>
-							</div>
-							<div class="single-input-wrap style-two">
-								<input type="text" placeholder="Email"> <span class="single-input-title"><i
-										class="fa fa-envelope"></i></span>
-							</div>
-							<div class="single-input-wrap style-two">
-								<input type="text" placeholder="Password"> <span class="single-input-title"><i
-										class="fa fa-lock"></i></span>
-							</div>
-							<label class="checkbox"> <input type="checkbox"> <span>Remember
-									me</span>
-							</label>
-							<div class="single-input-wrap style-two">
-								<button class="btn btn-yellow w-100">Sign Up</button>
-							</div>
-							<div class="sign-in-btn">
-								I already have an account. <a href="#">Sign In</a>
-							</div>
-							<div class="social-wrap">
-								<p>Or Continue With</p>
-								<ul class="social-icon">
-									<li><a class="facebook" href="#" target="_blank"><i
-												class="fa fa-facebook  "></i></a></li>
-									<li><a class="twitter" href="#" target="_blank"><i class="fa fa-twitter  "></i></a>
-									</li>
-									<li><a class="pinterest" href="#" target="_blank"><i
-												class="fa fa-pinterest"></i></a></li>
-								</ul>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- //. sign up Popup End -->
+				color:#fff;
+				font-size:15px;
+				font-family:"Open Sans",sans-serif;
+				text-transform:Uppercase;
+				font-weight:600;
+				border-radius:5px;
+				cursor:pointer;
+			}
+
+			.form-input img {
+				width:100%;
+				display:none;
+
+				margin-bottom:30px;
+			}
+		</style>
 
 
 		<!-- breadcrumb area start -->
@@ -180,18 +164,37 @@
 									style="height: 500px; border: 1px solid #ced4da; border-radius: 5px; margin-bottom: 20px;"></div>
 												
 								<textarea name="descr" id="descr" style="display: none;"></textarea>
-								
-								<input type="hidden" id="rv_content" name="rv_content" />
+								<input type="hidden" id="u_no" name="u_no" value="${sessionScope.u_no}"/>
+								<input type="hidden" id="rv_content" name="rv_content"/>
 
 							</div>
 							<!-- 글 입력 Text Editor end -->
 
 							<!-- 첨부파일 입력 시작 -->
-							<div class="x_content">
-								<a>🧡 파일은 최대 6개까지 등록 가능합니다 🧡</a>
-								<br/>
-								<input type="file" maxlength="60" size="40" name='file'>
-								<br/>
+							<div>🧡 사진은 최대 3개까지 등록 가능합니다 🧡</div>
+							<br/>
+							<div class="x_content file-grid" id="fileWrapper">
+								<div class="form-input file-list">
+									<div class="preview">
+									  <img id="file-ip-1-preview">
+									</div>
+									<label for="file-ip-1">upload</label>
+									<input type="file" id="file-ip-1" name="file" accept="image/*" onchange="showPreview(event);">
+								</div>
+								<div class="form-input file-list">
+									<div class="preview">
+									  <img id="file-ip-2-preview">
+									</div>
+									<label for="file-ip-2">upload</label>
+									<input type="file" id="file-ip-2" name="file" accept="image/*" onchange="showPreview(event);">
+								</div>
+								<div class="form-input file-list">
+									<div class="preview">
+									  <img id="file-ip-3-preview">
+									</div>
+									<label for="file-ip-3">upload</label>
+									<input type="file" id="file-ip-3" name="file" accept="image/*" onchange="showPreview(event);">
+								</div>
 							</div>
 							<!-- 첨부파일 입력 끝 -->
 							
@@ -320,6 +323,7 @@
 		<script src="/js/main.js"></script>
 
 		<script type="text/javascript">
+
 		//이메일 공백 or @ 없이 입력할 시
 			$('#submitbtn').click(function() {
 				var inputtitle = $("#rv_title").val();			// 제목
@@ -359,7 +363,16 @@
 			}) // end of clickevent()
 		
 		</script>	
-
+		<script type="text/javascript">
+			function showPreview(event){
+				if(event.target.files.length > 0){
+				var src = URL.createObjectURL(event.target.files[0]);
+				var preview = document.getElementById(event.target.id+"-preview");
+				preview.src = src;
+				preview.style.display = "block";
+				}
+		  }
+		  </script>
 		</body>
 
 		</html>
