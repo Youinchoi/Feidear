@@ -12,8 +12,8 @@
 
 **OS :** Windows  
 **Language :** Java, Javascript, CSS, HTML, etc.  
-**Framework :** Springboot - Spring MVC Pattern
+**Framework :** Springboot - Spring MVC Pattern  
 **Server :** Apache Tomcat 9.0 with JSP  
-**Database :** PostgreSQL, DBeaver
+**Database :** PostgreSQL, DBeaver  
 
 
