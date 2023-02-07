@@ -7,6 +7,8 @@ KOSMO Final Project
 
 **Gantt chart :**https://drive.google.com/file/d/1cNbmnHm2aUwoie7JvVnCmNLJ8vc_RX8l/view?usp=share_link
 
+**Gantt chart link :**https://drive.google.com/file/d/1cNbmnHm2aUwoie7JvVnCmNLJ8vc_RX8l/view?usp=share_link
+
 **PPT(pdf) link :** https://drive.google.com/file/d/1A7b2w-aOi4Hg9jUUbbSYi3zsVCpYx_HN/view?usp=share_link
 
 ---
