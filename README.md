@@ -1,5 +1,4 @@
-### Feidear
-KOSMO Final Project
+### :running: :: KOSMO Final Project [ Feidear ] ::
 
 ---
 
