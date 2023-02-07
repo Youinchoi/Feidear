@@ -1,6 +1,7 @@
 ### :running: :: KOSMO Final Project [ Feidear ] ::
 
 ---
+![메인](https://user-images.githubusercontent.com/112688146/217185981-04b2fa5a-00a1-42de-947e-dfade313d794.PNG)  
 
 **프로젝트 시연 영상 :** https://youtu.be/drlOf9uO8FY
 
@@ -15,5 +16,4 @@
 **Framework :** Springboot - Spring MVC Pattern  
 **Server :** Apache Tomcat 9.0 with JSP  
 **Database :** PostgreSQL, DBeaver  
-
 
