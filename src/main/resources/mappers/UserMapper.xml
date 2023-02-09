@@ -106,7 +106,7 @@
 	<!-- 위시리스트 지우기 -->
 	<delete id="deleteWish" parameterType="WishVO">
 		DELETE FROM wishlist
-		WHERE fetv_no = #{fetv_no} AND u_no = #{u_no}
+		WHERE wish_no = #{wish_no}
 	</delete>
 
 	<!-- 위시리스트 모두 지우기 -->

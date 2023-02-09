@@ -134,7 +134,7 @@ public class SmartPageController {
 					
 				// byte형식의 데이터를 string형식으로 변환한다.
 				msg = new String(data, "UTF-8");
-				// 콘솔에 출력한다.
+				
 				String[] temp = msg.split(",");
 				ArrayList<FestivalVO> vList = new ArrayList<FestivalVO>();
 				int vonum = 0;

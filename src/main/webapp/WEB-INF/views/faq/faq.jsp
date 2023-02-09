@@ -39,131 +39,94 @@
                         <div class="col-md-5">
                             <ul class="nav nav-tabs tp-tabs">
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#tabs_1">축제 등록은 어떻게 하나요</a>
+                                    <a class="nav-link active" data-toggle="tab" href="#tabs_1">축제 등록은 어떻게 하나요?</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#tabs_2">축제 등록</a>
+                                    <a class="nav-link" data-toggle="tab" href="#tabs_2">회원 탈퇴는 어떻게 하나요?</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link"  data-toggle="tab" href="#tabs_3">축제 즐기기</a>
+                                    <a class="nav-link"  data-toggle="tab" href="#tabs_3">작성했던 글이 지워졌나요? 찾을수가 없어요. 검색이 되지 않아요.</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link"  data-toggle="tab" href="#tabs_4">축제 근처 맛집</a>
+                                    <a class="nav-link"  data-toggle="tab" href="#tabs_4">원하는 축제를 찾을 수 없어요.</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link"  data-toggle="tab" href="#tabs_5">축제 근처 어쩌구</a>
+                                    <a class="nav-link"  data-toggle="tab" href="#tabs_5">축제 근처 맛집</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link"  data-toggle="tab" href="#tabs_6">축제 가보자고</a>
+                                    <a class="nav-link"  data-toggle="tab" href="#tabs_6">서포터즈는 어떻게 하나요?</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link"  data-toggle="tab" href="#tabs_7">축제 등록 하고 싶어요... 젭알 ?</a>
+                                    <a class="nav-link"  data-toggle="tab" href="#tabs_7">이벤트 참여는 어떻게 하나요?</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link"  data-toggle="tab" href="#tabs_8">축제 지역 날씨는 어떻게 아나요?</a>
                                 </li>
                             </ul>
                         </div>
                         <div class="col-md-7">
                             <div class="tab-content faq-tab-content" style="background-image: url(images/others/12.png);">
                                 <div class="tab-pane fade show active" id="tabs_1" >
-                                    <form action="getFaqList" class="tp-form-wrap" method="post">
-                                    <c:forEach items="${qList}" var="vo">
-                                        <div class="faq-details" style="margin-bottom: 2%;">
-                                            <h6>${vo.faq_no} I ${vo.faq_title}</h6>
-                                            <p>${vo.faq_content}</p>
-                                            <!-- <h6>축제 등록 어케 하는데?</h6>
-                                            <p class="mb-0">축제 축제 축제 놀고 십어요</p> -->
-                                        </div>  
-                                    </c:forEach>
+                                   
                                     <div class="faq-details" style="margin-bottom: 2%;">
-                                        <h6>🤍 I 신청서 양식 다운로드 버튼</h6>
+                                    <h6>01 | 축제 등록은 어떻게 하나요? </h6>
+                                    <p>밑에 신청양식 다운로드 버튼을 클릭해 다운받습니다. 서식에 맞춰서 작성하신 다음에 관리자에게 보내시면 됩니다.</p>                                                                            
+                                    </div>  
+                                
+                                    <div class="faq-details" style="margin-bottom: 2%;">
+                                        <h6>🤍 | 신청서 양식 다운로드 버튼</h6>
                                         
                                         <!-- 신청서 양식 다운로드 버튼 시작 -->
                                         <a class="btn btn-transparent" href="/images/fstv_form.docx"download style="color: #fff ; display: block; margin-top:10px; ">신청서 다운로드</a>
                                         <!-- 신청서 양식 다운로드 버튼 끝 -->
                                     </div>
-                                    </form>
                                 </div>
                                 <div class="tab-pane fade" id="tabs_2">
                                     <div class="faq-details">
-                                        <h6>02 I 하하하하 우히히ㅣ </h6>
-                                        <p>We will try our very hardest to accommodate all dietary requirements but in some out-of-the-way places it can be very difficult to guarantee. We will let you know if there are places on your itinerary where this is the case. Please let us know at the time of booking of any food requirements or allergies and we’ll pass the information</p>
-                                        <h6>What will the food be like on my trip?</h6>
-                                        <p class="mb-0">Food is one of the most exciting parts of travel. There may be some familiar fare but often you’ll be confronted with the new, interesting and downright weird of the culinary world but we like to think of it as an adventure for all the senses. In addition to this, our flexible itineraries often</p>
+                                        <h6>02 | 회원 탈퇴는 어떻게 하나요? </h6>
+                                        <p>마이페이지를 클릭하셔서 좌측 상단에 회원탈퇴 버튼을 누르면 탈퇴 처리 됩니다. 탈퇴시 모든 개인 신상정보는 삭제됩니다. 재가입하셔도 복구가 불가능 하오니 신중하게 결정하시길 바랍니다. 단, 회원으로 활동시 작성한 게시물은 삭제가 되지 않으며 삭제를 희망시 본인확인 후 삭제 처리 해 드립니다.</p>                                        
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="tabs_3">
                                     <div class="faq-details">
-                                        <h6>03 I 뿌이; 뿌이를 좋아하는 정인이 제법 어른스러워요</h6>
-                                        <p>We will try our very hardest to accommodate all dietary requirements but in some out-of-the-way places it can be very difficult to guarantee. We will let you know if there are places on your itinerary where this is the case. Please let us know at the time of booking of any food requirements or allergies and we’ll pass the information</p>
-                                        <h6>What will the food be like on my trip?</h6>
-                                        <p class="mb-0">Food is one of the most exciting parts of travel. There may be some familiar fare but often you’ll be confronted with the new, interesting and downright weird of the culinary world but we like to think of it as an adventure for all the senses. In addition to this, our flexible itineraries often</p>
+                                        <h6>03 | 작성했던 글이 지워졌나요? 찾을수가 없어요. 검색이 되지 않아요. </h6>
+                                        <p>축제 일기 검색을 통해 본인의 글을 찾을 수 없다면 아래와 같은 경우일 수 있습니다. 첫째. 게시판 용도에 맞지 않아 용도에 맞는 게시판으로 이동 된 경우 둘째. 게시판 규칙에 맞지 않고 용도에 맞는 게시판을 찾지 못해 삭제한경우 - 성인광고, 대출광고 등 본 사이트와 성격이 전혀 맞지 않는 게시물의 경우 삭제 될 수 있습니다.</p>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="tabs_4">
                                     <div class="faq-details">
-                                        <h6>04 I 스프링 부트때문에 고통받는 유인이 ㅠ 말 좀 듣자 부트야</h6>
-                                        <p>We will try our very hardest to accommodate all dietary requirements but in some out-of-the-way places it can be very difficult to guarantee. We will let you know if there are places on your itinerary where this is the case. Please let us know at the time of booking of any food requirements or allergies and we’ll pass the information</p>
-                                        <h6>What will the food be like on my trip?</h6>
-                                        <p class="mb-0">Food is one of the most exciting parts of travel. There may be some familiar fare but often you’ll be confronted with the new, interesting and downright weird of the culinary world but we like to think of it as an adventure for all the senses. In addition to this, our flexible itineraries often</p>
+                                        <h6>04 | 원하는 축제를 찾을 수 없어요.</h6>
+                                        <p>원하는 축제를 찾고 싶은데 검색이 되지 않는 경우 해당 축제가 등록되어 있지 않거나 축제명이 달라진 경우일 수 있습니다. 등록되어 있지 않다면 신고센터로 해당 축제명을 남겨주시거나 feidear@gmail.com으로 메일을 주시면 최대한 빠른 시간안에 축제를 등록하도록 하겠습니다.</p>                                        
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="tabs_5">
                                     <div class="faq-details">
-                                        <h6>05 I elk와 맞짱 뜰 준비 중인 지원이 멋있어</h6>
-                                        <p>We will try our very hardest to accommodate all dietary requirements but in some out-of-the-way places it can be very difficult to guarantee. We will let you know if there are places on your itinerary where this is the case. Please let us know at the time of booking of any food requirements or allergies and we’ll pass the information</p>
-                                        <h6>What will the food be like on my trip?</h6>
-                                        <p class="mb-0">Food is one of the most exciting parts of travel. There may be some familiar fare but often you’ll be confronted with the new, interesting and downright weird of the culinary world but we like to think of it as an adventure for all the senses. In addition to this, our flexible itineraries often</p>
+                                        <h6>05 | 축제 근처 맛집</h6>
+                                        <p>축제 둘러보기를 클릭합니다. 축제 목록에서 원하는 축제를 클릭합니다. 스크롤을 내리면 지도가 나옵니다. 거기서 맛집 버튼을 클릭하면 축제 근처 맛집이 나옵니다.</p>                                        
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="tabs_6">
                                     <div class="faq-details">
-                                        <h6>06 I 캘린더 만든 사랑이 멋있어 </h6>
-                                        <p>We will try our very hardest to accommodate all dietary requirements but in some out-of-the-way places it can be very difficult to guarantee. We will let you know if there are places on your itinerary where this is the case. Please let us know at the time of booking of any food requirements or allergies and we’ll pass the information</p>
-                                        <h6>What will the food be like on my trip?</h6>
-                                        <p class="mb-0">Food is one of the most exciting parts of travel. There may be some familiar fare but often you’ll be confronted with the new, interesting and downright weird of the culinary world but we like to think of it as an adventure for all the senses. In addition to this, our flexible itineraries often</p>
+                                        <h6>06 | 서포터즈는 어떻게 하나요?</h6>
+                                        <p>이벤트를 클릭해서 서포터즈를 클릭합니다. 스크롤을 내리면 신청서 양식 다운로드 버튼을 통해 다운로드 합니다. 서식에 맞춰서 작성한 후 feidear@gmail.com으로 보내시면 됩니다.</p>                                        
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="tabs_7">
                                     <div class="faq-details">
-                                        <h6>07 I 크롤링 한 상현쓰 굿</h6>
-                                        <p>We will try our very hardest to accommodate all dietary requirements but in some out-of-the-way places it can be very difficult to guarantee. We will let you know if there are places on your itinerary where this is the case. Please let us know at the time of booking of any food requirements or allergies and we’ll pass the information</p>
-                                        <h6>What will the food be like on my trip?</h6>
-                                        <p class="mb-0">Food is one of the most exciting parts of travel. There may be some familiar fare but often you’ll be confronted with the new, interesting and downright weird of the culinary world but we like to think of it as an adventure for all the senses. In addition to this, our flexible itineraries often</p>
+                                        <h6>07 | 이벤트 참여는 어떻게 하나요?</h6>
+                                        <p>이벤트를 클릭해서 제휴이벤트를 클릭합니다. 원하는 이벤트를 찾아서 클릭한 뒤 이벤트 내용에 따라서 참여하면 됩니다.</p>                                        
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="tabs_8">
                                     <div class="faq-details">
-                                        <h6>08 I have special dietary requirements – will they be catered for?</h6>
-                                        <p>We will try our very hardest to accommodate all dietary requirements but in some out-of-the-way places it can be very difficult to guarantee. We will let you know if there are places on your itinerary where this is the case. Please let us know at the time of booking of any food requirements or allergies and we’ll pass the information</p>
-                                        <h6>What will the food be like on my trip?</h6>
-                                        <p class="mb-0">Food is one of the most exciting parts of travel. There may be some familiar fare but often you’ll be confronted with the new, interesting and downright weird of the culinary world but we like to think of it as an adventure for all the senses. In addition to this, our flexible itineraries often</p>
+                                        <h6>08 | 축제 지역 날씨는 어떻게 아나요?</h6>
+                                        <p>스마트페이지를 클릭해서 실시간 날씨를 클릭합니다. 지역을 선택하여 날씨를 확인하면 됩니다.</p>                                        
                                     </div>
-                                </div>
-                                <div class="tab-pane fade" id="tabs_9">
-                                    <div class="faq-details">
-                                        <h6>09 I have special dietary requirements – will they be catered for?</h6>
-                                        <p>We will try our very hardest to accommodate all dietary requirements but in some out-of-the-way places it can be very difficult to guarantee. We will let you know if there are places on your itinerary where this is the case. Please let us know at the time of booking of any food requirements or allergies and we’ll pass the information</p>
-                                        <h6>What will the food be like on my trip?</h6>
-                                        <p class="mb-0">Food is one of the most exciting parts of travel. There may be some familiar fare but often you’ll be confronted with the new, interesting and downright weird of the culinary world but we like to think of it as an adventure for all the senses. In addition to this, our flexible itineraries often</p>
-                                    </div>
-
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- 사이드 바 위치 일대일 문의하기 버튼 시작 -->
-                <div class="col-xl-3 col-lg-4">
-                    <aside class="sidebar-area">
-                        <div class="widget widget_search bg-none pd-none">
-                        	<form class="write-form">
-                                <div class="form-group">
-                                  <button class="submit-btn" type="submit" ><a href="/faq/qna">1 : 1 문의하기 🧾</button>
-                                </div>
-                            </form></br>
-                        </div>
-                    </aside>
-                </div>
-                <!-- 사이드 바 위치 일대일 문의하기 버튼 끝 -->   
             </div>
         </div>
     </div>

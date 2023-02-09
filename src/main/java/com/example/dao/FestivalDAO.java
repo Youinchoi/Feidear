@@ -58,6 +58,9 @@ public interface FestivalDAO {
 	//DB에 저장된 검사결과 조회 (태그용)
 	public List<FestivalVO> getResultList(String u_id);
 	/* ====== 추천 알고리즘 끝 ====== */
+	
+	// 관리자 - 축제 등록 전송
+	public int insertFestival(FestivalVO vo);
 }
 
 

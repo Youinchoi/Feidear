@@ -7,14 +7,35 @@
 	<!-- 리뷰 작성하기 -->
 	<insert id="insertReview" parameterType="ReviewsVO">
 		INSERT INTO "REVIEWS" 
-			  		(rv_title, rv_content, rv_image, u_no, rv_regdate
+			  		(rv_title, rv_content, u_no, rv_regdate
 			  		<if test="file_name !=null">
 			  		, file_name, origin_file_name, file_size, file_path
-			  		</if>)
-		VALUES	 	(#{rv_title}, #{rv_content}, #{rv_image}, #{u_no}, NOW()
+			  		</if>
+			  		<if test="file_name2 !=null">
+			  		, file_name2, origin_file_name2, file_size2, file_path2
+			  		</if>
+			  		<if test="file_name3 !=null">
+			  		, file_name3, origin_file_name3, file_size3, file_path3
+			  		</if>
+			  		<if test="file_name4 !=null">
+			  		, file_name4, origin_file_name4, file_size4, file_path4
+			  		</if>
+			  		
+			  		)
+		VALUES	 	(#{rv_title}, #{rv_content}, #{u_no}, NOW()
 					<if test="file_name !=null">
 					, #{file_name}, #{origin_file_name}, #{file_size}, #{file_path}
-					</if>)
+					</if>
+					<if test="file_name2 !=null">
+					, #{file_name2}, #{origin_file_name2}, #{file_size2}, #{file_path2}
+					</if>
+					<if test="file_name3 !=null">
+					, #{file_name3}, #{origin_file_name3}, #{file_size3}, #{file_path3}
+					</if>
+					<if test="file_name4 !=null">
+					, #{file_name4}, #{origin_file_name4}, #{file_size4}, #{file_path4}
+					</if>
+					)
 	</insert>
 
 	<!-- 리뷰 목록 내림차순으로 가져오기 -->
@@ -32,18 +53,30 @@
 		
 	<!-- 인기글 가져오기 -->
 	<select id="getRankList" parameterType="ReviewsVO" resultType="ReviewsVO">
-		SELECT 		rv_title, to_char(rv_regdate, 'YYYY-MM-DD HH24:MI') AS rv_regdate, file_path, rv_cnt
+		SELECT 		rv_title, to_char(rv_regdate, 'YYYY-MM-DD HH24:MI') AS rv_regdate, file_path, rv_cnt, rv_no
 		FROM 		"REVIEWS"
 		WHERE		rv_cnt is not null
 		ORDER BY 	rv_cnt desc
 		LIMIT 3
 	</select>
 
+	<!-- index 인기글 가져오기 -->
+	<select id="getRank3"  resultType="ReviewsVO">
+		SELECT 		r.rv_title, to_char(r.rv_regdate, 'YYYY-MM-DD HH24:MI') AS rv_regdate, u.file_path file_path, r.rv_cnt rv_cnt, r.u_no u_no, r.rv_no rv_no, r.rv_content rv_content, u."U_ID" u_id, u."U_COMMENT" u_comment
+		FROM 		(SELECT  	*
+					  FROM 		"REVIEWS"
+					  ) r
+		LEFT OUTER JOIN "USER" u
+		ON 			r.u_no = u."U_NO"
+		ORDER BY 	r.rv_cnt desc
+		LIMIT 4
+	</select>
+
 	<!-- 리뷰 상세 보기 -->
 	<select id="getReview" parameterType="ReviewsVO" resultType="ReviewsVO">
 		SELECT		to_char(r.rv_regdate, 'YYYY-MM-DD HH24:MI') as rv_regdate, r.rv_no rv_no
 					, r.u_no u_no, r.rv_title rv_title, r.rv_content rv_content, u."U_COMMENT" u_comment
-					, u."U_ID" u_id, u.file_path file_path, r.rv_cnt rv_cnt, r.file_path r_file
+					, u."U_ID" u_id, u.file_path file_path, r.rv_cnt rv_cnt, r.file_path r_file,r.file_path2 file_path2, r.file_path3 file_path3, r.file_path4 file_path4
 		FROM 		 (SELECT  	*
 					  FROM 		"REVIEWS"
 					  where 	rv_no=#{rv_no}) r
@@ -54,16 +87,17 @@
 	
 	<!-- 리뷰 삭제하기 -->
 	<delete id="deleteReview" parameterType="ReviewsVO">
-		DELETE FROM "REVIEWS" 
-		WHERE 		rv_no = #{rv_no}
+		DELETE FROM "REVIEWS"
+		WHERE 		rv_no = #{rv_no} AND u_no =#{u_no}
 	</delete>
 
-	<!-- 리뷰 수정하기(시퀀스 값으로 찾기) -->
+	<!-- 리뷰 수정하기 -->
 	<update id="updateReview" parameterType="ReviewsVO">
 		UPDATE "REVIEWS" SET
-				rv_title 	= #{rv_title},
-				rv_content  = #{rv_content}
-		WHERE	rv_no 		= #{rv_no}
+				rv_title 	= #{rv_title}
+				, rv_content  = #{rv_content}
+				, file_path = #{file_path}  
+		WHERE	rv_no 		= #{rv_no} AND u_no = #{u_no}
 	</update>
 				
 	<!-- 리뷰 조회수 count -->

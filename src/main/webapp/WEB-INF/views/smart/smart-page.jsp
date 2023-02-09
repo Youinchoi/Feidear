@@ -164,7 +164,8 @@
                                                         <img src="../images/others/userpick.PNG" alt="img" style="margin-bottom: 1.25vw; border-radius: 70%; box-shadow: 0px 0px 15px 3px darkgrey;">
                                                         <br/>
                                                         <c:if test="${empty sessionScope.u_id}" >
-                                                            <a id="test" class="btn btn-transparent signUp-btn" style="margin-top: 1vw; margin-bottom:3vw; display: inline-block; width: 30vw; padding:0;">로그인해야 이용 가능한 서비스입니다.</a>
+                                                            <a id="test" class="btn btn-transparent signUp-btn" style="margin-top: 1vw;
+                                                             margin-bottom:3vw; display: inline-block; width: 30vw; padding:0;">로그인해야 이용 가능한 서비스입니다.</a>
                                                         </c:if>
                                                         <c:if test="${not empty vList[0] and not empty sessionScope.u_id}">
                                                             <a id="test" class="btn btn-transparent" href="/smart/fbti-test" style="margin: 1vw;">다시 검사해보기</a>

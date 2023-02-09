@@ -72,7 +72,7 @@
                                                     <h4 class="title"><a name="rv_title" href="getReview?rv_no=${reviews.rv_no}">${reviews.rv_title}</a></h4>
                                                     <p class="content" name="rv_content">${reviews.rv_content}</p>
                                                     <h8><i class="fa fa-eye"></i>&nbsp;&nbsp;${reviews.rv_cnt}</h8>
-                                                    <a class="btn-read-more" href="getReview?rv_no=${reviews.rv_no}"><span style="padding-left:20em;">더 보기<i class="la la-arrow-right"></i></span></a>
+                                                    <a class="btn-read-more" href="getReview?rv_no=${reviews.rv_no}"><span style="display: block; text-align: right;">더 보기<i class="la la-arrow-right"></i></span></a>
                                             </div>
                                             <!-- 날짜, 제목, 내용 끝 -->
                                         </div>
@@ -125,20 +125,12 @@
                             <form class="write-form" action="/reviews/insertReview">
                                 <c:if test="${not empty sessionScope.u_id}">
                                     <div class="form-group">
-                                        <button class="submit-btn" type="submit" ><a href="/reviews/insertReview">나의 일기 쓰러 가기</a>&nbsp;<img src="/images/pencil_24.png" ></button>
+                                        <button class="submit-btn" type="submit"><a href="/reviews/insertReview">나의 일기 쓰러 가기</a>&nbsp;<img src="/images/pencil_24.png"></button>
                                     </div>
                                 </c:if>
                             </form></br>
                           	<!-- 축제 일기(리뷰 작성 버튼) 끝 -->
-							
-							<!-- 축제명 검색 시작 -->
-                            <form class="search-form" action="getReviewList">
-                                <div class="form-group">
-                                    <input type="text" name="searchKeyword" placeholder="축제 일기 제목" >
-                                </div>
-                                <button class="submit-btn" type="submit" style="background: #254a79;"><i class="ti-search"></i></button>
-                            </form>
-							<!-- 축제명 검색 끝 -->
+
                         </div>
                         
                         
@@ -151,7 +143,12 @@
                                          <li>
                                             <div class="media">
                                                 <div id="media-body" class="media-body" style='display:block;'>
-                                                    <img src="${rank.file_path}" alt="blog" style="">
+                                                    <c:if test="${rank.file_path != null}">
+                                                        <img src="${rank.file_path}" alt="blog" style="">
+                                                    </c:if>
+                                                    <c:if test="${rank.file_path == null}">
+                                                        <img src="/images/sticky-logo.png" alt="blog" style="width: 15em; height:auto;">
+                                                    </c:if>
                                                 </div>
                                                 <div class="media-body">
                                                     <b><span class="post-date">${rank.rv_regdate}</span></b>
@@ -165,18 +162,6 @@
                         </div>
                         <!-- 인기글 끝 -->
                         
-                        <!-- 인기 태그 시작 -->
-                        <div class="widget widget_tag_cloud">
-                            <h2 class="widget-title">인기 태그</h2>
-                            <div class="tagcloud">
-                                <a href="#">눈꽃</a>
-                                <a href="#">데이트</a>
-                                <a href="#">별빛</a>
-                                <a href="#">사랑</a>
-                                <a href="#">빙어</a>
-                            </div>
-                        </div>
-                        <!-- 인기 태그 끝 -->
                         
                         <!-- 광고 배너 시작 -->
                             <div class="widget widget_tag_cloud">

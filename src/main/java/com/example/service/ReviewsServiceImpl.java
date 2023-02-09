@@ -77,15 +77,19 @@ public class ReviewsServiceImpl implements ReviewsService {
 	public int listCount() throws Exception {
 		return reviewsDAO.listCount();
 	}
-
-
 	
 	// 관리자 우측의 내가 쓴 리뷰 가져오기
 	public List<ReviewsVO> getReviewList(int u_no){
 		return reviewsDAO.getReviewListAdmin(u_no);
 	}
-
 	
-	
+	/* ========== index 페이지 ========== */
+	// 인기글 목록 보기
+	@Override
+	public List<ReviewsVO> getRank3() {
+		List<ReviewsVO> list = reviewsDAO.getRank3();
+		System.out.println("[ReivewsService] 인기글 리스트 갯수(목록보기) : "+list.size());
+		return list;
+	} // end of getRank3()
 
 } // end of class

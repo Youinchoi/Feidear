@@ -38,12 +38,21 @@
 			  		(ev_title, ev_content, ev_regdate
 			  		<if test="file_name !=null">
 			  		, file_name, origin_file_name, file_size, file_path
-			  		</if>)
+			  		</if>
+			  		<if test="file_name2 !=null">
+			  		, file_name2, origin_file_name2, file_size2, file_path2
+			  		</if>
+			  		)
 		VALUES	 	(#{ev_title}, #{ev_content}, NOW()
 					<if test="file_name !=null">
 					, #{file_name}, #{origin_file_name}
 					, #{file_size}, #{file_path}
-					</if>)
+					</if>
+					<if test="file_name2 !=null">
+					, #{file_name2}, #{origin_file_name2}
+					, #{file_size2}, #{file_path2}
+					</if>
+					)
 	</insert>
 	
 	<!-- 이벤트 삭제하기 -->

@@ -82,7 +82,7 @@ public class UserServiceImpl implements UserService {
 	   }
 
 	// 위시리스트 삭제
-	public int deleteWish(UserVO vo) {
+	public int deleteWish(WishVO vo) {
 	      return userDAO.deleteWish(vo);
 	   }
 

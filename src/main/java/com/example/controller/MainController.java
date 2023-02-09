@@ -1,6 +1,11 @@
 package com.example.controller;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,17 +13,23 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.domain.Criteria;
 import com.example.domain.EventVO;
 import com.example.domain.FestivalVO;
 import com.example.domain.MagazineVO;
+import com.example.domain.NaverLoginBO;
 import com.example.domain.PageMaker;
+import com.example.domain.ReviewsVO;
 import com.example.domain.SearchCriteria;
 import com.example.service.EventService;
 import com.example.service.FestivalService;
 import com.example.service.MagazineService;
+import com.example.service.ReviewsService;
+import com.github.scribejava.core.model.OAuth2AccessToken;
 
 @Controller
 public class MainController {
@@ -32,6 +43,13 @@ public class MainController {
 	@Autowired
 	private MagazineService magazineService;
 	
+	@Autowired
+	private ReviewsService reviewService;
+	
+   @Autowired
+   private NaverLoginBO naverLoginBO;
+   private String apiResult = null;
+	
 	//DB 안 거치고 화면만 띄우는 것들 >> 매번매번 MAPPING 하지 않고 여기 거치도록
     @RequestMapping(value = "/{url}")
     public String userJoin(@PathVariable String url) {
@@ -41,7 +59,7 @@ public class MainController {
     
     //------------------------------------------index--------------------------------------------------
     @RequestMapping(value = "/index")
-    public void index(MagazineVO vo, Model m) throws Exception {
+    public void index(MagazineVO vo, Model m, HttpSession session) throws Exception {
     	List<MagazineVO> list = magazineService.getMagazine3();
     	
     	//<div>로 되어있는 content 맨 앞 줄만 잘라서 보여주기
@@ -54,8 +72,45 @@ public class MainController {
             }
          }   	
     	m.addAttribute("mm",list);
+    	
+    	//---------- (인기글) ----------
+        List<ReviewsVO> list2 = reviewService.getRank3();
+        
+       // System.out.println("getRank3: "+list2);
+        //<div>로 되어있는 content 맨 앞 줄만 잘라서 보여주기
+         for (ReviewsVO rv_vo : list2) {
+             String cont = rv_vo.getRv_content();   // 리뷰 내용 저장하기
+             
+             List<Integer> indexList = new ArrayList<Integer> ();
+            int idx = cont.indexOf("<div>");
+            
+            while(idx != -1) {
+               indexList.add(idx);
+               idx = cont.indexOf("<div>", idx+5);
+            }
+            
+            if (indexList.size() > 3 || idx != -1) {
+               //System.out.println(">> div 위치 : "+indexList.get(3));
+               cont = cont.substring(0, indexList.get(3));             
+               rv_vo.setRv_content(cont);
+               //System.out.println(">> 출력 내용 : "+cont);
+            }
+            
+          }     
+        m.addAttribute("getRank3",list2);
+        //System.out.println("index 실행=>인기글 보여주세요");
+    	
+        /*
+        //네이버 로그인
+        String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+        //System.out.println("naverAuthUrl:"+naverAuthUrl);
+        m.addAttribute("url",naverAuthUrl);
+    	*/
+        
     	System.out.println("index 실행");
+    	
     }
+    
     
     //------------------------------------------index--------------------------------------------------
  	

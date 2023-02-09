@@ -35,10 +35,6 @@ public class ReviewsCommentController {
 	@GetMapping("replies")
 	public List<ReviewsCommentVO> selectAll(Integer rv_no){
 		List<ReviewsCommentVO> list = reveiwscommentService.getReviewReply(rv_no); // 리뷰 번호로 가져오기
-//		System.out.println("list.size()" + list.size());
-		for (ReviewsCommentVO vo : list) {
-			System.out.println(">>> "+vo);
-		}
 		return list;
 	} // end of selectAll()
 	
@@ -52,8 +48,8 @@ public class ReviewsCommentController {
 	//리뷰 댓글 수정
 	@PostMapping("replies/{param}")
 	public void update(ReviewsCommentVO vo) {
-		System.out.println(vo);
 		reveiwscommentService.updateReviewReply(vo);
+
 	} // end of update()
 	
 }

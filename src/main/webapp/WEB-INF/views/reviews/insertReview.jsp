@@ -29,7 +29,7 @@
 				display:flex;
 				align-items:center;
 				justify-content:center;
-
+				margin-bottom: 2%;
 			}
 			.form-input {
 				width:15rem;
@@ -70,7 +70,7 @@
 
 
 		<!-- breadcrumb area start -->
-		<div class="breadcrumb-area style-three jarallax" style="background-image:url(images/bg/1.png);">
+		<div class="breadcrumb-area style-three jarallax" style="background-image:url(/images/index/breadcrumb.jpg);">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
@@ -171,29 +171,36 @@
 							<!-- 글 입력 Text Editor end -->
 
 							<!-- 첨부파일 입력 시작 -->
-							<div>🧡 사진은 최대 3개까지 등록 가능합니다 🧡</div>
+							<div>🧡 사진 크기는 300MB로 제한됩니다 🧡</div>
 							<br/>
 							<div class="x_content file-grid" id="fileWrapper">
 								<div class="form-input file-list">
 									<div class="preview">
 									  <img id="file-ip-1-preview">
 									</div>
-									<label for="file-ip-1">upload</label>
+									<label for="file-ip-1">썸네일</label>
 									<input type="file" id="file-ip-1" name="file" accept="image/*" onchange="showPreview(event);">
 								</div>
 								<div class="form-input file-list">
 									<div class="preview">
 									  <img id="file-ip-2-preview">
 									</div>
-									<label for="file-ip-2">upload</label>
-									<input type="file" id="file-ip-2" name="file" accept="image/*" onchange="showPreview(event);">
+									<label for="file-ip-2">업로드</label>
+									<input type="file" id="file-ip-2" name="file2" accept="image/*" onchange="showPreview(event);">
 								</div>
 								<div class="form-input file-list">
 									<div class="preview">
 									  <img id="file-ip-3-preview">
 									</div>
-									<label for="file-ip-3">upload</label>
-									<input type="file" id="file-ip-3" name="file" accept="image/*" onchange="showPreview(event);">
+									<label for="file-ip-3">업로드</label>
+									<input type="file" id="file-ip-3" name="file3" accept="image/*" onchange="showPreview(event);">
+								</div>
+								<div class="form-input file-list">
+									<div class="preview">
+									  <img id="file-ip-4-preview">
+									</div>
+									<label for="file-ip-4">업로드</label>
+									<input type="file" id="file-ip-4" name="file4" accept="image/*" onchange="showPreview(event);">
 								</div>
 							</div>
 							<!-- 첨부파일 입력 끝 -->

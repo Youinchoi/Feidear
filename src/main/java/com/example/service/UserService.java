@@ -40,7 +40,7 @@ public interface UserService {
 	public List<WishVO> getWishList(UserVO vo);
 
 	// 위시리스트 삭제
-	public int deleteWish(UserVO vo);
+	public int deleteWish(WishVO vo);
 
 	//-------------------------------
 	// 관리자 페이지에서 회원 관리 눌렀을 때 유저 목록 가져오기

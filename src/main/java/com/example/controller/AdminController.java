@@ -78,12 +78,14 @@ public class AdminController {
 	}
 	
 	// 축제 등록에서 submit 
-	@RequestMapping(value = "insertFestivalSubmit")
-	public String insertFestivalSubmit(FestivalVO vo) {
-		System.out.println(vo);
-
-		return null;
-	}
+		@RequestMapping(value = "insertFestivalSubmit")
+		public String insertFestivalSubmit(FestivalVO vo) {
+//			vo.setFetv_image(vo.getFile_path());
+			System.out.println(">> vo : "+vo);
+			vo.setFetv_image(vo.getOrigin_file_name());
+			festivalService.insertFestival(vo);
+			return "redirect:/admin/manageFestivals";
+		}
 	
 
 //----------------------------FESTIVAL END -----------------------------    
@@ -157,7 +159,7 @@ public class AdminController {
 	@RequestMapping(value = "saveMagazine")
 	public String saveMagazine(MagazineVO vo) {
 		magazineService.saveMagazine(vo);
-		return "redirect:/admin/communityAdmin";
+		return "redirect:/admin/communityAdmin?cont=mgzList";
 	}
 
 	// 관리자 페이지에서 MAGAZINE 글 삭제하기

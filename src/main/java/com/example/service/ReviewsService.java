@@ -33,6 +33,9 @@ public interface ReviewsService {
 	
 	public int listCount() throws Exception;				// 게시물 총 갯수
 	
+	// 인기글 목록 가져오기(getRank3)_index 페이지
+	public List<ReviewsVO> getRank3();
+	
 	// 관리자 우측의 내가 쓴 리뷰 가져오기
 	public List<ReviewsVO> getReviewList(int u_no);
 } // end of interface

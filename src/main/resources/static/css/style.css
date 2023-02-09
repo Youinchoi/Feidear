@@ -2558,14 +2558,17 @@ ul.wp-block-latest-posts.is-grid.alignwide {
     .top-navbar .topbar-contact i {
       float: left;
       height: 100%;
-      padding-top: 10px;
+      padding-top: 5px;
       font-size: 30px;
       color: var(--main-color-one);
-      margin-right: 10px; }
+      margin-right: 10px;
+       }
     .top-navbar .topbar-contact span {
       display: block !important;
       color: #ffffff; }
     .top-navbar .topbar-contact .title {
+      text-align:left;
+      width:65%;
       font-size: 12px;
       line-height: 16px; }
   .top-navbar .nav-right-content ul li {
@@ -4958,7 +4961,9 @@ ul.wp-block-latest-posts.is-grid.alignwide {
     background: var(--main-color-one);
     color: #ffffff;
     font-size: 28px;
-    border-radius: 10px; }
+    border-radius: 100px;
+    transform: rotate(330deg);
+     }
   .single-client-card .content-text {
     margin-bottom: 20px; }
   .single-client-card .media .media-left img {
@@ -5650,7 +5655,9 @@ ul.wp-block-latest-posts.is-grid.alignwide {
       border-radius: 10px;
     }
 
-
+	.modify-btn{
+	
+	}
 
 .search-form {
   position: relative;

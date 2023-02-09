@@ -112,12 +112,8 @@
                     </a>
                 </div>
                                <ul class="navbar-nav">
-                    <li class="menu-item-has-children">
-                        <a>축제 둘러보기</a>
-                        <ul class="sub-menu">
-                            <li><a href="/viewFestivalList">축제 정보</a></li>
-                            <li><a href="#">근처 맛집</a></li>
-                        </ul>
+                    <li class="menu-item">
+                        <a href="/viewFestivalList">축제 둘러보기</a>
                     </li>
                     <li class="menu-item-has-children">
                         <a>커뮤니티</a>
@@ -143,12 +139,8 @@
                             <a href="/smart/smart-page">스마트 페이지</a>
                         </li>
                     </c:if>
-                    <li class="menu-item-has-children">
-                        <a>문의사항</a>
-                        <ul class="sub-menu">
-                            <li><a href="/faq/faq">FAQ</a></li>
-                            <li><a href="/faq/qna">1:1 문의</a></li>
-                        </ul>
+                    <li class="menu-item">
+                        <a href="/faq/faq">FAQ</a>
                     </li>
                 </ul>
             </div>

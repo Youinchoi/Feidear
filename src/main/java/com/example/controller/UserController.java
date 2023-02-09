@@ -54,7 +54,7 @@ public class UserController {
 		int insertResult = userservice.insertUser(vo);
 		System.out.println("유저 등록완료::" + insertResult);
 		request.setAttribute("ok", insertResult);
-		return "user/insertUserFin";
+		return "redirect:/index";
 	}
 
 	// 아이디 중복 체크 (ajax)
@@ -171,24 +171,27 @@ public class UserController {
 	}
 	
 	
-   // 위시리스트 삭제
-	@RequestMapping(value = "deleteWish")
-	public String deleteWish(UserVO vo, Model m) {
-		userservice.deleteWish(vo);
-		
-		List<WishVO> getWishList = userservice.getWishList(vo);
-		m.addAttribute("getWishList", getWishList);
-		return "redirect:/user/getUser?u_no=" + vo.getU_no();
-	}
+	   // 위시리스트 삭제
+	   @RequestMapping(value = "deleteWish")
+	   public String deleteWish(WishVO wishvo, HttpServletRequest request) {
+	      HttpSession session = request.getSession();
+	      Integer num = (Integer)session.getAttribute("u_no");
+	      System.out.println(num);
+	      userservice.deleteWish(wishvo);
+	      
+	      return "redirect:/user/getUser?myWish=hi&u_no=" + num;
+	   }
 
 	// --------------------------내 후기---------------------------------
 	
 	// 내후기 삭제
-	@RequestMapping(value = "deleteMyReview")
+	@RequestMapping(value = "/deleteMyReview")
 	public String deleteMyReview(ReviewsVO vo, Model m, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		Integer num = (Integer)session.getAttribute("u_no");
-		System.out.println(num);
+		vo.setU_no(num);
+		//System.out.println(">>> "+vo);
+		
 		reviewsservice.deleteReview(vo);
 		return "redirect:/user/getUser?myReview=on&u_no=" + num;
 	}

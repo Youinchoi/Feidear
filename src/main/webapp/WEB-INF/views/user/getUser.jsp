@@ -1,9 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-   <!-- header.jsp -->
-   <%@ include file='../header.jsp' %>
-   <!-- header.jsp 끝 -->
+
+<!-- header.jsp -->
+<%@ include file='../header.jsp' %>
+<!-- header.jsp 끝 -->
+<style>
+    .top-navbar .topbar-contact i {
+        margin-top: 11px;
+    }
+</style>
    
 <style>
         .word {
@@ -63,6 +69,7 @@
 	 margin:auto;
 	 float:right;
 	}
+
 	
 </style>
 
@@ -134,7 +141,7 @@
                                             <div class="tp-avatar-preview">
                                                 <div id="tp_imagePreview"
                                                  style='background-image:url("${user.file_path}");
-                                                 display=block;'>
+                                                 display:block;'>
                                                 </div>
                                             </div>
                                             <div class="tp-avatar-edit">
@@ -257,8 +264,10 @@
                                     <div class="col-sm-8">
                                         <div class="single-destinations-list style-two">
                                             <c:forEach items="${getWishList}" var="getWishList">
-                                                
-                                                <a href= "/user/getUser?u_no=${sessionScope.u_no}"><input name="deleteWish" type="button" class="btn btn-yellow5" value="X" style="width: 100%;"></h5></a>
+                                                <input type="hidden" id="myWish" name="myWish" value="${param.myWish}"/>
+                                                <p id="XButton" value=${getWishList.wish_no}>
+                                                <a class="bookmark"><input name="deleteWish" type="button" class="btn btn-yellow5" value="X" style="width: 100%;"></h5></a>
+                                                </p>
                                             <div>
                                                 <a href="/festival/festivalDetails?fetv_no=${getWishList.fetv_no}"><img src="/festival_imgs/${getWishList.fetv_image}" alt="list"></a>
                                             </div><br>
@@ -610,8 +619,35 @@
                    })//END THEN
             }//end if
           })//END THEN
-    
+        })    
+
+    // 북마크 삭제버튼 누르면 뜨게 함
+    $('.bookmark').click(function(){
+    	//for each 문이 돌아가는 행 안에서 선택한 버튼의 부모의 value를 가져오기
+		var th = $(this).parent().attr('value');
+    	Swal.fire({
+            title: '정말 삭제하시겠습니까?',
+            text: "확인을 누를 시 북마크가 삭제됩니다.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#F0B153',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '확인'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire({
+                title : '삭제 성공',
+                text : '북마크가 삭제되었습니다.',
+                icon : 'success',
+                confirmButtonColor: '#F0B153'
+              }).then((result) => {
+              	location.href="/user/deleteWish?wish_no="+th;
+                   })//END THEN
+            }//end if
+          })//END THEN
     })
+
+
     
     //내 후기 삭제버튼 누르면 뜨게 함
     $('.reviews').click(function(){

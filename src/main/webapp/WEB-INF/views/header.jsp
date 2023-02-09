@@ -13,6 +13,20 @@
     <!-- favicon -->
     <link rel=icon href="/images/favicon.png" sizes="20x20" type="image/png">
 
+    <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <style type="text/css">
+        html, div, body,h3{
+          margin: 0;
+          padding: 0;
+        }
+        h3{
+          display: inline-block;
+          padding: 0.6em;
+        }
+        </style>
+
     <!-- Additional plugin css -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/animate.css">
@@ -86,8 +100,10 @@
                         </div>
                         <ul>
                             <div class="sign-in-btn">페이디어 계정이 없어요 ☞ <a href="/sign-up">회원가입</a></div><br>
-                              <!-- 네이버 소셜 로그인 섹션 -->
-                              
+                              <!-- 네이버 소셜 로그인 섹션 
+                              <div id="naver_id_login" style="text-align:center"><a href="${url}">
+                                <img width="223" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/></a>
+                              </div> -->
                         </ul>
                     </form>
                 </div>
@@ -103,20 +119,14 @@
                 <div class="col-lg-6 topbar-contact-wrap">
                     <div class="topbar-contact">
                         <i class="fa fa-phone"></i>
-                        <span class="title">Support :</span>
+                        <span class="title">TEL</span>
                         <span class="number">02 1234 5678</span>
                     </div>
-                    <ul class="social-icon">
-                        <li>
-                            <a class="facebook" href="/#" target="_blank"><i class="fa fa-facebook  "></i></a>
-                        </li>
-                        <li>
-                            <a class="twitter" href="/#" target="_blank"><i class="fa fa-twitter  "></i></a>
-                        </li>
-                        <li>
-                            <a class="pinterest" href="/#" target="_blank"><i class="fa fa-instagram"></i></a>
-                        </li>
-                    </ul>
+                    <div class="topbar-contact" style="min-width:300px;">
+                        <i class="fa fa-envelope-o"></i>
+                        <span class="title">E-MAIL</span>
+                        <span class="number">feidear@kosmo.com</span>
+                    </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="nav-right-content float-right">
@@ -128,8 +138,15 @@
                                     </c:if>
                                 </a>
                                     <c:if test="${not empty sessionScope.u_id}">
-                                        <span style="color:rgb(255, 255, 255)">${sessionScope.u_id}님 환영합니다!</span>&nbsp&nbsp&nbsp&nbsp&nbsp
-                                        <a href="/user/getUser?u_no=${sessionScope.u_no}"><i class="fa fa-user-circle fa-lg" aria-hidden="true"></i></a>
+                                        <a href="/user/getUser?u_no=${sessionScope.u_no}">
+                                            <span style="color:rgb(255, 255, 255)">${sessionScope.u_id}님 환영합니다!</span>&nbsp&nbsp&nbsp&nbsp&nbsp
+                                            <i class="fa fa-user-circle fa-lg" aria-hidden="true"></i>
+                                        </a>
+                                        <c:if test="${sessionScope.u_id eq 'admin'}">
+                                            <a href="/admin/index">
+                                            <span style="color:rgb(255, 255, 255)">&nbsp;&nbsp;|&nbsp;&nbsp;관리자 페이지</span>&nbsp;<i class="fa fa-cogs fa-lg" aria-hidden="true"></i>
+                                            </a>
+                                        </c:if>
                                     </c:if>
                             </li>
                         </ul>

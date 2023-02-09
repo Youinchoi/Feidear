@@ -103,8 +103,6 @@
 												관리</a></li>
 										<li><a href="communityAdmin"><i
 												class="fa fa-comments"></i>커뮤니티 관리</a></li>
-										<li><a href="manageQnA"><i
-												class="fa fa-question-circle"></i>문의사항 관리</a></li>
 										<li><a href="eventAdmin"><i
 												class="fa fa-calendar-check-o"></i>이벤트 관리</a></li>
 
@@ -138,28 +136,20 @@
 					<div class="col-md-12 col-sm-12 ">
 						<div class="x_panel">
 							<div class="x_title">
-								<h2>축제 정보 수정</h2>
+								<h2>축제 등록</h2>
 								<div class="clearfix"></div>
 							</div>
 							<div class="x_content">
 								<br />
-								<form id="updateFestivalForm" name="updateFestivalForm"
-									data-parsley-validate class="form-horizontal form-label-left">
+								<form id="insertFestivalForm" name="insertFestivalForm" action="/admin/insertFestivalSubmit"
+									data-parsley-validate class="form-horizontal form-label-left"
+									method="post" enctype="multipart/form-data">
 									<div class="item form-group">
 										<label class="col-form-label col-md-3 col-sm-3 label-align"
-											for="fstv_no">축제 번호 <span class="required">*</span></label>
-										<div class="col-md-6 col-sm-6 ">
-											<input type="text" id="fstv_no" name="fstv_no"
-												class="form-control" readonly="readonly" required="required"
-												placeholder="축제 번호는 자동 입력됩니다">
-										</div>
-									</div>
-									<div class="item form-group">
-										<label class="col-form-label col-md-3 col-sm-3 label-align"
-											for="fstv_name">축제 이름 <span class="required">*</span>
+											for="fetv_name">축제 이름 <span class="required">*</span>
 										</label>
 										<div class="col-md-6 col-sm-6 ">
-											<input type="text" id="fstv_name" name="fstv_name"
+											<input type="text" id="fetv_name" name="fetv_name"
 												required="required" class="form-control "
 												placeholder="축제 이름을 입력해 주세요">
 										</div>
@@ -169,7 +159,7 @@
 											분류 <span class="required">*</span>
 										</label>
 										<div class="col-md-6 col-sm-6 ">
-											<select id="fstv_area" name="fstv_area"
+											<select id="fetv_area" name="fetv_area"
 												class="select2_single form-control" tabindex="-1">
 												<option value="#서울">서울</option>
 												<option value="#강원">강원</option>
@@ -194,10 +184,10 @@
 									</div>
 									<div class="item form-group">
 										<label class="col-form-label col-md-3 col-sm-3 label-align"
-											for="FSTV_STARTDATE">시작일 <span class="required">*</span>
+											for="fetv_startdate">시작일 <span class="required">*</span>
 										</label>
 										<div class="col-md-6 col-sm-6 ">
-											<input id="FSTV_STARTDATE" name="FSTV_STARTDATE"
+											<input id="fetv_startdate" name="fetv_startdate"
 												class="date-picker form-control" placeholder="yyyy-mm-dd"
 												type="text" required="required" onfocus="this.type='date'"
 												onmouseover="this.type='date'" onclick="this.type='date'"
@@ -215,10 +205,10 @@
 									<!-- 텍스트에서 -를 .으로 바꾸는 과정 필요 -->
 									<div class="item form-group">
 										<label class="col-form-label col-md-3 col-sm-3 label-align"
-											for="FSTV_ENDDATE">종료일 <span class="required">*</span>
+											for="fetv_enddate">종료일 <span class="required">*</span>
 										</label>
 										<div class="col-md-6 col-sm-6 ">
-											<input id="FSTV_ENDDATE" name="FSTV_ENDDATE"
+											<input id="fetv_enddate" name="fetv_enddate"
 												class="date-picker form-control" placeholder="yyyy-mm-dd"
 												type="text" required="required" onfocus="this.type='date'"
 												onmouseover="this.type='date'" onclick="this.type='date'"
@@ -235,90 +225,90 @@
 									</div>
 									<div class="item form-group">
 										<label class="col-form-label col-md-3 col-sm-3 label-align"
-											for="fstv_short">짧은 설명 <span class="required">*</span>
+											for="fetv_short">짧은 설명 <span class="required">*</span>
 										</label>
 										<div class="col-md-6 col-sm-6 ">
-											<input type="text" id="fstv_short" name="fstv_short"
+											<input type="text" id="fetv_short" name="fetv_short"
 												required="required" class="form-control "
 												placeholder="축제 이름 아래에 출력될 짧은 설명">
 										</div>
 									</div>
 									<div class="item form-group">
 										<label class="col-form-label col-md-3 col-sm-3 label-align"
-											for="fstv_image">축제 이미지 <span class="required">*</span>
+											for="file">축제 이미지 <span class="required">*</span>
 										</label>
 										<div class="col-md-6 col-sm-6 ">
-											<input type="file" id="fstv_image" name="fstv_image"
-												required="required" class="form-control "
+											<input type="file" id="img_file" name="file"
+												required="required"
 												placeholder="축제 이미지를 등록해 주세요">
 										</div>
 									</div>
 									<div class="item form-group">
 										<label class="col-form-label col-md-3 col-sm-3 label-align"
-											for="fstv_tel">전화번호 <span class="required">*</span>
+											for="fetv_tel">전화번호 <span class="required">*</span>
 										</label>
 										<div class="col-md-6 col-sm-6 ">
-											<input type="tel" id="fstv_tel" name="fstv_tel"
+											<input type="tel" id="fetv_tel" name="fetv_tel"
 												required="required" class="form-control "
 												placeholder="축제 관계자 전화번호를 입력해 주세요">
 										</div>
 									</div>
 									<div class="item form-group">
 										<label class="col-form-label col-md-3 col-sm-3 label-align"
-											for="fstv_homepage">홈페이지 <span class="required">*</span>
+											for="fetv_homepage">홈페이지 <span class="required">*</span>
 										</label>
 										<div class="col-md-6 col-sm-6 ">
-											<input type="url" id="fstv_homepage" name="fstv_homepage"
+											<input type="url" id="fetv_homePage" name="fetv_homePage"
 												required="required" class="form-control "
 												placeholder="관련 홈페이지 주소를 입력해 주세요">
 										</div>
 									</div>
 									<div class="item form-group">
 										<label class="col-form-label col-md-3 col-sm-3 label-align"
-											for="fstv_addr">주소 <span class="required">*</span>
+											for="fetv_addr">주소 <span class="required">*</span>
 										</label>
 										<div class="col-md-6 col-sm-6 ">
-											<input type="text" id="fstv_addr" name="fstv_addr"
+											<input type="text" id="fetv_addr" name="fetv_addr"
 												required="required" class="form-control "
 												placeholder="주소를 입력해 주세요">
 										</div>
 									</div>
 									<div class="item form-group">
 										<label class="col-form-label col-md-3 col-sm-3 label-align"
-											for="fstv_place">행사 장소 <span class="required">*</span>
+											for="fetv_place">행사 장소 <span class="required">*</span>
 										</label>
 										<div class="col-md-6 col-sm-6 ">
-											<input type="text" id="fstv_place" name="fstv_place"
+											<input type="text" id="fetv_place" name="fetv_place"
 												required="required" class="form-control "
 												placeholder="행사 장소를 입력해 주세요">
 										</div>
 									</div>
 									<div class="item form-group">
 										<label class="col-form-label col-md-3 col-sm-3 label-align"
-											for="fstv_host">주최 <span class="required">*</span>
+											for="fetv_host">주최 <span class="required">*</span>
 										</label>
 										<div class="col-md-6 col-sm-6 ">
-											<input type="text" id="fstv_host" name="fstv_host"
+											<input type="text" id="fetv_host" name="fetv_host"
 												required="required" class="form-control "
 												placeholder="주최를 입력해 주세요">
 										</div>
 									</div>
 									<div class="item form-group">
 										<label class="col-form-label col-md-3 col-sm-3 label-align"
-											for="fstv_fee">이용 요금 <span class="required">*</span>
+											for="fetv_fee">이용 요금 <span class="required">*</span>
 										</label>
 										<div class="col-md-6 col-sm-6 ">
-											<input type="text" id="fstv_fee" name="fstv_fee"
+											<input type="text" id="fetv_fee" name="fetv_fee"
 												required="required" class="form-control "
 												placeholder="이용 요금이 있다면 입력해 주세요">
 										</div>
 									</div>
 									<div class="item form-group">
 										<label class="col-form-label col-md-3 col-sm-3 label-align"
-											for="fstv_time">행사 시간 <span class="required">*</span>
+											for="fetv_time">행사 시간 <span class="required">*</span>
 										</label>
 										<div class="col-md-6 col-sm-6 ">
-											<input type="text" id="fstv_time" name="fstv_time"
+											<input type="text" id="fetv_time" name="fetv_time"
 												required="required" class="form-control "
 												placeholder="행사 시간을 입력해 주세요">
 										</div>
@@ -326,39 +316,29 @@
 
 									<div class="item form-group">
 										<label class="col-form-label col-md-3 col-sm-3 label-align"
-											for="FSTV_INFO">상세 설명 <span class="required">*</span>
+											for="fetv_INFO">상세 설명
 										</label>
 										<div class="col-md-6 col-sm-6 ">
-											<textarea class="form-control" rows="10" id="FSTV_INFO"
-												name="FSTV_INFO" placeholder="축제 상세 설명을 입력해 주세요"></textarea>
+											<textarea class="form-control" rows="10" id="fetv_info"
+												name="fetv_info" placeholder="축제 상세 설명을 입력해 주세요"></textarea>
 										</div>
 									</div>
 									<div class="item form-group">
 										<label class="col-form-label col-md-3 col-sm-3 label-align"
-											for="FSTV_TAG">태그 <span class="required">*</span></label>
+											for="fetv_tag">태그</label>
 										<div class="col-md-6 col-sm-6 ">
-											<input id="tags_1" name="FSTV_TAG" type="text"
-												class="tags form-control" value="social, adverts, sales" />
+											<input id="tags_1" name="fetv_tag" type="text"
+												class="tags form-control" value="#축제,#가족과함께" />
 											<div id="suggestions-container"
 												style="position: relative; float: left; width: 250px; margin: 10px;"></div>
-										</div>
-									</div>
-									<div class="item form-group">
-										<label class="col-form-label col-md-3 col-sm-3 label-align"
-											for="fstv_cnt">현재 조회수 </label>
-										<div class="col-md-6 col-sm-6 ">
-											<input type="text" id="fstv_cnt" name="fstv_cnt"
-												class="form-control" readonly="readonly" required="required"
-												placeholder="축제 등록 후 자동으로 생성됩니다">
 										</div>
 									</div>
 									<div class="ln_solid"></div>
 									<div class="item form-group">
 										<div class="col-md-6 col-sm-6 offset-md-3"
 											style="margin-top: 10px;">
-											<button class="btn btn-secondary" type="button">취소</button>
-											<button class="btn btn-danger" type="reset">초기화</button>
-											<button type="submit" class="btn btn-primary">저장</button>
+											<input class="btn btn-danger" type="reset"></button>
+											<button id="insertFestivalFormSubmit" class="btn btn-primary">저장</button>
 										</div>
 									</div>
 
@@ -435,6 +415,9 @@
 		src="vendors/starrr/dist/starrr.js"></script>
 	<!-- Custom Theme Scripts -->
 	<script src="build/js/custom.min.js"></script>
+
+    <!-- file js -->
+    <script src="/js/uploadphotos2.js"></script>
 
 </body>
 </html>

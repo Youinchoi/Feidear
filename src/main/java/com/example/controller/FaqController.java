@@ -25,26 +25,6 @@ public class FaqController {
      return "faq/"+url;
     } // 
     
-    // faq 목록 보기
-    @RequestMapping("/faq")
-    public void getFaqList(Model m) {
-       //FaqVO vo = new FaqVO(); // 지금은 이 객체 역할없음
-       //vo.setFaq_no(1);
-    	List<FaqVO> list = faqService.getFaqList();
-//       System.out.println("[Controller : getFaqList 요청] 리스트 결과 개수 : "+list.size());
-       System.out.println(">>>>>> vo : "+list.get(0));
-       m.addAttribute("qList", list);
-    } // end of getReviewsList()
-    
-    
-    // faq 상세 내용 띄우기
-    @RequestMapping("/getFaq")
-    public void getFaq(Model m, FaqVO vo) {
-    	FaqVO result = faqService.getFaq(vo);
-    	m.addAttribute("faq",result);
-    	System.out.println("[Controller : getFaq 요청] 상세보기 : " + result.getFaq_no());
-    }
-     
     //----------------------------------------------- 아래 이건 뭐지? 내가 잘못 건드린건가?
     
     //mypage 회원정보 변경 후 저장

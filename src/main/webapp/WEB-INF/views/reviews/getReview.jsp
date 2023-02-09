@@ -5,14 +5,14 @@
      <%@ include file='../header.jsp' %>
  	
     <!-- breadcrumb area start -->
-    <div class="breadcrumb-area style-three jarallax" style="background-image:url(../images/bg/1.png);">
+   <div class="breadcrumb-area jarallax" style="background-image:url(/images/index/breadcrumb.jpg);">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-inner">
-                        <h1 class="page-title">축제 일기 글 제목</h1>
+                        <h1 class="page-title">축제 일기</h1>
                         <ul class="page-list">
-                            <li><a href="index">Home</a></li>
+                            <li><a href="/index">Home</a></li>
                             <li>리뷰 게시판 상세보기입니다</li>
                         </ul>
                     </div>
@@ -27,85 +27,74 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
-                    <form action="updateReview" class="tp-form-wrap" method="post">
-                        <div class="single-blog mb-0">
-                            <div class="thumb">
-                                <img src="${reviews.r_file}" alt="blog">
-                            </div>
-                            <div class="single-blog-details">
-                                <input type="hidden" name="rv_no" id="rv_no" value="${reviews.rv_no}">
-                                    <div>
-                                        <span class="date mb-0" name="rv_regdate">작성일 : ${reviews.rv_regdate}</span>
-                                        <p style="margin-left:50em;">조회수 : ${reviews.rv_cnt}</p>
-                                    </div>
+                    <div class="single-blog mb-0">
+                        <div class="thumb">
+                            <img src="${reviews.r_file}" alt="blog">
+                        </div>
+                        <div class="single-blog-details">
+                            <input type="hidden" name="rv_no" id="rv_no" value="${reviews.rv_no}">
+                            <div>
+                                    <span class="date mb-0" name="rv_regdate">작성일 : ${reviews.rv_regdate}</span>
+                                    <p style="margin-left:50em;">조회수 : ${reviews.rv_cnt}</p>
+                                </div>
                                 <h3 class="title" name="rv_title" id="rv_title">${reviews.rv_title}</h3>
                                 <p class="content mb-0" name="rv_content">${reviews.rv_content}</p>
                             </div>
                         </div>
-                    
-                    <h4 class="single-page-small-title mt-5">축제 사진</h4>
+                        
+                        <!-- 사진 슬라이드 -->
+                        <div class="client-area pd-top-108" style="margin-bottom: 3%;">
+                            <div class="container">
+                                <div class="client-slider tp-common-slider-style">
+                                    <c:if test="${not empty reviews.r_file}">
+                                        <div class="single-client-card" style="border-radius: 10px; height:350px; padding:40px 20px 15px 20px;">
+                                            
+                                            <div class="media">
+                                                <img src="${reviews.r_file}" alt="blog" style="display: block; margin: auto;">
+                                            </div>
+                                        </div> 
+                                    </c:if>
 
-                    <!-- 축제 사진 시작 details-gallery-start -->
-                    <div class="gallery-area">
-                        <div class="containerss">
-                            <div class="gallery-filter-area row custom-gutter">
-                                <div class="gallery-sizer col-1"></div>
-                                <!-- gallery-item 1-->
-                                <div class="tp-gallery-item col-md-4 col-sm-6 mb-10">
-                                    <div class="tp-gallery-item-img">
-                                        <img src="../images/blog-details/2.png" alt="image">
-                                    </div>
-                                </div>
-                                <!-- gallery-item 2-->
-                                <div class="tp-gallery-item col-md-4 col-sm-6">
-                                    <div class="tp-gallery-item-img">
-                                        <img src="../images/blog-details/3.png" alt="image">
-                                    </div>
-                                </div>
-                                <!-- gallery-item 3-->
-                                <div class="tp-gallery-item col-md-4 col-sm-6">
-                                    <div class="tp-gallery-item-img">
-                                        <img src="../images/blog-details/4.png" alt="image">
-                                    </div>
-                                </div>
-                                <!-- gallery-item 4-->
-                                <div class="tp-gallery-item col-md-4 col-sm-6">
-                                    <div class="tp-gallery-item-img">
-                                        <img src="../images/blog-details/5.png" alt="image">
-                                    </div>
-                                </div>
-                                <!-- gallery-item 5-->
-                                <div class="tp-gallery-item col-md-4 col-sm-6">
-                                    <div class="tp-gallery-item-img">
-                                        <img src="../images/blog-details/6.png" alt="image">
-                                    </div>
+                                    <c:if test="${not empty reviews.file_path2}">
+                                        <div class="single-client-card" style="border-radius: 10px; height:350px; padding:40px 20px 15px 20px;">
+                                            
+                                            <div class="media">
+                                                <img src="${reviews.file_path2}" alt="blog" style="display: block; margin: auto;">
+                                            </div>
+                                        </div> 
+                                    </c:if>
+
+                                    <c:if test="${not empty reviews.file_path3}">
+                                        <div class="single-client-card" style="border-radius: 10px; height:350px; padding:40px 20px 15px 20px;">
+                                            
+                                            <div class="media"> 
+                                                <img src="${reviews.file_path3}" alt="blog" style="display: block; margin: auto;">
+                                            </div>
+                                        </div> 
+                                    </c:if>
+     
+                                    <c:if test="${not empty reviews.file_path4}">
+                                        <div class="single-client-card" style="border-radius: 10px; height:350px; padding:40px 20px 15px 20px;">
+                                            
+                                            <div class="media"> 
+                                                <img src="${reviews.file_path4}" alt="blog" style="display: block; margin: auto;">
+                                            </div>
+                                        </div> 
+                                    </c:if>
+                                    
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- 축제 사진 끝 details-gallery-end -->
-
-                    <!-- details-video-start -->
-                    <h4 class="single-page-small-title mt-5">이게 동영상이란다</h4>
-                    <div class="video-popup-wrap style-two">
-                        <div class="thumb">
-                            <img src="../images/blog-details/7.png" alt="video">
-                        </div>
-                        <div class="video-popup-btn">
-                            <a href="https://www.youtube.com/watch?v=c7XEhXZ_rsk" class="video-play-btn mfp-iframe"><i class="fa fa-play"></i></a>
-                        </div>
-                    </div>
-                    <!-- details-video-end -->
-
-                    <p>나는 동영상 아래 설명이야 히히</p>
-                    <p>난 동영상 아래 설명 아래 설명이야 히히힛</p>
-
-                    <nav class="navigation post-navigation single-post-navigation">
-                        <div class="nav-links tp-control-nav">
-                            <div class="row" style="margin-top: 3em;">
+                        
+                        <!-- 사진 슬라이드 끝 -->
+                        
+                        
+                        <nav class="navigation post-navigation single-post-navigation">
+                            <div class="nav-links tp-control-nav">
+                            <div class="row" style="margin-top: 7em;">
                                 <div class="col-xl-5 col-lg-6 col-6 ">
                                     <div class="nav-previous w-100">
-                                        <a href="#">
+                                        <a href="/reviews/getReview?rv_no=${reviews.rv_no-1}">
                                             <span class="slick-arrow float-left" id="last_review"><i class="la la-long-arrow-left"></i></span>
                                             <span class="nav-post-text pl-2 float-left">이전 리뷰 : </span>
                                             <h4 class="float-left">이전 리뷰 보기</h4>
@@ -114,7 +103,7 @@
                                 </div>
                                 <div class="col-xl-5 col-lg-6 col-6  offset-xl-2">
                                     <div class="nav-next w-100">
-                                        <a href="#">
+                                        <a href="/reviews/getReview?rv_no=${reviews.rv_no+1}">
                                             <span class="pr-2 nav-post-text">다음 리뷰 : </span>
                                             <span class="slick-arrow float-right"><i class="la la-long-arrow-right"></i></span>
                                             <h4 class="float-right">다음 리뷰 보기</h4>
@@ -139,7 +128,7 @@
                         </div>
                     </div>
                     <!-- 리뷰 작성자 끝 author-area-end -->
-
+                    
                     <!-- 댓글 시작 comments-area-start -->
                     <div class="comments-area">
                         <h4 class="comments-title">댓 글</h4>
@@ -161,9 +150,8 @@
                             </li>
                         </ul>
                     </div>
-                </form>
                     <!-- 댓글 끝 comments-area-end -->
-
+                    
                     <!-- blog-comment-area start -->
                     <!-- 댓글 작성 폼 시작 -->
                     <c:if test="${empty sessionScope.u_id}">
@@ -202,6 +190,21 @@
                 
                 <div class="col-lg-4">
                     <aside class="sidebar-area sidebar-area-4">
+                        <!-- 리뷰 수정/삭제 버튼 시작 -->
+                        <div class="widget widget_search bg-none pd-none">
+                            <c:if test="${reviews.u_no eq sessionScope.u_no}">
+                                <div class="form-group">
+                                    <form action="updateReview?rv_no=${reviews.rv_no}" class="tp-form-wrap" method="post">
+                                        <button class="rv_modify-btn" type="submit" style="border: none; color: #6A5F5F; float: left; width: 25%; align-items: right; margin-left: 5em; margin-right: 2em; background-color: #F0B153; border-radius: 5px;">수정&nbsp&nbsp<i class="fa fa-pencil" aria-hidden="true"></i></button>
+                                    </form> 
+                                    <form action="deleteReview?rv_no=${reviews.rv_no}&u_no=${sessionScope.u_no}" class="tp-form-wrap" method="post">
+                                        <button class="rv_delete-btn" type="delete" style="border: none; color: #6A5F5F; width: 25%; border-radius: 5px;">삭제 &nbsp&nbsp<i class="fa fa-trash" aria-hidden="true"></i></button>
+                                    </form>
+                                </div>
+                            </c:if>
+                        </div>
+                        <!-- 리뷰 수정/삭제 버튼 끝 -->
+
                         <!-- 인기글 시작-->
                         <div class="widget widget_categories">
                             <h2 class="widget-title">인 기 글</h2>
@@ -211,12 +214,12 @@
                                          <c:forEach items="${rankList}" var="rank">
                                             <li>
                                                 <div class="media">
-                                                    <div id="media-body" class="media-body" style='display:block;'>
+                                                    <div id="media-body" class="media-body" style='display:block; width: 105px; height:59px auto;'>
                                                         <c:if test="${rank.file_path != null}">
                                                             <img src="${rank.file_path}" alt="blog">
                                                         </c:if>
                                                         <c:if test="${rank.file_path == null}">
-                                                            <img src="/images/blog/12.png" alt="blog" style="width: 15em; height:auto;">
+                                                            <img src="/images/sticky-logo.png" alt="blog" style="width: 105px; height:59px;">
                                                         </c:if>
                                                     </div>
                                                     <div class="media-body">
@@ -232,16 +235,6 @@
                         </div>
                         <!-- 인기글 끝 -->
 
-                        <div class="widget widget_tag_cloud">
-                            <h2 class="widget-title">태 그</h2>
-                            <div class="tagcloud">
-                                <a href="#">겨 울</a>
-                                <a href="#">눈 꽃</a>
-                                <a href="#">불 빛</a>
-                                <a href="#">새 해</a>
-                                <a href="#">힘 내 자</a>
-                            </div>
-                        </div>
                         <!-- 광고 배너 위치  -->
                             <div class="widget widget_tag_cloud">
 	                            <h2 class="widget-title">광고 배너</h2>
@@ -287,6 +280,20 @@
 
     <!-- main js -->
     <script src="../js/main.js"></script>
+    
+    <script>
+        var b= $('#rv_title').text();
+        if(b == ''){
+            Swal.fire({
+                title : '접근 불가',
+                text : '존재하는 게시글이 없습니다!',
+                icon : 'error',
+                confirmButtonColor: '#d33'
+            }).then((result) => {
+                window.self.location = "/reviews/getReviewList";			
+            })//then
+        }//if
+	</script>
 
     <!-- footer -->
     <jsp:include page="../footer.jsp"></jsp:include>

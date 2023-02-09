@@ -104,4 +104,8 @@ public class FestivalServiceImpl implements FestivalService {
 		
 	/* ====== 추천 알고리즘 끝 ====== */
 	
+	// 관리자 - 축제 등록 전송
+	public int insertFestival(FestivalVO vo) {
+		return festivalDAO.insertFestival(vo);
+	}
 }

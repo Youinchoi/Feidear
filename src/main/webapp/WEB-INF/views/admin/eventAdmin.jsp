@@ -116,8 +116,6 @@ a {
 										관리</a></li>
 								<li><a href="communityAdmin"><i
 										class="fa fa-comments"></i>커뮤니티 관리</a></li>
-								<li><a href="manageQnA"><i
-										class="fa fa-question-circle"></i>문의사항 관리</a></li>
 								<li class="active"><a href="eventAdmin"><i
 										class="fa fa-calendar-check-o"></i>이벤트 관리</a></li>
 

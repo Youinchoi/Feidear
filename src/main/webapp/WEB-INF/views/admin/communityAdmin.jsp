@@ -119,8 +119,6 @@ a {
 										관리</a></li>
 								<li class="active"><a href="communityAdmin"><i
 										class="fa fa-comments"></i>커뮤니티 관리</a></li>
-								<li><a href="manageQnA"><i
-										class="fa fa-question-circle"></i>문의사항 관리</a></li>
 								<li><a href="eventAdmin"><i
 										class="fa fa-calendar-check-o"></i>이벤트 관리</a></li>
 
@@ -155,27 +153,32 @@ a {
 					style="width: 80%; margin: 0px auto; margin-top: 10%; text-align: center;">
 					<div class="col-md-12 col-sm-12 ">
 
+						<!-- 자동 탭팬 켜기 -->
+						<input type="hidden" id="cont" val="${cont}"/>
+
 						<!-- 탭 -->
 						<div class="table-responsive">
 							<ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
+								<!--
 								<li class="nav-item"><a class="nav-link active"
 									id="sReview-tab" data-toggle="tab" href="#sReview" role="tab"
 									aria-controls="sReview" aria-selected="true">간편 리뷰</a></li>
 								<li class="nav-item"><a class="nav-link"
 									id="fstvReview-tab" data-toggle="tab" href="#fstvReview"
 									role="tab" aria-controls="fstvReview" aria-selected="false">축제
-										일기</a></li>
+										일기</a></li>-->
+								<li class="nav-item "><a class="nav-link active"
+									id="sMagazine-tab" data-toggle="tab" href="#sMagazine" role="tab"
+									aria-controls="sMagazine" aria-selected="true">매거진 목록</a></li>
 								<li class="nav-item"><a class="nav-link" id="contact-tab"
 									data-toggle="tab" href="#contact" role="tab"
 									aria-controls="contact" aria-selected="false">매거진 등록</a></li>
-								<li class="nav-item"><a class="nav-link"
-									id="sMagazine-tab" data-toggle="tab" href="#sMagazine" role="tab"
-									aria-controls="sMagazine" aria-selected="true">매거진 목록</a></li>
 							</ul>
 						</div>
 						<div class="tab-content" id="myTabContent">
 
 							<!-- 간편리뷰 테이블 -->
+							<!--
 							<div class="tab-pane fade show active" id="sReview"
 								role="tabpanel" aria-labelledby="home-tab">
 								<h2
@@ -205,8 +208,10 @@ a {
 											</tr>
 										</thead>
 										<tbody>
+										-->
 											<!-- 테이블 데이터 출력 -->
 											<!-- radio 버튼의 name을 tr 마다 다르게 둘 것 -->
+											<!--
 											<tr>
 												<td class=" "><a href="#">1121000040</a></td>
 												<td class=" "><a href="#">May 23, 2014 11:47:56 PM
@@ -226,9 +231,11 @@ a {
 									</table>
 								</div>
 							</div>
+							-->
 							<!-- 간편리뷰 테이블 끝 -->
 
 							<!-- 축제일기 테이블 -->
+							<!--
 							<div class="tab-pane fade" id="fstvReview" role="tabpanel"
 								aria-labelledby="fstvReview-tab">
 
@@ -260,9 +267,10 @@ a {
 													style="text-align: center; border-top: none;">비공개</th>
 											</tr>
 										</thead>
-										<tbody>
+										<tbody>-->
 											<!-- 테이블 데이터 출력 -->
 											<!-- radio 버튼의 name을 tr 마다 다르게 둘 것 -->
+											<!--
 											<tr>
 												<td class=" "><a href="#">1121000040</a></td>
 												<td class=" "><a href="#">May 23, 2014 11:47:56 PM
@@ -309,7 +317,7 @@ a {
 										</tbody>
 									</table>
 								</div>
-							</div>
+							</div>-->
 							<!-- 축제일기 테이블 끝-->
 
 						 <!-- 매거진 등록 페이지 -->
@@ -329,6 +337,13 @@ a {
 											placeholder="글 제목을 입력하세요">
 									</div>
 								</div>
+								<!-- 썸네일 입력 시작 -->
+								<div class="x_content" style="text-align: left; padding-left: 5%;">
+									<a><b>썸네일 이미지를 등록해주세요</b> &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;</a>
+									<input type="file" maxlength="60" size="40" name='file' required>
+									<br/>
+								</div>
+								<!-- 썸네일 입력 끝 -->
 
 								<div class="x_content">
 									<!-- 글 입력 Text Editor -->
@@ -415,13 +430,12 @@ a {
 
 								</div>
 								<!-- 첨부파일 입력 시작 -->
-										<div class="x_content">
-											<a>파일은 최대 6개까지 등록 가능합니다</a>
-											<br/>
-											<input type="file" maxlength="60" size="40" name='file'>
-											<br/>
-										</div>
-										<!-- 첨부파일 입력 끝 -->
+								<div class="x_content" style="text-align: left; padding-left: 5%; margin-bottom: 3%;">
+									<a><b>세부 이미지를 등록해주세요</b> &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;</a>
+									<input type="file" maxlength="60" size="40" name='file2'>
+									<br/>
+								</div>
+								<!-- 첨부파일 입력 끝 -->
 
 								<!-- 전송 버튼 -->
 								<button class="btn btn-primary" type="reset">초기화</button>
@@ -434,7 +448,7 @@ a {
 
 
 						<!-- 매거진 보기 테이블 -->
-						<div class="tab-pane fade show" id="sMagazine"
+						<div class="tab-pane fade show active" id="sMagazine"
 						role="tabpanel" aria-labelledby="home-tab">
 						<h2
 							style="margin: 20px auto; font-size: 32px; font-weight: bolder; white-space: nowrap;">매거진 목록 보기</h2>
@@ -588,10 +602,32 @@ a {
 	<!--파일 업로드 위해 만든 파일 -->
 	<script src="/js/uploadphotos3.js"></script>		
 
-	<!-- Custom Theme Scripts (없으면 텍스트 입력 못 함 ㅠ ) -->
-	<script src="/admin/build/js/custom.min.js"></script>
 
 	<script type="text/javascript">
+
+		// 자동 탭팬 켜기
+		let cont = $('input#cont').val();	// input의 값을 받아옴
+
+		// 매거진 목록이 자동으로 켜질 경우
+		if (cont == 'mgzList'){
+
+			//탭
+			let mgzTab = $('#sMagazine-tab'); 					//매거진 목록 탭
+			let oriTab = $('#myTab').find('a.nav-link.active'); //원래 켜진 탭
+			
+			mgzTab.attr('class', oriTab.attr('class'));	//매거진 목록 탭을 켜진 상태로 변경
+			oriTab.attr('class','nav-link');			//원래 켜진 탭을 끔
+
+			//div
+			let mgzDiv = $('#sMagazine'); 											//매거진 목록 div
+			let oriDiv = $('#myTabContent').find('div.tab-pane.fade.active.show')	//원래 켜진 div
+
+			mgzDiv.attr('class', oriDiv.attr('class')); //매거진 목록 div를 켜진 상태로 변경
+			oriDiv.attr('class','div.tab-pane.fade');	//원래 켜진 div를 끔
+
+		}
+
+
 		//삭제버튼 클릭 시작
 		$('.delete_mgz').click(function(){
 
@@ -660,7 +696,7 @@ a {
 				});
 			}) // end of clickevent()
 
-
+			
 	</script>
 
 

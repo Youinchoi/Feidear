@@ -47,7 +47,7 @@
                                 </div>
                                 <div class="col-lg-3 col-sm-4">
                                     <div class="video-popup-btn s-animate-video">
-                                        <a href="" class="video-play-btn mfp-iframe"><i class="fa fa-play"></i></a>
+                                        <a href="https://www.youtube.com/watch?v=0Bvd2mInMJQ" class="video-play-btn mfp-iframe"><i class="fa fa-play"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -71,7 +71,7 @@
                                 </div>
                                 <div class="col-lg-3 col-sm-4">
                                     <div class="video-popup-btn s-animate-video">
-                                        <a href="https://www.youtube.com/watch?v=c7XEhXZ_rsk" class="video-play-btn mfp-iframe"><i class="fa fa-play"></i></a>
+                                        <a href="https://www.youtube.com/watch?v=ot_uGCyO5pI" class="video-play-btn mfp-iframe"><i class="fa fa-play"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -89,13 +89,17 @@
                                         <h3 style="color: white;">&nbsp스마트 추천</h3>
                                         <h2 class="banner-title s-animate-2">FBTI</h2><br>
                                         <h4 class="content s-animate-3">당신의 취향에 맞는 축제를 추천해 드립니다.<br><br>
-                                            회원 가입 후 스마트한 추천으로 새로운 경험을 해 보세요!</h4>
-                                        <a class="btn btn-yellow s-animate-4" href="/sign-up">가입하러 가기</a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-sm-4">
-                                    <div class="video-popup-btn s-animate-video">
-                                        <a href="https://www.youtube.com/watch?v=c7XEhXZ_rsk" class="video-play-btn mfp-iframe"><i class="fa fa-play"></i></a>
+                                        
+                                        <c:if test="${empty sessionScope.u_id}">
+                                            회원 가입 후 스마트한 추천으로 새로운 경험을 해 보세요! </h4>
+                                            <a class="btn btn-yellow s-animate-4" href="/sign-up">가입하러 가기</a><br/>   
+                                        </c:if>
+                                        <c:if test="${not empty sessionScope.u_id}">
+                                            ${sessionScope.u_id}님과 비슷한 유저들이<br>
+                                            골라준 축제들을 확인해보세요!
+                                            </h4>
+                                            <a class="btn btn-yellow s-animate-4" href="/smart/smart-page?cont=recomm">추천받으러 가기</a><br/>   
+                                        </c:if> 
                                     </div>
                                 </div>
                             </div>
@@ -262,64 +266,37 @@
             <div class="row justify-content-center">
                 <div class="col-xl-6 col-lg-8">
                     <div class="section-title text-center">
-                        <h2 class="title">Best Review</h2>
-                        <p>Vivamus eget aliquam dui. Integer eu arcu vel arcu suscipit ultrices quis non mauris. Aenean scelerisque, sem eu dictum commodo, velit nisi blandit magna</p>
+                        <h2 class="title">인 기 글</h2>
+                        <p>🧡 지금 사용자들에게 인기 있는 리뷰를 확인해보세요 🧡</p>
                     </div>
                 </div>
             </div>
             <div class="client-slider tp-common-slider-style">
-                <div class="single-client-card">
-                    <div class="quote"><i class="ti-quote-left"></i></div>   
-                    <p class="content-text">The largest country in the world, Russia offers a broad array of travel experiences, from treks up the slopes of glacier-capped mountains to strolls along the shoreline of Earth’s oldest lake. Historical sites and cultural</p>
-                    <div class="media">
-                        <div class="media-left">
-                            <img src="images/blog-details/11.png" alt="img">
-                        </div>
-                        <div class="media-body">
-                            <h4>축제일기 제목</h4>
-                            <span>농담곰전도사</span>
-                        </div>
-                    </div>
-                </div> 
-                <div class="single-client-card">
-                    <div class="quote"><i class="ti-quote-left"></i></div> 
-                    <p class="content-text">The largest country in the world, Russia offers a broad array of travel experiences, from treks up the slopes of glacier-capped mountains to strolls along the shoreline of Earth’s oldest lake. Historical sites and cultural</p>
-                    <div class="media">
-                        <div class="media-left">
-                            <img src="images/blog-details/10.png" alt="img">
-                        </div>
-                        <div class="media-body">
-                            <h4>ELK 사랑해요</h4>
-                            <span>킹밥</span>
-                        </div>
-                    </div>
-                </div> 
-                <div class="single-client-card">
-                    <div class="quote"><i class="ti-quote-left"></i></div> 
-                    <p class="content-text">The largest country in the world, Russia offers a broad array of travel experiences, from treks up the slopes of glacier-capped mountains to strolls along the shoreline of Earth’s oldest lake. Historical sites and cultural</p>
-                    <div class="media">
-                        <div class="media-left">
-                            <img src="images/blog-details/9.png" alt="img">
-                        </div>
-                        <div class="media-body">
-                            <h4>스프링부트 최고에요</h4>
-                            <span>룽지</span>
-                        </div>
-                    </div>
-                </div> 
-                <div class="single-client-card">
-                    <div class="quote"><i class="ti-quote-left"></i></div> 
-                    <p class="content-text">The largest country in the world, Russia offers a broad array of travel experiences, from treks up the slopes of glacier-capped mountains to strolls along the shoreline of Earth’s oldest lake. Historical sites and cultural</p>
-                    <div class="media">
-                        <div class="media-left">
-                            <img src="images/blog-details/10.png" alt="img">
-                        </div>
-                        <div class="media-body">
-                            <h4>우리의 PL님</h4>
-                            <span>윤</span>
-                        </div>
-                    </div>
-                </div> 
+                <c:forEach items="${getRank3}" var="getRank3">
+                    <a href="/reviews/getReview?rv_no=${getRank3.rv_no}">
+                        <div class="single-client-card" style="border-radius: 10px; height:300px;">
+                            <div class="quote"><i class="fa fa-thumb-tack" aria-hidden="true"></i></div>
+                            <p class="content-text">${getRank3.rv_content}</p>
+                            <div class="media" style="position:absolute; bottom:30px;">
+                                <div class="media-left">
+                                    <c:if test="${getRank3.file_path != null}">
+                                        <img src="${getRank3.file_path}" alt="img">
+                                    </c:if>
+                                    <c:if test="${getRank3.file_path == null}">
+                                        <img src="images/hearts.png" alt="img">
+                                    </c:if>
+                                </div>
+                                <div class="media-body">
+                                    <h4>${getRank3.u_id}</h4>
+                                    <span>${getRank3.u_comment}</span>
+                                </div>
+                            </div>
+                        </div> 
+                    </a>
+                </c:forEach> 
+                
+                
+                
             </div>
         </div>
     </div>
@@ -354,7 +331,7 @@
                                 <p class="date">${mm.mgz_regdate}</p>
                                 <h4 class="word2">${mm.mgz_title}</h4>
                                 <p class="word">${mm.mgz_content}</p>
-                                <a class="btn btn-yellow" href="blog"><span>Read More<i class="la la-arrow-right"></i></span></a>
+                                <a class="btn btn-yellow" href="/magazine-details?mgz_no=${mm.mgz_no}"><span>Read More<i class="la la-arrow-right"></i></span></a>
                             </div>
                         </div>
                 </div>

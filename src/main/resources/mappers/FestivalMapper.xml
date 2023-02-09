@@ -94,10 +94,10 @@
 	</insert>
 	
 	<!-- 불러온 태그 리스트, 이름 리스트 DB에서 삭제 -->
-	<insert id="deleteTest"  parameterType="String">
+	<delete id="deleteTest"  parameterType="String">
 		DELETE FROM mldataset
 		WHERE u_id = #{u_id}
-	</insert>
+	</delete>
 	
 	<!-- 추천 결과 불러오기 : 축제 이름으로 -->
 	<select id="getRecommResult" parameterType="String" resultType = "FestivalVO" >
@@ -115,4 +115,11 @@
 	</select>
 	
 	<!-- ******************* 추천 알고리즘 끝 ******************* -->
+	
+	<insert id="insertFestival" parameterType="FestivalVO">
+	INSERT INTO festival(fetv_name, fetv_area, fetv_startdate, fetv_enddate, fetv_short, fetv_image, 
+				fetv_tel, "fetv_homePage", fetv_addr, fetv_host, fetv_fee, fetv_time, fetv_info, fetv_tag	 )
+	VALUES( #{fetv_name}, #{fetv_area}, #{fetv_startdate}, #{fetv_enddate}, #{fetv_short}, #{fetv_image}, 
+				#{fetv_tel}, #{fetv_homePage}, #{fetv_addr}, #{fetv_host}, #{fetv_fee}, #{fetv_time}, #{fetv_info}, #{fetv_tag} )
+	</insert>
 </mapper>

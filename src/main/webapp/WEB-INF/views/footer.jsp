@@ -31,7 +31,7 @@
     <!-- responsive css -->
     <link rel="stylesheet" href="/css/responsive.css">
 
-    <!-- 챗봇 띄우는 CSS -->
+    <!-- 챗봇 CSS -->
     <style type="text/css">
         @keyframes fadeInUp {
             0% {
@@ -68,67 +68,14 @@
             animation: fadeOut 1s;
             
         }
+
+        #chatbot iframe {
+            box-shadow: 0px 0px 15px -1px #565656;
+        }
     </style>
-
-    <!-- 네이버 스크립트 : 아직 안됨!! -->
-    <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
-
-    <script>
-
-    var naverLogin = new naver.LoginWithNaverId(
-            {
-                clientId: "W4lGSs8ZKGXKbx5TBuRF", //내 애플리케이션 정보에 cliendId를 입력해줍니다.
-                callbackUrl: "http://localhost:8090/naverLogin", // 내 애플리케이션 API설정의 Callback URL 을 입력해줍니다.
-                isPopup: false,
-                callbackHandle: true
-            }
-        );	
-
-    naverLogin.init();
-
-    window.addEventListener('load', function () {
-        naverLogin.getLoginStatus(function (status) {
-            if (status) {
-                var email = naverLogin.user.getEmail(); // 필수로 설정할것을 받아와 아래처럼 조건문을 줍니다.
-                
-                console.log(naverLogin.user); 
-                
-                if( email == undefined || email == null) {
-                    alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
-                    naverLogin.reprompt();
-                    return;
-                }
-            } else {
-                console.log("callback 처리에 실패하였습니다.");
-            }
-        });
-    });
-
-
-    var testPopUp;
-    function openPopUp() {
-        testPopUp= window.open("https://nid.naver.com/nidlogin.logout", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,width=1,height=1");
-    }
-    function closePopUp(){
-        testPopUp.close();
-    }
-
-    function naverLogout() {
-        openPopUp();
-        setTimeout(function() {
-            closePopUp();
-            }, 1000);
-        
-        
-    }
-    </script>
-
-
 
 </head>
 <body>
-
-
 
     <!-- footer area start -->
     <footer class="footer-area style-three" style="background-image: url(/images/bg/2.png);">
@@ -142,12 +89,17 @@
                     </div>
                     <div class="footer-widget widget text-center">
                         <ul class="widget_nav_menu text-center">
-                            <li><a href="/#">Home</a></li>
-                            <li><a href="/viewFestivalList">Festival</a></li>
-                            <li><a href="/reviews/getReviewList">Community</a></li>
-                            <li><a href="/event">Events</a></li>
+                            <li><a href="/index">FEIDEAR</a></li>
+                            <li><a href="/viewFestivalList">축제 둘러보기</a></li>
+                            <li><a href="/reviews/getReviewList">축제 일기</a></li>
+                            <li><a href="/event">제휴 이벤트</a></li>
+                            <c:if test="${empty sessionScope.u_id}">
+                                <li><a class="signUp-btn" href="#">유저's PICK</a></li>
+                            </c:if>
+                            <c:if test="${not empty sessionScope.u_id}">
+                                <li><a href="/smart/smart-page?cont=recomm">유저's PICK</a></li>
+                            </c:if>
                             <li><a href="/faq/faq">FAQ</a></li>
-                            <li><a href="/faq/qna">Q&A</a></li>
                         </ul>
                     </div>  
                 </div>  
@@ -218,14 +170,27 @@
     
     
     <!-- 챗봇 div -->
-    <div id="chatbot" class="close" style="display:none; position:fixed; bottom:-15px; right: 100px; z-index: 123456789;">
-        <iframe width="350" height="430" allow="microphone;" src="https://console.dialogflow.com/api-client/demo/embedded/50d4fa2d-a85c-4483-b66a-55c4493013e4"></iframe>
+    <div id="chatbot" class="close" style="display:none; position:fixed; bottom:-8px; right: 100px; z-index: 123456789;">
+        <iframe width="450" height="615" allow="microphone;" src="https://console.dialogflow.com/api-client/demo/embedded/50d4fa2d-a85c-4483-b66a-55c4493013e4" frameborder="0"></iframe>
     </div>
     <!-- 챗봇 modal div 끝 -->
 </body>
 
+<!-- 네이버아이디로로그인 버튼 노출 영역 
+<script type="text/javascript">
+    var naver_id_login = new naver_id_login("W4lGSs8ZKGXKbx5TBuRF", "http://localhost:8090/naver/naver_callback");	// Client ID, CallBack URL 삽입
+                                    // 단 'localhost'가 포함된 CallBack URL
+    var state = naver_id_login.getUniqState();
+
+    naver_id_login.setButton("white", 2, 45);
+    naver_id_login.setDomain("http://localhost:8090/index");	//  URL
+    naver_id_login.setState(state);
+    naver_id_login.setPopup();
+    naver_id_login.init_naver_id_login();
+</script>-->
 
 <script src="/js/jquery-2.2.4.min.js"></script>
+
 <!-- 챗봇 나타나게 하는 JS -->
 <script type="text/javascript">
     $(function(){

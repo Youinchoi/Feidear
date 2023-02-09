@@ -23,4 +23,25 @@ $(function() {
 		
 	}//end of if
 
+		if ($('input#myWish').val() == "hi" ) {
+		
+		//켜져야 하는 pane (북마크 팬)
+		let testPane = $('ul.nav.nav-tabs.tp-tabs.style-two li:nth-child(4) a')
+		let oriClass = testPane.attr('class')
+		testPane.attr('class', oriClass+' active')
+	
+		//원래 켜져있던 pane (북마크 팬)		
+		let oriPane = $('ul.nav.nav-tabs.tp-tabs.style-two li:nth-child(1) a')
+		oriPane.attr('class', oriClass)
+	
+		//켜져야 하는 div (북마크 div)		
+		let testDiv = $('div.tab-content.user-tab-content div#tabs_4')
+		let oriDivClass = testDiv.attr('class')
+		testDiv.attr('class', oriDivClass+' show active')
+	
+		//원래 켜져있던 div (북마크 div)		
+		let oriDiv = $('div.tab-content.user-tab-content div#tabs_1')
+		oriDiv.attr('class', oriDivClass);
+		
+	}//end of if
 })

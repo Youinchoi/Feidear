@@ -28,6 +28,9 @@ public interface ReviewsDAO {
 
 	public void updateView_cnt(Integer rv_no);				// 리뷰 조회수 카운팅
 	
+	// 인기글 목록 가져오기(getRank3)_index 페이지
+	public List<ReviewsVO> getRank3();
+	
 	// 관리자 - 우측의 내가 쓴 리뷰 가져오기
 	public List<ReviewsVO> getReviewListAdmin(int u_no);
 } // end of interface

@@ -4,14 +4,14 @@
 
 <mapper namespace="com.example.dao.MagazineDAO">
 	
-	<!-- 회원정보 가져오기 -->
+	<!-- 매거진 가져오기 -->
 	<select id="getMagazine" resultType="magazineVO" parameterType="magazineVO">
 		SELECT *, to_char(mgz_regdate ,'yyyy-mm-dd') mgz_regdate
 		FROM magazine
 		WHERE mgz_no = #{mgz_no}
 	</select>
 	
-	<!-- 이벤트 목록 내림차순으로 가져오기 -->
+	<!-- 매거진 목록 내림차순으로 가져오기 -->
 	<select id="getMagazineList" resultType="magazineVO" parameterType="magazineVO">
 		select *, to_char(mgz_regdate ,'yyyy-mm-dd') mgz_regdate
 		from (
@@ -38,12 +38,21 @@
 			  		(mgz_title, mgz_content, mgz_regdate
 			  		<if test="file_name !=null">
 			  		, file_name, origin_file_name, file_size, file_path
-			  		</if>)
+			  		</if>
+			  		<if test="file_name2 !=null">
+			  		, file_name2, origin_file_name2, file_size2, file_path2
+			  		</if>
+			  		)
 		VALUES	 	(#{mgz_title}, #{mgz_content}, NOW()
 					<if test="file_name !=null">
 					, #{file_name}, #{origin_file_name}
 					, #{file_size}, #{file_path}
-					</if>)
+					</if>
+					<if test="file_name2 !=null">
+					, #{file_name2}, #{origin_file_name2}
+					, #{file_size2}, #{file_path2}
+					</if>
+					)
 	</insert>
 	
 	<!-- 매거진 삭제하기 -->

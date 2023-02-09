@@ -117,8 +117,6 @@ a {
 										관리</a></li>
 								<li><a href="communityAdmin"><i
 										class="fa fa-comments"></i>커뮤니티 관리</a></li>
-								<li><a href="manageQnA"><i
-										class="fa fa-question-circle"></i>문의사항 관리</a></li>
 								<li class="active"><a href="eventAdmin"><i
 										class="fa fa-calendar-check-o"></i>이벤트 관리</a></li>
 
@@ -157,122 +155,117 @@ a {
 						
 						<div class="tab-pane fade show active" id="event"
 						role="tabpanel" aria-labelledby="home-tab">
-						<h2
-										style="margin: 20px auto; font-size: 32px; font-weight: bolder; white-space: nowrap;">이벤트 게시판</h2>
-										<div style="margin-bottom: 20px; float : right;">
-											<div class="btn-group">
-												<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
-												aria-haspopup="true" aria-expanded="false" style="margin-bottom: 5px;">
-											분류
-										</button>
-											<div class="dropdown-menu">
-												<a class="dropdown-item" href="#">서포터즈</a>
-												<a class="dropdown-item" href="#">이벤트</a>
-											</div>
-										</div>
-									</div>
-									
-									<!-- 글 제목 입력 input -->
-									<div class="form-group row">
-										<label class="col-form-label col-md-2 col-sm-2 ">글 제목</label>
-										<div class="col-md-10 col-sm-10 ">
-											<input type="text" class="form-control"
-											placeholder="글 제목을 입력하세요" id="ev_title" name="ev_title">
-										</div>
-									</div>
-									
-									<div class="x_content">
-										<!-- 글 입력 Text Editor -->
-										<div id="alerts"></div>
-										<div class="btn-toolbar editor" data-role="editor-toolbar"
-										data-target="#editor-one">
+						<h2 style="margin: 20px auto; font-size: 32px; font-weight: bolder; white-space: nowrap;">이벤트 게시판</h2>
 										
-										<div class="btn-group">
-											<a class="btn dropdown-toggle" data-toggle="dropdown"
-											title="Font Size"><i class="fa fa-text-height"></i>&nbsp;<b
-											class="caret"></b></a>
-											<ul class="dropdown-menu">
-												<li><a data-edit="fontSize 5">
-													<p style="font-size: 17px">Huge</p>
-												</a></li>
-												<li><a data-edit="fontSize 3">
-													<p style="font-size: 14px">Normal</p>
-													</a></li>
-													<li><a data-edit="fontSize 1">
-														<p style="font-size: 11px">Small</p>
-													</a></li>
-												</ul>
-											</div>
-											
-											<div class="btn-group">
-												<a class="btn" data-edit="bold" title="Bold (Ctrl/Cmd+B)"><i
-													class="fa fa-bold"></i></a> <a class="btn" data-edit="italic"
-													title="Italic (Ctrl/Cmd+I)"><i class="fa fa-italic"></i></a>
-													<a class="btn" data-edit="strikethrough"
-													title="Strikethrough"><i class="fa fa-strikethrough"></i></a>
-													<a class="btn" data-edit="underline"
-													title="Underline (Ctrl/Cmd+U)"><i
-													class="fa fa-underline"></i></a>
-											</div>
-											
-											<div class="btn-group">
-												<a class="btn" data-edit="insertunorderedlist"
-												title="Bullet list"><i class="fa fa-list-ul"></i></a> <a
-												class="btn" data-edit="insertorderedlist"
-												title="Number list"><i class="fa fa-list-ol"></i></a> <a
-												class="btn" data-edit="outdent"
-												title="Reduce indent (Shift+Tab)"><i
-												class="fa fa-dedent"></i></a> <a class="btn" data-edit="indent"
-												title="Indent (Tab)"><i class="fa fa-indent"></i></a>
-											</div>
-											
-											<div class="btn-group">
-												<a class="btn" data-edit="justifyleft"
-												title="Align Left (Ctrl/Cmd+L)"><i
-												class="fa fa-align-left"></i></a> <a class="btn"
-												data-edit="justifycenter" title="Center (Ctrl/Cmd+E)"><i
-												class="fa fa-align-center"></i></a> <a class="btn"
-												data-edit="justifyright" title="Align Right (Ctrl/Cmd+R)"><i
-												class="fa fa-align-right"></i></a> <a class="btn"
-												data-edit="justifyfull" title="Justify (Ctrl/Cmd+J)"><i
-												class="fa fa-align-justify"></i></a>
-											</div>
-											
-											<div class="btn-group">
-												<a class="btn dropdown-toggle" data-toggle="dropdown"
-												title="Hyperlink"><i class="fa fa-link"></i></a>
-												<div class="dropdown-menu input-append">
-													<input class="span2" placeholder="URL" type="text"
-													data-edit="createLink" />
-													<button class="btn" type="button">링크 추가</button>
-												</div>
-												<a class="btn" data-edit="unlink" title="링크 제거"><i
-													class="fa fa-cut"></i></a>
-												</div>
-												
-											</div>
-											
-											<div id="ev_content2" class="editor-wrapper"
-											style="height: 500px; border: 1px solid #ced4da; border-radius: 5px; margin-bottom: 20px;"></div>
-											<textarea name="descr" id="descr" style="display: none;"></textarea>
+									
+						<!-- 글 제목 입력 input -->
+						<div class="form-group row">
+							<label class="col-form-label col-md-2 col-sm-2 ">글 제목</label>
+							<div class="col-md-10 col-sm-10 ">
+								<input type="text" class="form-control"
+								placeholder="글 제목을 입력하세요" id="ev_title" name="ev_title">
+							</div>
+						</div>
 
-											<input type="hidden" id="ev_content" name="ev_content" />
-											
-										</div>
-										<!-- 첨부파일 입력 시작 -->
-										<div class="x_content">
-											<a>파일은 최대 6개까지 등록 가능합니다</a>
-											<br/>
-											<input type="file" maxlength="60" size="40" name='file'>
-											<br/>
-										</div>
-										<!-- 첨부파일 입력 끝 -->
-										
-										<!-- 전송 버튼 -->
-										<button class="btn btn-primary" type="reset">초기화</button>
-										<input type="button" id="subButton" class="btn btn-success" value="등록">
-									</div>
+						<!-- 썸네일 입력 시작 -->
+						<div class="x_content" style="text-align: left; padding-left: 5%;">
+							<a><b>썸네일 이미지를 등록해주세요</b> &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;</a>
+							<input type="file" maxlength="60" size="40" name='file' required>
+							<br/>
+						</div>
+						<!-- 썸네일 입력 끝 -->
+						
+						<div class="x_content">
+							<!-- 글 입력 Text Editor -->
+							<div id="alerts"></div>
+							<div class="btn-toolbar editor" data-role="editor-toolbar"
+							data-target="#editor-one">
+							
+							<div class="btn-group">
+								<a class="btn dropdown-toggle" data-toggle="dropdown"
+								title="Font Size"><i class="fa fa-text-height"></i>&nbsp;<b
+								class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li><a data-edit="fontSize 5">
+										<p style="font-size: 17px">Huge</p>
+									</a></li>
+									<li><a data-edit="fontSize 3">
+										<p style="font-size: 14px">Normal</p>
+										</a></li>
+										<li><a data-edit="fontSize 1">
+											<p style="font-size: 11px">Small</p>
+										</a></li>
+									</ul>
 								</div>
+								
+								<div class="btn-group">
+									<a class="btn" data-edit="bold" title="Bold (Ctrl/Cmd+B)"><i
+										class="fa fa-bold"></i></a> <a class="btn" data-edit="italic"
+										title="Italic (Ctrl/Cmd+I)"><i class="fa fa-italic"></i></a>
+										<a class="btn" data-edit="strikethrough"
+										title="Strikethrough"><i class="fa fa-strikethrough"></i></a>
+										<a class="btn" data-edit="underline"
+										title="Underline (Ctrl/Cmd+U)"><i
+										class="fa fa-underline"></i></a>
+								</div>
+								
+								<div class="btn-group">
+									<a class="btn" data-edit="insertunorderedlist"
+									title="Bullet list"><i class="fa fa-list-ul"></i></a> <a
+									class="btn" data-edit="insertorderedlist"
+									title="Number list"><i class="fa fa-list-ol"></i></a> <a
+									class="btn" data-edit="outdent"
+									title="Reduce indent (Shift+Tab)"><i
+									class="fa fa-dedent"></i></a> <a class="btn" data-edit="indent"
+									title="Indent (Tab)"><i class="fa fa-indent"></i></a>
+								</div>
+								
+								<div class="btn-group">
+									<a class="btn" data-edit="justifyleft"
+									title="Align Left (Ctrl/Cmd+L)"><i
+									class="fa fa-align-left"></i></a> <a class="btn"
+									data-edit="justifycenter" title="Center (Ctrl/Cmd+E)"><i
+									class="fa fa-align-center"></i></a> <a class="btn"
+									data-edit="justifyright" title="Align Right (Ctrl/Cmd+R)"><i
+									class="fa fa-align-right"></i></a> <a class="btn"
+									data-edit="justifyfull" title="Justify (Ctrl/Cmd+J)"><i
+									class="fa fa-align-justify"></i></a>
+								</div>
+								
+								<div class="btn-group">
+									<a class="btn dropdown-toggle" data-toggle="dropdown"
+									title="Hyperlink"><i class="fa fa-link"></i></a>
+									<div class="dropdown-menu input-append">
+										<input class="span2" placeholder="URL" type="text"
+										data-edit="createLink" />
+										<button class="btn" type="button">링크 추가</button>
+									</div>
+									<a class="btn" data-edit="unlink" title="링크 제거"><i
+										class="fa fa-cut"></i></a>
+									</div>
+									
+								</div>
+								
+								<div id="ev_content2" class="editor-wrapper"
+								style="height: 500px; border: 1px solid #ced4da; border-radius: 5px; margin-bottom: 20px;"></div>
+								<textarea name="descr" id="descr" style="display: none;"></textarea>
+
+								<input type="hidden" id="ev_content" name="ev_content" />
+								
+							</div>
+							<!-- 첨부파일 입력 시작 -->
+							<div class="x_content" style="text-align: left; padding-left: 5%; margin-bottom: 3%;">
+								<a><b>세부 이미지를 등록해주세요</b> &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;</a>
+								<input type="file" maxlength="60" size="40" name='file2'>
+								<br/>
+							</div>
+							<!-- 첨부파일 입력 끝 -->
+							
+							<!-- 전송 버튼 -->
+							<button class="btn btn-primary" type="reset">초기화</button>
+							<input type="button" id="subButton" class="btn btn-success" value="등록">
+						</div>
+					</div>
 								
 								
 								
@@ -428,7 +421,8 @@ a {
 					}
 				});
 			}) // end of clickevent()
-		
+			
+			
 	</script>	
 
 </body>

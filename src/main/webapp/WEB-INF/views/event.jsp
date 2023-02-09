@@ -8,7 +8,7 @@
 
 
     <!-- 이벤트 제휴 페이지 상단바 밑 제목 area start -->
-   <div class="breadcrumb-area jarallax" style="background-image:url(/images/bg/banner.png);">
+   <div class="breadcrumb-area jarallax" style="background-image:url(/images/index/breadcrumb.jpg);">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">

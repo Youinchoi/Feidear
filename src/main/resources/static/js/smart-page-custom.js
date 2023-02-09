@@ -57,7 +57,7 @@ $(function(){
 	        url: '/smart/weather',
 	        data : param,
 	        success : function(result){	
-				$('#default_img').remove();
+				
 	            rs = result.replace(/'/g, '"')
 	            rs = JSON.parse(rs) // 문자열로 넘어온 결과값을 JSON으로 변환하기 위해 '을 "으로 변환
 	
@@ -90,6 +90,7 @@ $(function(){
 		        
 		        todayTbl.append(thead2); // 오늘 내일 테이블에 컬럼을 붙임
 		        
+		        $('#default_img').remove();
 		        /******오늘내일 기온강수량********/
 		        	//<tr> 생성
 		           var tTr = $('<tr/>')

@@ -79,8 +79,6 @@
 														관리</a></li>
 												<li><a href="communityAdmin"><i class="fa fa-comments"></i>커뮤니티
 														관리</a></li>
-												<li><a href="manageQnA"><i class="fa fa-question-circle"></i>문의사항 관리</a>
-												</li>
 												<li><a href="eventAdmin"><i class="fa fa-calendar-check-o"></i>이벤트
 														관리</a></li>
 
@@ -104,71 +102,7 @@
 									</div>
 									<nav class="nav navbar-nav">
 										<ul class=" navbar-right">
-											<li class="nav-item dropdown open" style="padding-left: 15px;">
-												<a href="javascript:;" class="user-profile dropdown-toggle"
-													aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown"
-													aria-expanded="false"> <img src="images/img.jpg" alt="">John
-													Doe
-												</a>
-												<div class="dropdown-menu dropdown-usermenu pull-right"
-													aria-labelledby="navbarDropdown">
-													<a class="dropdown-item" href="javascript:;"> 프로필</a> <a
-														class="dropdown-item" href="javascript:;"> <span
-															class="badge bg-red pull-right">50%</span>
-														<span>Settings</span>
-													</a> <a class="dropdown-item" href="javascript:;">Help</a> <a
-														class="dropdown-item" href="login.html"><i
-															class="fa fa-sign-out pull-right"></i> Log Out</a>
-												</div>
-											</li>
-
-											<li role="presentation" class="nav-item dropdown open"><a
-													href="javascript:;" class="dropdown-toggle info-number"
-													id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
-													<i class="fa fa-envelope-o"></i> <span
-														class="badge bg-green">6</span>
-												</a>
-												<ul class="dropdown-menu list-unstyled msg_list" role="menu"
-													aria-labelledby="navbarDropdown1">
-													<li class="nav-item"><a class="dropdown-item"> <span
-																class="image"><img src="images/img.jpg"
-																	alt="Profile Image" /></span> <span> <span>John
-																	Smith</span> <span class="time">3 mins ago</span>
-															</span> <span class="message"> Film festivals used to be
-																do-or-die moments for movie makers. They were where...
-															</span>
-														</a></li>
-													<li class="nav-item"><a class="dropdown-item"> <span
-																class="image"><img src="images/img.jpg"
-																	alt="Profile Image" /></span> <span> <span>John
-																	Smith</span> <span class="time">3 mins ago</span>
-															</span> <span class="message"> Film festivals used to be
-																do-or-die moments for movie makers. They were where...
-															</span>
-														</a></li>
-													<li class="nav-item"><a class="dropdown-item"> <span
-																class="image"><img src="images/img.jpg"
-																	alt="Profile Image" /></span> <span> <span>John
-																	Smith</span> <span class="time">3 mins ago</span>
-															</span> <span class="message"> Film festivals used to be
-																do-or-die moments for movie makers. They were where...
-															</span>
-														</a></li>
-													<li class="nav-item"><a class="dropdown-item"> <span
-																class="image"><img src="images/img.jpg"
-																	alt="Profile Image" /></span> <span> <span>John
-																	Smith</span> <span class="time">3 mins ago</span>
-															</span> <span class="message"> Film festivals used to be
-																do-or-die moments for movie makers. They were where...
-															</span>
-														</a></li>
-													<li class="nav-item">
-														<div class="text-center">
-															<a class="dropdown-item"> <strong>See All Alerts</strong>
-																<i class="fa fa-angle-right"></i>
-															</a>
-														</div>
-													</li>
+											
 												</ul>
 											</li>
 										</ul>

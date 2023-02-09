@@ -86,7 +86,7 @@ public class ReviewsController {
  		System.out.println("[Controller : getReviews 요청] 상세보기 : "+result );
  		reviewsService.updateView_cnt(vo.getRv_no());
  		
- 		System.out.println("getReviews 요청 >>> 조회수 카운팅 될까?" + result.getRv_cnt());
+ 		//System.out.println("getReviews 요청 >>> 조회수 카운팅 될까?" + result.getRv_cnt());
  		m.addAttribute("reviews", result);
  		
  		List<ReviewsVO> rankList = reviewsService.getRankList();
@@ -97,7 +97,7 @@ public class ReviewsController {
  	
  	
  	// 리뷰 삭제
- 	@RequestMapping("/deleteReview")
+ 	@RequestMapping(value="/deleteReview")
  	public String deleteReview(ReviewsVO vo) {
  		reviewsService.deleteReview(vo);
  		System.out.println("[Controller : deleteReviews 요청] 글 삭제: " + vo.getRv_no());
@@ -105,13 +105,23 @@ public class ReviewsController {
  	} // end of deleteReviews()
  	
  	
- 	// 리뷰 수정
+ 	// 리뷰 수정 페이지 이동 + 리뷰 내용 불러옴
  	@RequestMapping(value="updateReview")
- 	public String updateReview(ReviewsVO vo) {
- 		reviewsService.updateReview(vo);
+ 	public String updateReview(ReviewsVO vo, Model m) {
+ 		ReviewsVO result = reviewsService.getReview(vo);
+ 		m.addAttribute("reviews", result);
+ 		
  		System.out.println("[Controller : updateReview 요청] 글 수정 : " + vo.getRv_no());
- 		return "redirect:getReview";
+ 		return "/reviews/updateReview";
  	} // end of updateReviews()
+ 	
+ 	// 리뷰 수정
+  	@RequestMapping(value="/rUpdateReview")
+  	public String rUpdateReview(ReviewsVO vo) {
+  		reviewsService.updateReview(vo);
+  		System.out.println("[Controller : updateReview 요청] 글 수정 완료 : " + vo.getRv_no());
+  		return "redirect:/reviews/getReview?rv_no="+vo.getRv_no();
+  	} // end of updateReviews()
     
 
 }

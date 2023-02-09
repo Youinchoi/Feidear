@@ -7,7 +7,7 @@
 
 
     <!-- 이벤트 상단 제목 area start -->
-    <div class="breadcrumb-area jarallax" style="background-image:url(/images/bg/1.png);">
+    <div class="breadcrumb-area jarallax" style="background-image:url(/images/index/breadcrumb.jpg);">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -35,7 +35,7 @@
                                <img src="${event.file_path}" alt="blog">
                             </c:if>
                             <c:if test="${event.file_path == null}">
-                                <img src="/images/blog-details/1.png" alt="blog">
+                                <img src="/images/blog/event_pic.png" alt="blog">
                             </c:if>
                         </div>
                         <div class="single-blog-details">
@@ -48,48 +48,26 @@
                       <p class="mb-0">${event.ev_content}</p>
                     </blockquote>
                     <!-- 이벤트 상세 설명-end -->
-                    <h4 class="single-page-small-title mt-5">이벤트 상세설명 관련 사진</h4>
-
-                    <!-- 이벤트 사진-start -->
-                    <div class="gallery-area">
-                        <div class="containerss">
-                            <div class="gallery-filter-area row custom-gutter">
-                                <div class="gallery-sizer col-1"></div>
-                                <!-- gallery-item -->
-                                <div class="tp-gallery-item col-md-4 col-sm-6 mb-10">
-                                    <div class="tp-gallery-item-img">
-                                        <img src="images/blog-details/2.png" alt="image">
+                    
+                    <!-- 이벤트 상세설명-start -->
+                    <c:if test="${not empty event.file_path2}">                      
+                        <h4 class="single-page-small-title mt-5">이벤트 상세설명 관련 사진</h4>
+                        <div class="gallery-area">
+                            <div class="containerss">
+                                <div class="gallery-filter-area row custom-gutter">
+                                    <div class="gallery-sizer col-1"></div>
+                                    <!-- gallery-item -->
+                                    <div class="tp-gallery-item col-md-12 col-sm-12 mb-12">
+                                        <div class="tp-gallery-item-img">
+                                            <img src="${event.file_path2}" alt="${event.file_name2}" style="display: block; margin: 0px auto;">
+                                        </div>
                                     </div>
-                                </div>
-                                <!-- gallery-item -->
-                                <div class="tp-gallery-item col-md-4 col-sm-6">
-                                    <div class="tp-gallery-item-img">
-                                        <img src="images/blog-details/3.png" alt="image">
-                                    </div>
-                                </div>
-                                <!-- gallery-item -->
-                                <div class="tp-gallery-item col-md-4 col-sm-6">
-                                    <div class="tp-gallery-item-img">
-                                        <img src="images/blog-details/4.png" alt="image">
-                                    </div>
-                                </div>
-                                <!-- gallery-item -->
-                                <div class="tp-gallery-item col-md-4 col-sm-6">
-                                    <div class="tp-gallery-item-img">
-                                        <img src="images/blog-details/5.png" alt="image">
-                                    </div>
-                                </div>
-                                <!-- gallery-item -->
-                                <div class="tp-gallery-item col-md-4 col-sm-6">
-                                    <div class="tp-gallery-item-img">
-                                        <img src="images/blog-details/6.png" alt="image">
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- 이벤트 사진-end -->
-                    <p>위에 사진에서 보여준 이벤트 내용</p>
+                    </c:if>
+                    <!-- 이벤트 상세설명-end -->
 
                     <div class="row tag-share-area">
                         <div class="col-xl-5 col-lg-6 offset-xl-1">

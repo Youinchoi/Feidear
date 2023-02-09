@@ -32,38 +32,52 @@ $(function(){
 
 
 //수정 버튼을 클릭했을 때
-$('#replyList').on("click","#modifyRply",function(event){
+$('#rv_cmtList').on("click","#modifyRply",function(event){
 
-    event.preventDefault();
-
-    var content = $(this).parents("div.media-body").find("p").text(); 	//p 태그의 값 저장
-    $(this).parents("div.media-body").find("p").remove(); 				//li의 parent(ul)의 parent(div)의 자식(p태그) 삭제
-        
-    var input = $('<textarea/>');
+    //event.preventDefault();
+	
+    var content = $(this).parents("div.single-comment-wrap").find("p").text(); 	//p 태그의 값 저장
+    //alert(content);
+    // 수정할 경우 댓글 내용 끝에 (수정됨) 추가
+    var idx = content.indexOf('( 수정됨 )'); 
+    
+    // 수정한 경우('수정됨'이 있을 경우), (수정됨) 삭제 > 계속 (수정됨)이 누적되지 않도록
+    if (idx != -1){
+	    content = content.slice(0, -8);	
+	}
+    
+    
+    // 수정할 댓글의 내용을 지워주기
+    $(this).parents("div.single-comment-wrap").find("p").remove(); 				//li의 parent(ul)의 parent(div)의 자식(p태그) 삭제
+    
+    // 수정 버튼 누른 댓글 textarea 화면 크기 조정 ([참고] https://bydawn25.tistory.com/44) ([참고2] https://velog.io/@seungsang00/HTML-JacaScript-%ED%95%A8%EC%88%98%EB%A1%9C-textarea-%EB%86%92%EC%9D%B4-%EC%9E%90%EB%8F%99%EC%A1%B0%EC%A0%88%ED%95%98%EA%B8%B0)  
+    // ([참고3] https://joyful-development.tistory.com/36)
+    var input = $('<textarea rows="2" style="overflow-y: none; resize: none; width:100%; border-radius: 5px; border-color:#e8e7e3;"/>');
+	
     input.attr('id','mReply');
     input.val(content);													//p태그의 값을 textarea에 설정
-    $(this).parents("div.media-body").append(input);					//div에 붙임
+    $(this).parents("div.single-comment-wrap").find("div.content").append(input);					//div에 붙임
 
     $(this).attr('id','modifyRply2');
 });//end of click
 
-$('#replyList').on("click","#modifyRply2",function(event){				//수정 버튼을 다시 눌렀을 때 
+
+// 수정한 내용 DB에 update
+$('#rv_cmtList').on("click","#modifyRply2",function(event){				//수정 버튼을 다시 눌렀을 때 
     
-    let rv_no = $(this).parents("div.media-body").find('input[name="rv_no"]').val();
-    
-    var param = {	rv_cmt_no 	: Number($('input[name="rv_cmt_no"]').val()),
-        			replyer 	: Number($('input[name="u_no"]').val()),
-        			reply 		: $('#rv_cmt').val()
+    let rv_no = $('input[name="rv_no"]').val();
+    let cmt_no = $(this).parent().parent().parent().find('input[name="rv_cmt_no"]');
+    var param = {	rv_cmt_no 	: Number(cmt_no.val()),
+        			rv_cmt 		: $('#mReply').val() + " ( 수정됨 )"
         };
-        
-    console.log(param);
+    //console.log(param);
 
     $.ajax({
         type:'post',
         url:'../replies/'+rv_no,
         data:param,
         success : function(result){
-            replyList();
+            rv_cmtList();
         },
         error : function(err){
             alert('수정_에러');
@@ -175,7 +189,7 @@ function rv_cmtList(event){
                                                             
                
                 
-                if($('input[name="u_no"]').val()==row.u_no){
+                if($('input[name="u_no"]').val()==row.u_no || $('input[name="u_no"]').val()==1){
                     table.append(modLi).trigger("create");
                     table.append(delLi).trigger("create");
                     

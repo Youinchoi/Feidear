@@ -8,7 +8,7 @@
 
 
     <!-- breadcrumb area start -->
-    <div class="breadcrumb-area style-two jarallax" style="background-image:url(images/bg/1.png);">
+    <div class="breadcrumb-area style-two jarallax" style="background-image:url(/images/index/breadcrumb.jpg);">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -148,7 +148,7 @@
                             </div>
                         </div>
                         <div class="widget_ads">
-                            <a href="#"><img src="images/others/01.png" alt="img"></a>
+                            <a href="#"><img src="/images/others/01.png" alt="img"></a>
                         </div>
                     </div>
                 </div>

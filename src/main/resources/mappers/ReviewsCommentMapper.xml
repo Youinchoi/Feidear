@@ -34,7 +34,7 @@
    <update id="updateReviewReply" parameterType="ReviewsCommentVO">
       UPDATE 	"REVIEWS_COMMENT"
       SET 		rv_cmt = #{rv_cmt}
-      WHERE 	u_no = #{u_no}
+      WHERE 	rv_cmt_no = #{rv_cmt_no}
    </update>
 	
 </mapper>

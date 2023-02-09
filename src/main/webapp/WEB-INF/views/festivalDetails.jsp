@@ -1,10 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%String pjName = "/Feidear";%>
 
-<jsp:include page="header.jsp"></jsp:include>
+<!-- header.jsp -->
+<%@ include file='header.jsp' %>
+<!-- header.jsp 끝 -->
 
+    <style type="text/css">
+        .service-location-map input{
+            margin : 0px 1%;
+            font-size: 13pt;
+            font-weight: bolder;
+            padding: 2%;
+            border: none;
+            border-radius: 5px;
+            background-color: #d9e9ff;
+            width:20%;
+        }
+
+        .service-location-map input:hover{
+            box-shadow: 0px 0px 5px 0px #747474;
+            background-color: #b9d6ff;
+        }
+
+
+
+
+    </style>
 
     <!-- breadcrumb area start -->
     <div class="breadcrumb-area jarallax" style="background-image:url(/images/index/breadcrumb.jpg);">
@@ -14,7 +36,7 @@
                     <div class="breadcrumb-inner">
                         <h1 class="page-title">축제 상세</h1>
                         <ul class="page-list">
-                            <li><a href="index">Home</a></li>
+                            <li><a href="/index">Home</a></li>
                             <li>Festival Details</li>
                         </ul>
                     </div>
@@ -31,27 +53,7 @@
                 <div class="container">
                     <div class="gallery-filter-area row">
                         <div class="gallery-sizer col-1"></div>
-                        
-                        <!-- gallery-item
-                        <div class="tp-gallery-item col-md-5 col-sm-6 mb-10">
-                            <div class="tp-gallery-item-img">
-                                <div class="thumbnails">
-                                    <img src="../images/tour-details/1.png" alt="image">
-                                    <div class="video-popup-btn">
-                                        <a href="https://www.youtube.com/watch?v=c7XEhXZ_rsk" class="video-play-btn mfp-iframe" tabindex="0"><i class="fa fa-play"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="tp-gallery-item col-lg-6 col-md-7 col-sm-10">
-                            <div class="tp-gallery-item-img">
-                                <a href="#" data-effect="mfp-zoom-in">
-                                    <img src="../images/tour-details/${view.fetv_image}" alt="image">
-                                </a>
-                            </div>
-                        </div>-->
-                        
+                       
                     </div>
                     <div class="row">
                         <form action="viewFestival" id="viewFestival" name="viewFestival" method="get" style="width: 150%;">
@@ -131,131 +133,84 @@
 
                             <!-- 여기 아래엔 건드린거 없음.. 근데 추천코스 지우면 사이드바 고장남...... 환장 by.유인 -->
 
-                            <h4 class="single-page-small-title" style="font-size: 2.7em;">추천 코스</h4><br>
+                            
                             <div class="row">
-                                <div class="col-lg-4 col-md-4">
-                                    <div class="single-blog">
-                                        <div class="p-list">
-                                            <div class="list">1</div>
-                                            <p>맛집</p>
-                                        </div>
-                                        <div class="thumb">
-                                            <img src="/images/blog/8.png" alt="blog">
-                                        </div>
-                                        <div class="single-blog-details">
-                                            <h4 class="title">Welcome to St. John's</h4>
-                                            <p class="content">After a welcome drink, we'll stroll into town and get to know each other over a hyper-local ânose-to-tailâ dinner. Show more</p>
-                                            <a class="btn-read-more" href="#"><span>Show More<i class="la la-arrow-right"></i></span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-4">
-                                    <div class="single-blog">
-                                        <div class="p-list">
-                                            <div class="list">2</div>
-                                            <p>&nbsp</p>
-                                        </div>
-                                        <div class="thumb">
-                                            <img src="/images/blog/1.png" alt="blog">
-                                        </div>
-                                        <div class="single-blog-details">
-                                            <h4 class="title">Relaxation & Exploration</h4>
-                                            <p class="content">After a welcome drink, we'll stroll into town and get to know each other over a hyper-local ânose-to-tailâ dinner. Show more</p>
-                                            <a class="btn-read-more" href="#"><span>Show More<i class="la la-arrow-right"></i></span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-4">
-                                    <div class="single-blog single-blog-after-none">
-                                        <div class="p-list">
-                                            <div class="list">3</div>
-                                            <p>관광명소</p>
-                                        </div>
-                                        <div class="thumb">
-                                            <img src="/images/blog/9.png" alt="blog">
-                                        </div>
-                                        <div class="single-blog-details">
-                                            <h4 class="title">Farewell & Departure</h4>
-                                            <p class="content">After a welcome drink, we'll stroll into town and get to know each other over a hyper-local ânose-to-tailâ dinner. Show more</p>
-                                            <a class="btn-read-more" href="#"><span>Show More<i class="la la-arrow-right"></i></span></a>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                             </div>
+
                         </div><br>
 
                         <div class="service-location-map">
-                            <h4 class="single-page-small-title" style="font-size: 2.7em; color: darkorange;">Service Location</h4>
-                                <input type="button" id="matjip" value="식당">
-                                <input type="button" id="parkingLot" value="주차장">
-                                <input type="button" id="hotel" value="숙소">
+                            <h4 class="single-page-small-title" style="font-size: 2.7em; color: darkorange;">주변 시설</h4>
+                                <input type="button" id="matjip" value="🍴&nbsp;식당&nbsp;🥢" style="margin-left: 0px;">
+                                <input type="button" id="parkingLot" value="🚗&nbsp;주차장&nbsp;🚙">
+                                <input type="button" id="hotel" value="🏠&nbsp;숙소&nbsp;⛺">
                                 <div id="map" style="width:100%;height:350px; margin-top: 2%;"></div>
                         </div><br><br>
                         
-                        <div class="comments-area tour-details-review-area">
-                            <h4 class="comments-title">Reviews</h4>
-                            <ul class="comment-list mb-0">
+                        <!-- 댓글 목록 부분 -->
+                        <!-- 댓글 시작 comments-area-start -->
+                        <div class="comments-area">
+                            <h4 class="comments-title">댓 글</h4>
+                            <ul class="comment-list" id="cmtList">
+                                <input type="hidden" name="cmt_no" value="${sessionScope.cmt_no}">
                                 <li>
                                     <div class="single-comment-wrap">
+                                        
                                         <div class="thumb">
-                                            <img src="/images/client/3.png" alt="img">
+                                            <img src="${user.file_path}" alt="img">
                                         </div>
                                         <div class="content">
-                                            <h4 class="title">Eliza Jordan</h4>
-                                            <span class="date">17 SEP 2019</span>
-                                            <div class="tp-review-meta">
-                                                <i class="ic-yellow fa fa-star"></i>
-                                                <i class="ic-yellow fa fa-star"></i>
-                                                <i class="ic-yellow fa fa-star"></i>
-                                                <i class="ic-yellow fa fa-star"></i>
-                                                <i class="ic-yellow fa fa-star"></i>
-                                            </div>
-                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata</p>
+                                            <h4 class="title">${sessionScope.u_id}</h4>
+                                            <span class="date">${list.cmt_regdate}</span>
+                                            <p>${list.cmt_content}</p>
+                                            <!-- <a href="#" class="reply btn btn-yellow"><span><i class="fa fa-reply"></i>답글 달기</span></a> -->
                                         </div>
                                     </div>
                                 </li>
                             </ul>
-                        </div><br>
-                        <div class="location-review-area">
-                            <form class="tp-form-wrap bg-gray tp-form-wrap-one">
-                                <div class="row">
-                                    <div class="col-lg-6"><h4 class="single-page-small-title">Write A Review</h4></div>
-                                    <div class="col-lg-6">
-                                        <div class="tp-review-meta text-lg-right">
-                                            <span class="mr-3 ml-0">Assigned Rating</span>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
+                        </div>
+                        <!-- 댓글 끝 comments-area-end -->
+
+                        <br>
+
+                        <!-- blog-comment-area start -->
+                        <!-- 댓글 작성 폼 시작 -->
+                        <c:if test="${empty sessionScope.u_id}">
+                            <div class="blog-comment-area" style="text-align:center; padding-top:2.7vw;">
+                                <h4>로그인이 필요한 서비스입니다.</h4>
+                            </div>
+                        </c:if>
+                        <c:if test="${not empty sessionScope.u_id}">
+                            <div class="blog-comment-area">
+                                <form class="tp-form-wrap bg-gray tp-form-wrap-one" action="">
+                                    <h4 class="single-page-small-title">댓글 작성하기</h4>
+                                    <div class="row">
+                                        
+                                        <div class="col-lg-6 col-md-6">
+                                            <label class="single-input-wrap">
+                                                <input id="writer" type="hidden" name="u_no" value="${sessionScope.u_no}">
+                                                <span class="single-input-title">아이디 : ${sessionScope.u_id}</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <label class="single-input-wrap">
+                                                <span class="single-input-title">댓글 내용</span>
+                                                <textarea id="cmt_content" name="cmt_content"></textarea>
+                                            </label>
+                                        </div>
+                                        <div class="col-12">
+                                            <input type="button" class="btn btn-yellow" id="submitBtn" value="저 장">
                                         </div>
                                     </div>
-                                    <div class="col-lg-6">
-                                        <label class="single-input-wrap">
-                                            <span class="single-input-title">Name</span>
-                                            <input type="text">
-                                        </label>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <label class="single-input-wrap">
-                                            <span class="single-input-title">Email</span>
-                                            <input type="text">
-                                        </label>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <label class="single-input-wrap">
-                                            <span class="single-input-title">Comments</span>
-                                            <textarea></textarea>
-                                        </label>
-                                    </div>
-                                    <div class="col-12">
-                                        <a class="btn btn-yellow" href="#">Send</a>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                                </form>
+                            </div>
+                        </c:if>
+                        <!-- 댓글 작성 폼 끝 -->
+                        <!-- blog-comment-area start -->
                     </div>
                 </div>
+                
                 <!-- 사이드 바 광고배너 -->
                 <div class="col-lg-4">
                     <div class="sidebar-area sidebar-area-4">
@@ -286,33 +241,13 @@
     </div>
     <!-- tour details area End -->
 
-    <!-- newslatter area Start -->
-    <div class="newslatter-area pd-top-120">
+    <!-- newsletter area Start -->
+    <div class="newsletter-area pd-top-120">
         <div class="container">
-            <div class="newslatter-area-wrap border-tp-solid">
-                <div class="row">
-                    <div class="col-xl-3 col-lg-6 col-md-5 offset-xl-2">
-                        <div class="section-title mb-md-0">
-                            <h2 class="title">Newsletter</h2>
-                            <p>Sign up to receive the best offers</p>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-6 col-md-7 align-self-center offset-xl-1">
-                        <div class="input-group newslatter-wrap">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fa fa-envelope"></i></span>
-                            </div>
-                            <input type="text" class="form-control" placeholder="Email">
-                            <div class="input-group-append">
-                                <button class="btn btn-yellow" type="button">Subscribe</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
         </div>
     </div>
-    <!-- newslatter area End -->
+    <!-- newsletter area End -->
     
     <!-- Additional plugin js -->
     <script src="/js/jquery-2.2.4.min.js"></script>
@@ -380,7 +315,7 @@
 
 
 </script>             
-    
+<script src="/js/festival_comment_reply.js"></script>
     <jsp:include page="footer.jsp"></jsp:include>
 
 </body>

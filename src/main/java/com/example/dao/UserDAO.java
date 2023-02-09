@@ -43,7 +43,7 @@ public interface UserDAO {
 	public List<WishVO> getWishList(UserVO vo);
 
 	// 위시리스트 삭제
-	public int deleteWish(UserVO vo);
+	public int deleteWish(WishVO vo);
 
 	// 위시리스트 중복체크
 	public int checkWish(WishVO vo);
